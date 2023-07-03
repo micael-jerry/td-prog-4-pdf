@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Employee</title>
+</head>
+<body>
+<form th:action="@{/employees}" th:object="${employee}" method="post">
+    <label>Firstname:</label>
+    <input type="text" th:field="*{firstname}"/><br/>
+    <label>Lastname:</label>
+    <input type="text" th:field="*{lastname}"/><br/>
+    <input type="submit" value="Ajouter"/>
+</form>
+</body>
+</html>
