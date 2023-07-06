@@ -3,18 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Create Employee</title>
+    <link rel="stylesheet" href="webjars/bootstrap/5.2.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/createEmployee.css">
 </head>
-<body>
-<form th:action="@{/employees}" th:object="${createEmployee}" method="post">
-    <label>Firstname:</label>
-    <input type="text" th:field="*{firstname}"/>
-    <br/>
-    <label>Lastname:</label>
-    <input type="text" th:field="*{lastname}"/>
-    <br/>
-    <label>Birthday:</label>
-    <input type="date" th:field="*{birthday}"/>
-    <input type="submit" value="Add"/>
-</form>
+<body class="text-center">
+<main class="container">
+    <form class="form-create-employee" th:action="@{/employees}" th:object="${createEmployee}" method="post">
+        <div class="form-floating">
+            <input class="form-control" id="firstname-input" type="text" th:field="*{firstname}"/>
+            <label for="firstname-input">Firstname:</label>
+        </div>
+        <div class="form-floating">
+            <input class="form-control" id="lastname-input" type="text" th:field="*{lastname}"/>
+            <label for="lastname-input">Lastname:</label>
+        </div>
+        <div class="form-floating">
+            <input class="form-control" id="birthday-input" type="date" th:field="*{birthday}"/>
+            <label for="birthday-input">Birthday:</label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">ADD</button>
+    </form>
+</main>
 </body>
 </html>
