@@ -5,7 +5,7 @@
     <title>Create Employee</title>
 </head>
 <body>
-<form th:action="@{/employees}" th:object="${employee}" method="post">
+<form th:action="@{/employees}" th:object="${createEmployee}" method="post">
     <label>Firstname:</label>
     <input type="text" th:field="*{firstname}"/>
     <br/>

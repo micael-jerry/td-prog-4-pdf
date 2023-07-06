@@ -5,7 +5,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spring.boot.model.Employee;
 
-import java.lang.reflect.Type;
 import java.util.List;
 
 public class Convert {
