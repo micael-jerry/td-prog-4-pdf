@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Create Employee</title>
@@ -7,10 +7,14 @@
 <body>
 <form th:action="@{/employees}" th:object="${employee}" method="post">
     <label>Firstname:</label>
-    <input type="text" th:field="*{firstname}"/><br/>
+    <input type="text" th:field="*{firstname}"/>
+    <br/>
     <label>Lastname:</label>
-    <input type="text" th:field="*{lastname}"/><br/>
-    <input type="submit" value="Ajouter"/>
+    <input type="text" th:field="*{lastname}"/>
+    <br/>
+    <label>Birthday:</label>
+    <input type="date" th:field="*{birthday}"/>
+    <input type="submit" value="Add"/>
 </form>
 </body>
 </html>
