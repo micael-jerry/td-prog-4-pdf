@@ -33,16 +33,22 @@ public class EmployeeController {
     }
 
     @PostMapping("/employees")
-    public String addEmployee(@ModelAttribute(CREATE_EMPLOYEE_ATTRIBUTE) CreateEmployeeDto createEmployeeDto) {
-        // Logic to save the employee to the database
+    public String addEmployee(
+            HttpSession session,
+            @ModelAttribute(CREATE_EMPLOYEE_ATTRIBUTE) CreateEmployeeDto createEmployeeDto
+    ) throws JsonProcessingException {
+        employeeSessionService.save(
+                session,
+                employeeMapper.toEntity(createEmployeeDto)
+        );
         return "redirect:/employees/add";
     }
 
     @GetMapping(path = "/employees")
     public String getEmployees(HttpSession session, Model model) throws JsonProcessingException {
         List<EmployeeDto> employees = employeeSessionService.findAll(session)
-                        .stream().map(employeeMapper::fromEntity)
-                        .toList();
+                .stream().map(employeeMapper::fromEntity)
+                .toList();
         model.addAttribute(EMPLOYEE_LIST_ATTRIBUTE, employees);
         return "employees";
     }

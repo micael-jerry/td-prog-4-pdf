@@ -5,13 +5,17 @@ import com.spring.boot.controller.dto.EmployeeDto;
 import com.spring.boot.model.Employee;
 import org.springframework.stereotype.Component;
 
+import java.time.ZoneId;
+import java.util.Date;
+
 @Component
 public class EmployeeMapper {
     public Employee toEntity(CreateEmployeeDto createEmployeeDto) {
+        Date birthday = Date.from(createEmployeeDto.getBirthday().atStartOfDay(ZoneId.systemDefault()).toInstant());
         Employee employee = new Employee();
         employee.setFirstname(createEmployeeDto.getFirstname());
         employee.setLastname(createEmployeeDto.getLastname());
-        employee.setBirthday(createEmployeeDto.getBirthday());
+        employee.setBirthday(birthday);
         return employee;
     }
 
