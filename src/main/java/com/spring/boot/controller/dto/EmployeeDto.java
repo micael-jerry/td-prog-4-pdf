@@ -19,4 +19,6 @@ public class EmployeeDto {
     private String lastname;
 
     private Date birthday;
+
+    private Integer id_image;
 }

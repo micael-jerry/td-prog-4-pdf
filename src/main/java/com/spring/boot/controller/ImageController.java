@@ -38,11 +38,7 @@ public class ImageController {
 
     @PostMapping("/image-upload")
     public String imageUpload(@RequestParam("image") MultipartFile image, Model model) throws IOException {
-        Image imageUploaded = new Image();
-        imageUploaded.setName(image.getOriginalFilename());
-        imageUploaded.setSize(image.getSize());
-        imageUploaded.setContent(image.getBytes());
-        imageService.save(imageUploaded);
+        imageService.save(image);
 //        success
         model.addAttribute("success", "File Uploaded Successfully!!!");
         return "image";

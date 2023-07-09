@@ -2,6 +2,8 @@ package com.spring.boot.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -21,6 +23,7 @@ import java.util.Date;
 @Entity
 public class Employee {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(length = 100)
@@ -31,4 +34,7 @@ public class Employee {
 
     @Temporal(TemporalType.DATE)
     private Date birthday;
+
+    @Column(unique = true)
+    private Integer id_image;
 }

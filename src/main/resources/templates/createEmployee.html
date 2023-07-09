@@ -8,7 +8,7 @@
 </head>
 <body class="text-center">
 <main class="container">
-    <form class="form-create-employee" th:action="@{/employees}" th:object="${createEmployee}" method="post">
+    <form class="form-create-employee" th:action="@{/employees}" th:object="${createEmployee}" method="post" enctype="multipart/form-data">
         <div class="form-floating">
             <input class="form-control" id="firstname-input" type="text" th:field="*{firstname}"/>
             <label for="firstname-input">Firstname:</label>
@@ -20,6 +20,9 @@
         <div class="form-floating">
             <input class="form-control" id="birthday-input" type="date" th:field="*{birthday}"/>
             <label for="birthday-input">Birthday:</label>
+        </div>
+        <div class="form-floating" >
+            <input class="form-control" name="image" type="file" id="formFile"/>
         </div>
         <button class="w-100 btn btn-lg btn-primary" type="submit">ADD</button>
     </form>

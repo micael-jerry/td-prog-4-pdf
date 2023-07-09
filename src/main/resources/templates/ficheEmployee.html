@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fiche</title>
+    <link rel="stylesheet" href="webjars/bootstrap/5.2.3/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <div>
+        <p th:text="${ficheEmployee.id}"></p>
+        <p th:text="${ficheEmployee.lastname}"></p>
+        <p th:text="${ficheEmployee.firstname}"></p>
+        <div><img th:src="@{'/image-show?id='+ ${ficheEmployee.id_image}}" width="100px" height="50px" th:alt="Photo"></div>
+    </div>
+</div>
+</body>
+</html>

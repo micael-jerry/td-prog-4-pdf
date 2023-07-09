@@ -21,6 +21,9 @@
                 <td th:text="${employee.firstname}"></td>
                 <td th:text="${employee.lastname}"></td>
                 <td th:text="${employee.birthday}"></td>
+                <td>
+                    <a th:href="@{'/fiche-employee?id='+ ${employee.id}}">fiche</a>
+                </td>
             </tr>
             </tbody>
         </table>

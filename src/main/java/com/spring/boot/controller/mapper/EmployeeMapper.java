@@ -25,6 +25,7 @@ public class EmployeeMapper {
                 .firstname(employee.getFirstname())
                 .lastname(employee.getLastname())
                 .birthday(employee.getBirthday())
+                .id_image(employee.getId_image())
                 .build();
     }
 }
