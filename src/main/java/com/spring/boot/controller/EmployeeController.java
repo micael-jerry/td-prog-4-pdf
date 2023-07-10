@@ -1,6 +1,5 @@
 package com.spring.boot.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.spring.boot.controller.dto.CreateEmployeeDto;
 import com.spring.boot.controller.dto.EmployeeDto;
 import com.spring.boot.controller.mapper.EmployeeMapper;
@@ -29,7 +28,7 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @GetMapping(path = "/employees")
-    public String getEmployees(Model model) throws JsonProcessingException {
+    public String getEmployees(Model model) {
         List<EmployeeDto> employees = employeeService.findAll()
                 .stream().map(employeeMapper::fromEntity)
                 .toList();
@@ -60,7 +59,6 @@ public class EmployeeController {
             Model model
     ) throws IOException {
         employeeService.save(employeeMapper.toEntity(createEmployeeDto), image);
-        model.addAttribute("create-employee-status", "Create employee successfully");
         return "redirect:/create-employee";
     }
 }
