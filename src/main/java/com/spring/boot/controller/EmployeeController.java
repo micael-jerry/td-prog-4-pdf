@@ -27,7 +27,7 @@ public class EmployeeController {
     private EmployeeMapper employeeMapper;
     private EmployeeService employeeService;
 
-    @GetMapping(path = "/employees")
+    @GetMapping("/employees")
     public String getEmployees(Model model) {
         List<EmployeeDto> employees = employeeService.findAll()
                 .stream().map(employeeMapper::fromEntity)
