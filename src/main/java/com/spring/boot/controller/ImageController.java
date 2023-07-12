@@ -16,7 +16,7 @@ import java.util.Optional;
 public class ImageController {
     private ImageService imageService;
 
-    @GetMapping("/image-show")
+    @GetMapping("/show-image")
     public void showImage(@RequestParam("id") Integer id, HttpServletResponse response) throws IOException {
         Optional<Image> image = imageService.findById(id);
         response.setContentType("image/*");
