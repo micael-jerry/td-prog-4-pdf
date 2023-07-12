@@ -17,7 +17,8 @@ public class Convert {
     public static List<Employee> stringAsEmployeeList(String employees) throws JsonProcessingException {
         return objectMapper.readValue(
                 employees,
-                new TypeReference<List<Employee>>() {}
+                new TypeReference<List<Employee>>() {
+                }
         );
     }
 }

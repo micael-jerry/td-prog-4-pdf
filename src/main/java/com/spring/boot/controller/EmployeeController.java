@@ -19,6 +19,7 @@ import java.util.List;
 
 import static com.spring.boot.utils.ModelAttributeName.CREATE_EMPLOYEE_ATTRIBUTE;
 import static com.spring.boot.utils.ModelAttributeName.EMPLOYEE_LIST_ATTRIBUTE;
+import static com.spring.boot.utils.ModelAttributeName.FILE_EMPLOYEE_ATTRIBUTE;
 
 @Controller
 @AllArgsConstructor
@@ -48,7 +49,7 @@ public class EmployeeController {
             Model model
     ) {
         EmployeeDto employeeDto = employeeMapper.fromEntity(employeeService.findById(id).get());
-        model.addAttribute("fileEmployee",employeeDto);
+        model.addAttribute(FILE_EMPLOYEE_ATTRIBUTE, employeeDto);
         return "fileEmployee";
     }
 
