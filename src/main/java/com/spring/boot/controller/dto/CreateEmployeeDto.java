@@ -1,5 +1,8 @@
 package com.spring.boot.controller.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,9 +15,14 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CreateEmployeeDto {
+    @Size(max = 100, message = "The first name is too long")
     private String firstname;
 
+    @NotBlank(message = "The last name is mandatory")
+    @NotNull(message = "The last name is mandatory")
+    @Size(max = 100, message = "The last name is too long")
     private String lastname;
 
+    @NotNull(message = "The birthday is mandatory")
     private LocalDate birthday;
 }

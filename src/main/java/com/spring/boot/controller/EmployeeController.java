@@ -4,6 +4,7 @@ import com.spring.boot.controller.dto.CreateEmployeeDto;
 import com.spring.boot.controller.dto.EmployeeDto;
 import com.spring.boot.controller.mapper.EmployeeMapper;
 import com.spring.boot.service.EmployeeService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -55,7 +56,7 @@ public class EmployeeController {
 
     @PostMapping("/employees")
     public String addEmployee(
-            @ModelAttribute(CREATE_EMPLOYEE_ATTRIBUTE) CreateEmployeeDto createEmployeeDto,
+            @Valid @ModelAttribute(CREATE_EMPLOYEE_ATTRIBUTE) CreateEmployeeDto createEmployeeDto,
             @RequestParam("image") MultipartFile image,
             Model model
     ) throws IOException {
