@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Fiche</title>
     <link rel="stylesheet" href="webjars/bootstrap/5.2.3/css/bootstrap.min.css">
-    <link rel="stylesheet" th:href="@{/styles/ficheEmployee.css}">
+    <link rel="stylesheet" th:href="@{/styles/fileEmployee.css}">
 </head>
 <body>
 
@@ -30,29 +30,29 @@
                     <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
                         <div class="row align-items-center">
                             <div class="col-lg-6 mb-4 mb-lg-0">
-                                <img id="profile-image" th:src="@{'/image-show?id='+ ${ficheEmployee.id_image}}"
+                                <img id="profile-image" th:src="@{'/image-show?id='+ ${fileEmployee.id_image}}"
                                      alt="Photo">
                             </div>
                             <div class="col-lg-6 px-xl-10">
                                 <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
-                                    <h3 class="h2 text-white mb-0" th:text="${ficheEmployee.lastname} + ' ' + ${ficheEmployee.firstname}"></h3>
+                                    <h3 class="h2 text-white mb-0" th:text="${fileEmployee.lastname} + ' ' + ${fileEmployee.firstname}"></h3>
                                 </div>
                                 <ul class="list-unstyled mb-1-9">
                                     <li class="mb-2 mb-xl-3 display-28">
                                         <span class="display-26 text-secondary me-2 font-weight-600">Id: </span>
-                                        [[${ficheEmployee.id}]]
+                                        [[${fileEmployee.id}]]
                                     </li>
                                     <li class="mb-2 mb-xl-3 display-28">
                                         <span class="display-26 text-secondary me-2 font-weight-600">Lastname: </span>
-                                        [[${ficheEmployee.lastname}]]
+                                        [[${fileEmployee.lastname}]]
                                     </li>
                                     <li class="mb-2 mb-xl-3 display-28">
                                         <span class="display-26 text-secondary me-2 font-weight-600">Firstname: </span>
-                                        [[${ficheEmployee.firstname}]]
+                                        [[${fileEmployee.firstname}]]
                                     </li>
                                     <li class="mb-2 mb-xl-3 display-28">
                                         <span class="display-26 text-secondary me-2 font-weight-600">Birthday: </span>
-                                        [[${ficheEmployee.birthday}]]
+                                        [[${fileEmployee.birthday}]]
                                     </li>
                                 </ul>
                             </div>

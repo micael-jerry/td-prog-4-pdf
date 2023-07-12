@@ -42,14 +42,14 @@ public class EmployeeController {
         return "createEmployee";
     }
 
-    @GetMapping("/fiche-employee")
-    public String ficheEmployee(
+    @GetMapping("/file-employee")
+    public String fileEmployee(
             @RequestParam("id") Integer id,
             Model model
     ) {
         EmployeeDto employeeDto = employeeMapper.fromEntity(employeeService.findById(id).get());
-        model.addAttribute("ficheEmployee",employeeDto);
-        return "ficheEmployee";
+        model.addAttribute("fileEmployee",employeeDto);
+        return "fileEmployee";
     }
 
     @PostMapping("/employees")
