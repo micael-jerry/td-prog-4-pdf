@@ -21,4 +21,6 @@ public class EmployeeDto {
     private Date birthday;
 
     private Integer id_image;
+
+    private String personnelNumber;
 }

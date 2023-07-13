@@ -58,7 +58,7 @@ public class EmployeeController {
     @PostMapping("/employees")
     public String addEmployee(
             @Valid @ModelAttribute(CREATE_EMPLOYEE_ATTRIBUTE) CreateEmployeeDto createEmployeeDto,
-             BindingResult result,
+            BindingResult result,
             @RequestParam("image") MultipartFile image
     ) throws IOException {
         if (result.hasErrors()) {
