@@ -31,8 +31,11 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @GetMapping("/employees")
-    public String getEmployees(Model model) {
-        List<EmployeeDto> employees = employeeService.findAll()
+    public String getEmployees(
+            @RequestParam(value = "search", required = false) String search,
+            Model model
+    ) {
+        List<EmployeeDto> employees = employeeService.findAll(search)
                 .stream().map(employeeMapper::fromEntity)
                 .toList();
         model.addAttribute(EMPLOYEE_LIST_ATTRIBUTE, employees);

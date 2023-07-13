@@ -17,7 +17,10 @@ public class EmployeeService {
     private EmployeeRepository employeeRepository;
     private ImageService imageService;
 
-    public List<Employee> findAll() {
+    public List<Employee> findAll(String search) {
+        if (search != null && !search.isBlank()) {
+            return employeeRepository.findAllByPersonnelNumberContainsIgnoreCaseOrLastnameContainsIgnoreCaseOrFirstnameContainsIgnoreCase(search, search, search);
+        }
         return employeeRepository.findAll();
     }
 
