@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -57,9 +58,12 @@ public class EmployeeController {
     @PostMapping("/employees")
     public String addEmployee(
             @Valid @ModelAttribute(CREATE_EMPLOYEE_ATTRIBUTE) CreateEmployeeDto createEmployeeDto,
-            @RequestParam("image") MultipartFile image,
-            Model model
+             BindingResult result,
+            @RequestParam("image") MultipartFile image
     ) throws IOException {
+        if (result.hasErrors()) {
+            return "createEmployee";
+        }
         employeeService.save(employeeMapper.toEntity(createEmployeeDto), image);
         return "redirect:/create-employee";
     }
