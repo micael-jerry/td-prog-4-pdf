@@ -25,4 +25,9 @@ public class CreateEmployeeDto {
 
     @NotNull(message = "The birthday is mandatory")
     private LocalDate birthday;
+
+    @NotNull(message = "The sex is mandatory")
+    @NotBlank(message = "The sex is mandatory")
+    @Size(min = 1, max = 1, message = "Te sex is M or F")
+    private String sex;
 }

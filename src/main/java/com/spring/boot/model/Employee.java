@@ -3,6 +3,8 @@ package com.spring.boot.model;
 import com.spring.boot.utils.EmployeeUtil;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -42,6 +44,9 @@ public class Employee {
 
     @Column(unique = true)
     private String personnelNumber;
+
+    @Enumerated(EnumType.STRING)
+    private Sex sex;
 
     @PostPersist
     private void createPersonnelNumber() {

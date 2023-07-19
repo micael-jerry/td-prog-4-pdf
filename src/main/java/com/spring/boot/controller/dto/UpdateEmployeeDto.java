@@ -23,4 +23,6 @@ public class UpdateEmployeeDto {
     private Integer id_image;
 
     private String personnelNumber;
+
+    private String sex;
 }

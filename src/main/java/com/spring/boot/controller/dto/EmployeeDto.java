@@ -1,5 +1,6 @@
 package com.spring.boot.controller.dto;
 
+import com.spring.boot.model.Sex;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,4 +24,6 @@ public class EmployeeDto {
     private Integer id_image;
 
     private String personnelNumber;
+
+    private Sex sex;
 }

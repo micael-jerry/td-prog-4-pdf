@@ -4,6 +4,7 @@ import com.spring.boot.controller.dto.CreateEmployeeDto;
 import com.spring.boot.controller.dto.EmployeeDto;
 import com.spring.boot.controller.dto.UpdateEmployeeDto;
 import com.spring.boot.model.Employee;
+import com.spring.boot.model.Sex;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
@@ -19,6 +20,7 @@ public class EmployeeMapper {
         employee.setFirstname(createEmployeeDto.getFirstname());
         employee.setLastname(createEmployeeDto.getLastname());
         employee.setBirthday(birthday);
+        employee.setSex(Sex.valueOf(createEmployeeDto.getSex()));
         return employee;
     }
 
@@ -31,6 +33,7 @@ public class EmployeeMapper {
         employee.setBirthday(birthday);
         employee.setId_image(updateEmployeeDto.getId_image());
         employee.setPersonnelNumber(updateEmployeeDto.getPersonnelNumber());
+        employee.setSex(Sex.valueOf(updateEmployeeDto.getSex()));
         return employee;
     }
 
@@ -42,6 +45,7 @@ public class EmployeeMapper {
                 .birthday(employee.getBirthday())
                 .id_image(employee.getId_image())
                 .personnelNumber(employee.getPersonnelNumber())
+                .sex(employee.getSex())
                 .build();
     }
 
@@ -57,6 +61,7 @@ public class EmployeeMapper {
                 .birthday(birthday)
                 .id_image(employee.getId_image())
                 .personnelNumber(employee.getPersonnelNumber())
+                .sex(employee.getSex().toString())
                 .build();
     }
 }
