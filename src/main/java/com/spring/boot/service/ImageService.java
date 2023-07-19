@@ -25,4 +25,22 @@ public class ImageService {
         imageUploaded.setContent(image.getBytes());
         return imageRepository.save(imageUploaded);
     }
+
+    public Image update(Integer id, MultipartFile image) throws IOException {
+        if (image.getBytes().length != 0) {
+            if (id != null) {
+                Image imageUpdated = new Image();
+                imageUpdated.setId(id);
+                imageUpdated.setName(image.getOriginalFilename());
+                imageUpdated.setSize(image.getSize());
+                imageUpdated.setContent(image.getBytes());
+                return imageRepository.save(imageUpdated);
+            } else {
+                return this.save(image);
+            }
+        }
+        Image image1 = new Image();
+        image1.setId(id);
+        return image1;
+    }
 }

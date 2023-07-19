@@ -30,6 +30,12 @@ public class EmployeeService {
         return employeeRepository.save(employee);
     }
 
+    public Employee update(Employee employee, MultipartFile image) throws IOException {
+        Image imageUpdated = imageService.update(employee.getId_image(), image);
+        employee.setId_image(imageUpdated.getId());
+        return employeeRepository.save(employee);
+    }
+
     public Optional<Employee> findById(Integer id) {
         return employeeRepository.findById(id);
     }
