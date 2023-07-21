@@ -1,5 +1,6 @@
 package com.spring.boot.service;
 
+import com.spring.boot.model.Cin;
 import com.spring.boot.model.Employee;
 import com.spring.boot.model.Image;
 import com.spring.boot.repository.EmployeeRepository;
@@ -16,6 +17,7 @@ import java.util.Optional;
 public class EmployeeService {
     private EmployeeRepository employeeRepository;
     private ImageService imageService;
+    private CinService cinService;
 
     public List<Employee> findAll(String search) {
         if (search != null && !search.isBlank()) {
@@ -26,7 +28,9 @@ public class EmployeeService {
 
     public Employee save(Employee employee, MultipartFile image) throws IOException {
         Image imageSaved = imageService.save(image);
+        Cin cinSaved = cinService.save(employee.getCin());
         employee.setId_image(imageSaved.getId());
+        employee.setCin(cinSaved);
         return employeeRepository.save(employee);
     }
 

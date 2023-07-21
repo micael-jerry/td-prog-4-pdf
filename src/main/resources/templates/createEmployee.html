@@ -39,7 +39,7 @@
         </div>
         <div class="form-floating mb-3">
             <select class="form-select form-select-sm" aria-label="Sex" th:field="*{sex}">
-                <option selected>Select sex</option>
+                <option selected th:value="'M'">Select sex</option>
                 <option th:value="'M'" th:text="Male"></option>
                 <option th:value="'F'" th:text="Female"></option>
             </select>
@@ -47,6 +47,20 @@
         <div class="form-floating mb-3">
             <input class="form-control form-control-sm" name="image" type="file" id="image-input"/>
             <label for="image-input" class="p-2">Profile picture:</label>
+        </div>
+        <div id="cin">
+            <div class="form-floating mb-3">
+                <input class="form-control" id="cin-number-input" type="text" th:field="*{cinNumber}"/>
+                <label for="cin-number-input">Cin number:</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" id="cin-delivery-date-input" type="date" th:field="*{cinDeliveryDate}"/>
+                <label for="cin-delivery-date-input">Cin delivery date:</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" id="cin-delivery-place-input" type="text" th:field="*{cinDeliveryPlace}"/>
+                <label for="cin-delivery-place-input">Cin delivery place:</label>
+            </div>
         </div>
         <div th:if="${#fields.hasAnyErrors()}" class="mt-3 mb-3">
             <ul>

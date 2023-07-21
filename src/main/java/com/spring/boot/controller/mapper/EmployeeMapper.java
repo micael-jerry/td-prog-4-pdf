@@ -5,6 +5,7 @@ import com.spring.boot.controller.dto.EmployeeDto;
 import com.spring.boot.controller.dto.UpdateEmployeeDto;
 import com.spring.boot.model.Employee;
 import com.spring.boot.model.Sex;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
@@ -13,7 +14,9 @@ import java.time.ZoneId;
 import java.util.Date;
 
 @Component
+@AllArgsConstructor
 public class EmployeeMapper {
+    private CinMapper cinMapper;
     public Employee toEntity(CreateEmployeeDto createEmployeeDto) {
         Date birthday = Date.from(createEmployeeDto.getBirthday().atStartOfDay(ZoneId.systemDefault()).toInstant());
         Employee employee = new Employee();
@@ -21,6 +24,7 @@ public class EmployeeMapper {
         employee.setLastname(createEmployeeDto.getLastname());
         employee.setBirthday(birthday);
         employee.setSex(Sex.valueOf(createEmployeeDto.getSex()));
+        employee.setCin(cinMapper.toEntity(createEmployeeDto));
         return employee;
     }
 
