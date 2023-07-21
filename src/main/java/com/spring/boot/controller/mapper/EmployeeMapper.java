@@ -17,6 +17,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class EmployeeMapper {
     private CinMapper cinMapper;
+    private EmailMapper emailMapper;
 
     public Employee toEntity(CreateEmployeeDto createEmployeeDto) {
         Date birthday = Date.from(createEmployeeDto.getBirthday().atStartOfDay(ZoneId.systemDefault()).toInstant());
@@ -28,6 +29,8 @@ public class EmployeeMapper {
         employee.setCnapsNumber(createEmployeeDto.getCnapsNumber());
         employee.setChildrenCount(createEmployeeDto.getChildrenCount());
         employee.setCin(cinMapper.toEntity(createEmployeeDto));
+        employee.setPersonalEmail(emailMapper.toEntity(null, createEmployeeDto.getPersonalEmail()));
+        employee.setProfessionalEmail(emailMapper.toEntity(null, createEmployeeDto.getProfessionalEmail()));
         return employee;
     }
 
@@ -44,6 +47,8 @@ public class EmployeeMapper {
         employee.setChildrenCount(updateEmployeeDto.getChildrenCount());
         employee.setId_image(updateEmployeeDto.getId_image());
         employee.setCin(cinMapper.toEntity(updateEmployeeDto));
+        employee.setPersonalEmail(emailMapper.toEntity(updateEmployeeDto.getPersonalEmailId(), updateEmployeeDto.getPersonalEmail()));
+        employee.setProfessionalEmail(emailMapper.toEntity(updateEmployeeDto.getProfessionalEmailId(), updateEmployeeDto.getProfessionalEmail()));
         return employee;
     }
 
@@ -59,6 +64,8 @@ public class EmployeeMapper {
                 .childrenCount(employee.getChildrenCount())
                 .id_image(employee.getId_image())
                 .cin(cinMapper.fromEntity(employee.getCin()))
+                .personalEmail(emailMapper.fromEntity(employee.getPersonalEmail()))
+                .professionalEmail(emailMapper.fromEntity(employee.getProfessionalEmail()))
                 .build();
     }
 
@@ -85,6 +92,10 @@ public class EmployeeMapper {
                 .cinNumber(employee.getCin().getCinNumber())
                 .cinDeliveryDate(cinDeliveryDate)
                 .cinDeliveryPlace(employee.getCin().getCinDeliveryPlace())
+                .personalEmailId(employee.getPersonalEmail().getId())
+                .personalEmail(employee.getPersonalEmail().getAddress())
+                .professionalEmailId(employee.getProfessionalEmail().getId())
+                .professionalEmail(employee.getProfessionalEmail().getAddress())
                 .build();
     }
 }

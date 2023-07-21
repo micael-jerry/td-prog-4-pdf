@@ -84,6 +84,19 @@
                                             </li>
                                         </ul>
                                     </li>
+                                    <li>
+                                        <h4>Email address</h4>
+                                        <ul class="mb-1-9">
+                                            <li class="mb-2 mb-xl-3 display-28">
+                                                <span class="display-26 text-secondary me-2 font-weight-600">Professional: </span>
+                                                [[${fileEmployee.professionalEmail.address}]]
+                                            </li>
+                                            <li class="mb-2 mb-xl-3 display-28">
+                                                <span class="display-26 text-secondary me-2 font-weight-600">Personal: </span>
+                                                [[${fileEmployee.personalEmail.address}]]
+                                            </li>
+                                        </ul>
+                                    </li>
                                     <li class="mb-2 mb-xl-3 display-28">
                                         <a class="btn btn-sm btn-outline-secondary"
                                            th:href="@{'/update-employee?id='+ ${fileEmployee.id}}">update</a>

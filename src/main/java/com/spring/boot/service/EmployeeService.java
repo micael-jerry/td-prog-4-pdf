@@ -1,6 +1,7 @@
 package com.spring.boot.service;
 
 import com.spring.boot.model.Cin;
+import com.spring.boot.model.Email;
 import com.spring.boot.model.Employee;
 import com.spring.boot.model.Image;
 import com.spring.boot.repository.EmployeeRepository;
@@ -18,6 +19,7 @@ public class EmployeeService {
     private EmployeeRepository employeeRepository;
     private ImageService imageService;
     private CinService cinService;
+    private EmailService emailService;
 
     public List<Employee> findAll(String search) {
         if (search != null && !search.isBlank()) {
@@ -27,17 +29,31 @@ public class EmployeeService {
     }
 
     public Employee save(Employee employee, MultipartFile image) throws IOException {
+//        Save image
         Image imageSaved = imageService.save(image);
-        Cin cinSaved = cinService.save(employee.getCin());
         employee.setId_image(imageSaved.getId());
+//        Save cin
+        Cin cinSaved = cinService.save(employee.getCin());
         employee.setCin(cinSaved);
+//        Save Email
+        Email personal = emailService.save(employee.getPersonalEmail());
+        employee.setPersonalEmail(personal);
+        Email professional = emailService.save(employee.getProfessionalEmail());
+        employee.setProfessionalEmail(professional);
+
         return employeeRepository.save(employee);
     }
 
     public Employee update(Employee employee, MultipartFile image) throws IOException {
+//        Image update
         Image imageUpdated = imageService.update(employee.getId_image(), image);
         employee.setId_image(imageUpdated.getId());
+//        Cin update
         cinService.update(employee.getCin());
+//        Email update
+        emailService.update(employee.getPersonalEmail());
+        emailService.update(employee.getProfessionalEmail());
+
         return employeeRepository.save(employee);
     }
 

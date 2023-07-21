@@ -32,4 +32,8 @@ public class EmployeeDto {
     private Integer id_image;
 
     private CinDto cin;
+
+    private EmailDto personalEmail;
+
+    private EmailDto professionalEmail;
 }

@@ -25,49 +25,71 @@
 <main class="container mt-5">
     <form class="form-create-employee" th:action="@{/employees}" th:object="${createEmployee}" method="post"
           enctype="multipart/form-data">
-        <div class="form-floating mb-3">
-            <input class="form-control" id="firstname-input" type="text" th:field="*{firstname}"/>
-            <label for="firstname-input">Firstname:</label>
-        </div>
-        <div class="form-floating mb-3">
-            <input class="form-control" id="lastname-input" type="text" th:field="*{lastname}"/>
-            <label for="lastname-input">Lastname:</label>
-        </div>
-        <div class="form-floating mb-3">
-            <input class="form-control" id="birthday-input" type="date" th:field="*{birthday}"/>
-            <label for="birthday-input">Birthday:</label>
-        </div>
-        <div class="form-floating mb-3">
-            <select class="form-select form-select-sm" aria-label="Sex" th:field="*{sex}">
-                <option selected th:value="'M'">Select sex</option>
-                <option th:value="'M'" th:text="Male"></option>
-                <option th:value="'F'" th:text="Female"></option>
-            </select>
-        </div>
-        <div class="form-floating mb-3">
-            <input class="form-control" id="cnaps-number-input" type="text" th:field="*{cnapsNumber}"/>
-            <label for="cnaps-number-input">Cnaps number:</label>
-        </div>
-        <div class="form-floating mb-3">
-            <input class="form-control" id="children-count-input" type="text" th:field="*{childrenCount}"/>
-            <label for="children-count-input">Children count:</label>
-        </div>
-        <div class="form-floating mb-3">
-            <input class="form-control form-control-sm" name="image" type="file" id="image-input"/>
-            <label for="image-input" class="p-2">Profile picture:</label>
-        </div>
-        <div id="cin">
-            <div class="form-floating mb-3">
-                <input class="form-control" id="cin-number-input" type="text" th:field="*{cinNumber}"/>
-                <label for="cin-number-input">Cin number:</label>
+        <div class="row">
+            <div class="col-lg-6">
+                <h4>Personal Information</h4>
+                <div class="form-floating mb-3">
+                    <input class="form-control" id="firstname-input" type="text" th:field="*{firstname}"/>
+                    <label for="firstname-input">Firstname:</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input class="form-control" id="lastname-input" type="text" th:field="*{lastname}"/>
+                    <label for="lastname-input">Lastname:</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input class="form-control" id="birthday-input" type="date" th:field="*{birthday}"/>
+                    <label for="birthday-input">Birthday:</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <select class="form-select form-select-sm" aria-label="Sex" th:field="*{sex}">
+                        <option selected th:value="'M'">Select sex</option>
+                        <option th:value="'M'" th:text="Male"></option>
+                        <option th:value="'F'" th:text="Female"></option>
+                    </select>
+                </div>
+                <div class="form-floating mb-3">
+                    <input class="form-control" id="cnaps-number-input" type="text" th:field="*{cnapsNumber}"/>
+                    <label for="cnaps-number-input">Cnaps number:</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input class="form-control" id="children-count-input" type="text" th:field="*{childrenCount}"/>
+                    <label for="children-count-input">Children count:</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input class="form-control form-control-sm" name="image" type="file" id="image-input"/>
+                    <label for="image-input" class="p-2">Profile picture:</label>
+                </div>
             </div>
-            <div class="form-floating mb-3">
-                <input class="form-control" id="cin-delivery-date-input" type="date" th:field="*{cinDeliveryDate}"/>
-                <label for="cin-delivery-date-input">Cin delivery date:</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input class="form-control" id="cin-delivery-place-input" type="text" th:field="*{cinDeliveryPlace}"/>
-                <label for="cin-delivery-place-input">Cin delivery place:</label>
+            <div class="col-lg-6">
+                <div id="cin">
+                    <h4>CIN information</h4>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="cin-number-input" type="text" th:field="*{cinNumber}"/>
+                        <label for="cin-number-input">Cin number:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="cin-delivery-date-input" type="date"
+                               th:field="*{cinDeliveryDate}"/>
+                        <label for="cin-delivery-date-input">Cin delivery date:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="cin-delivery-place-input" type="text"
+                               th:field="*{cinDeliveryPlace}"/>
+                        <label for="cin-delivery-place-input">Cin delivery place:</label>
+                    </div>
+                </div>
+                <div id="email">
+                    <h4>Email address</h4>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="professional-email-input" type="text"
+                               th:field="*{professionalEmail}"/>
+                        <label for="professional-email-input">Professional:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="personal-email-input" type="text" th:field="*{personalEmail}"/>
+                        <label for="personal-email-input">Personal:</label>
+                    </div>
+                </div>
             </div>
         </div>
         <div th:if="${#fields.hasAnyErrors()}" class="mt-3 mb-3">

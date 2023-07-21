@@ -37,4 +37,12 @@ public class UpdateEmployeeDto {
     private LocalDate cinDeliveryDate;
 
     private String cinDeliveryPlace;
+
+    private Integer personalEmailId;
+
+    private String personalEmail;
+
+    private Integer professionalEmailId;
+
+    private String professionalEmail;
 }

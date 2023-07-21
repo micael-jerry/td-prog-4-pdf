@@ -23,7 +23,6 @@ import java.util.Date;
 
 //        TODO: Téléphones : un employé peut avoir plusieurs
 //        TODO: adresse exacte,
-//        TODO: email perso et email pro
 //        TODO: fonction au sein de l’entreprise,
 //        TODO: date de son embauche et la date de son départ.
 //        TODO: sa catégorie socio-professionnelle, voir  http://bitly.ws/LEL4 pour plus de détails.
@@ -64,6 +63,14 @@ public class Employee {
     @OneToOne
     @JoinColumn(nullable = false)
     private Cin cin;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Email personalEmail;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Email professionalEmail;
 
     @PostPersist
     private void createPersonnelNumber() {
