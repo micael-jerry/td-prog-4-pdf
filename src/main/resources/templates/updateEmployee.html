@@ -29,6 +29,8 @@
         <input type="hidden" th:field="*{birthday}">
         <input type="hidden" th:field="*{id_image}">
         <input type="hidden" th:field="*{personnelNumber}">
+        <input type="hidden" th:field="*{cinId}">
+        <input type="hidden" th:field="*{cinDeliveryDate}">
         <div class="form-floating mb-3">
             <input class="form-control" id="firstname-input" type="text" th:field="*{firstname}"/>
             <label for="firstname-input">Firstname:</label>
@@ -43,6 +45,16 @@
                 <option th:value="'M'" th:text="Male"></option>
                 <option th:value="'F'" th:text="Female"></option>
             </select>
+        </div>
+        <div id="cin">
+            <div class="form-floating mb-3">
+                <input class="form-control" id="cin-number-input" type="text" th:field="*{cinNumber}"/>
+                <label for="cin-number-input">Cin number:</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" id="cin-delivery-place-input" type="text" th:field="*{cinDeliveryPlace}"/>
+                <label for="cin-delivery-place-input">Cin delivery place:</label>
+            </div>
         </div>
         <div class="form-floating mb-3">
             <input class="form-control form-control-sm" name="image" type="file" id="image-input"/>

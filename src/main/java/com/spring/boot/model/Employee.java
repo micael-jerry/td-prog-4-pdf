@@ -24,7 +24,6 @@ import java.util.Date;
 //        TODO: Téléphones : un employé peut avoir plusieurs
 //        TODO: adresse exacte,
 //        TODO: email perso et email pro
-//        TODO: CIN : numéro, date et lieu de délivrance,
 //        TODO: fonction au sein de l’entreprise,
 //        TODO: nombre d’enfants à sa charge,
 //        TODO: date de son embauche et la date de son départ.

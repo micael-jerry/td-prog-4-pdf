@@ -13,4 +13,8 @@ public class CinService {
     public Cin save(Cin cin) {
         return cinRepository.save(cin);
     }
+
+    public Cin update(Cin cin) {
+        return cinRepository.save(cin);
+    }
 }

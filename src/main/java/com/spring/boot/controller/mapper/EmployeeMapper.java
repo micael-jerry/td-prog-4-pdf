@@ -17,6 +17,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class EmployeeMapper {
     private CinMapper cinMapper;
+
     public Employee toEntity(CreateEmployeeDto createEmployeeDto) {
         Date birthday = Date.from(createEmployeeDto.getBirthday().atStartOfDay(ZoneId.systemDefault()).toInstant());
         Employee employee = new Employee();
@@ -38,6 +39,7 @@ public class EmployeeMapper {
         employee.setId_image(updateEmployeeDto.getId_image());
         employee.setPersonnelNumber(updateEmployeeDto.getPersonnelNumber());
         employee.setSex(Sex.valueOf(updateEmployeeDto.getSex()));
+        employee.setCin(cinMapper.toEntity(updateEmployeeDto));
         return employee;
     }
 
@@ -59,6 +61,10 @@ public class EmployeeMapper {
                 .ofEpochMilli(employee.getBirthday().getTime())
                 .atZone(ZoneId.systemDefault())
                 .toLocalDate();
+        LocalDate cinDeliveryDate = Instant
+                .ofEpochMilli(employee.getCin().getCinDeliveryDate().getTime())
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
         return UpdateEmployeeDto.builder()
                 .id(employee.getId())
                 .firstname(employee.getFirstname())
@@ -67,6 +73,10 @@ public class EmployeeMapper {
                 .id_image(employee.getId_image())
                 .personnelNumber(employee.getPersonnelNumber())
                 .sex(employee.getSex().toString())
+                .cinId(employee.getCin().getId())
+                .cinNumber(employee.getCin().getCinNumber())
+                .cinDeliveryDate(cinDeliveryDate)
+                .cinDeliveryPlace(employee.getCin().getCinDeliveryPlace())
                 .build();
     }
 }

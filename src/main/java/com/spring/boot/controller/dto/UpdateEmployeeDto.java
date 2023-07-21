@@ -25,4 +25,12 @@ public class UpdateEmployeeDto {
     private String personnelNumber;
 
     private String sex;
+
+    private Integer cinId;
+
+    private String cinNumber;
+
+    private LocalDate cinDeliveryDate;
+
+    private String cinDeliveryPlace;
 }
