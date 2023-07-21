@@ -1,5 +1,6 @@
 package com.spring.boot.controller.mapper;
 
+import com.spring.boot.controller.dto.CinDto;
 import com.spring.boot.controller.dto.CreateEmployeeDto;
 import com.spring.boot.model.Cin;
 import org.springframework.stereotype.Component;
@@ -16,5 +17,14 @@ public class CinMapper {
         cin.setCinDeliveryDate(deliveryDate);
         cin.setCinDeliveryPlace(createCinDto.getCinDeliveryPlace());
         return cin;
+    }
+
+    public CinDto fromEntity(Cin cin) {
+        return CinDto.builder()
+                .id(cin.getId())
+                .cinNumber(cin.getCinNumber())
+                .cinDeliveryDate(cin.getCinDeliveryDate())
+                .cinDeliveryPlace(cin.getCinDeliveryPlace())
+                .build();
     }
 }

@@ -50,6 +50,7 @@ public class EmployeeMapper {
                 .id_image(employee.getId_image())
                 .personnelNumber(employee.getPersonnelNumber())
                 .sex(employee.getSex())
+                .cin(cinMapper.fromEntity(employee.getCin()))
                 .build();
     }
 

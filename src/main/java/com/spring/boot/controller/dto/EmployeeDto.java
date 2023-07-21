@@ -26,4 +26,6 @@ public class EmployeeDto {
     private String personnelNumber;
 
     private Sex sex;
+
+    private CinDto cin;
 }
