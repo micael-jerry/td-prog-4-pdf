@@ -25,10 +25,8 @@ import java.util.Date;
 //        TODO: adresse exacte,
 //        TODO: email perso et email pro
 //        TODO: fonction au sein de l’entreprise,
-//        TODO: nombre d’enfants à sa charge,
 //        TODO: date de son embauche et la date de son départ.
 //        TODO: sa catégorie socio-professionnelle, voir  http://bitly.ws/LEL4 pour plus de détails.
-//        TODO: son numéro CNAPS (alphanumérique)
 
 @Getter
 @Setter
@@ -55,6 +53,10 @@ public class Employee {
 
     @Enumerated(EnumType.STRING)
     private Sex sex;
+
+    private String cnapsNumber;
+
+    private Integer childrenCount;
 
     @Column(unique = true)
     private Integer id_image;

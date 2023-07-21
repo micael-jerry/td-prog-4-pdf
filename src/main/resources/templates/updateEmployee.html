@@ -46,6 +46,18 @@
                 <option th:value="'F'" th:text="Female"></option>
             </select>
         </div>
+        <div class="form-floating mb-3">
+            <input class="form-control" id="cnaps-number-input" type="text" th:field="*{cnapsNumber}"/>
+            <label for="cnaps-number-input">Cnaps Number:</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input class="form-control" id="children-count-input" type="text" th:field="*{childrenCount}"/>
+            <label for="children-count-input">Children count:</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input class="form-control form-control-sm" name="image" type="file" id="image-input"/>
+            <label for="image-input" class="p-2">Profile picture:</label>
+        </div>
         <div id="cin">
             <div class="form-floating mb-3">
                 <input class="form-control" id="cin-number-input" type="text" th:field="*{cinNumber}"/>
@@ -55,10 +67,6 @@
                 <input class="form-control" id="cin-delivery-place-input" type="text" th:field="*{cinDeliveryPlace}"/>
                 <label for="cin-delivery-place-input">Cin delivery place:</label>
             </div>
-        </div>
-        <div class="form-floating mb-3">
-            <input class="form-control form-control-sm" name="image" type="file" id="image-input"/>
-            <label for="image-input" class="p-2">Profile picture:</label>
         </div>
         <button class="w-100 btn btn-lg btn-primary" type="submit">UPDATE</button>
     </form>

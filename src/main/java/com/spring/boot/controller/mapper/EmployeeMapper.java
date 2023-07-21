@@ -25,6 +25,8 @@ public class EmployeeMapper {
         employee.setLastname(createEmployeeDto.getLastname());
         employee.setBirthday(birthday);
         employee.setSex(Sex.valueOf(createEmployeeDto.getSex()));
+        employee.setCnapsNumber(createEmployeeDto.getCnapsNumber());
+        employee.setChildrenCount(createEmployeeDto.getChildrenCount());
         employee.setCin(cinMapper.toEntity(createEmployeeDto));
         return employee;
     }
@@ -33,12 +35,14 @@ public class EmployeeMapper {
         Date birthday = Date.from(updateEmployeeDto.getBirthday().atStartOfDay(ZoneId.systemDefault()).toInstant());
         Employee employee = new Employee();
         employee.setId(updateEmployeeDto.getId());
+        employee.setPersonnelNumber(updateEmployeeDto.getPersonnelNumber());
         employee.setFirstname(updateEmployeeDto.getFirstname());
         employee.setLastname(updateEmployeeDto.getLastname());
         employee.setBirthday(birthday);
-        employee.setId_image(updateEmployeeDto.getId_image());
-        employee.setPersonnelNumber(updateEmployeeDto.getPersonnelNumber());
         employee.setSex(Sex.valueOf(updateEmployeeDto.getSex()));
+        employee.setCnapsNumber(updateEmployeeDto.getCnapsNumber());
+        employee.setChildrenCount(updateEmployeeDto.getChildrenCount());
+        employee.setId_image(updateEmployeeDto.getId_image());
         employee.setCin(cinMapper.toEntity(updateEmployeeDto));
         return employee;
     }
@@ -46,12 +50,14 @@ public class EmployeeMapper {
     public EmployeeDto fromEntity(Employee employee) {
         return EmployeeDto.builder()
                 .id(employee.getId())
+                .personnelNumber(employee.getPersonnelNumber())
                 .firstname(employee.getFirstname())
                 .lastname(employee.getLastname())
                 .birthday(employee.getBirthday())
-                .id_image(employee.getId_image())
-                .personnelNumber(employee.getPersonnelNumber())
                 .sex(employee.getSex())
+                .cnapsNumber(employee.getCnapsNumber())
+                .childrenCount(employee.getChildrenCount())
+                .id_image(employee.getId_image())
                 .cin(cinMapper.fromEntity(employee.getCin()))
                 .build();
     }
@@ -67,12 +73,14 @@ public class EmployeeMapper {
                 .toLocalDate();
         return UpdateEmployeeDto.builder()
                 .id(employee.getId())
+                .personnelNumber(employee.getPersonnelNumber())
                 .firstname(employee.getFirstname())
                 .lastname(employee.getLastname())
                 .birthday(birthday)
-                .id_image(employee.getId_image())
-                .personnelNumber(employee.getPersonnelNumber())
                 .sex(employee.getSex().toString())
+                .cnapsNumber(employee.getCnapsNumber())
+                .childrenCount(employee.getChildrenCount())
+                .id_image(employee.getId_image())
                 .cinId(employee.getCin().getId())
                 .cinNumber(employee.getCin().getCinNumber())
                 .cinDeliveryDate(cinDeliveryDate)

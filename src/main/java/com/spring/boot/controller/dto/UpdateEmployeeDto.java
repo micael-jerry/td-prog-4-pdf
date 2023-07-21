@@ -14,17 +14,21 @@ import java.time.LocalDate;
 public class UpdateEmployeeDto {
     private Integer id;
 
+    private String personnelNumber;
+
     private String firstname;
 
     private String lastname;
 
     private LocalDate birthday;
 
-    private Integer id_image;
-
-    private String personnelNumber;
-
     private String sex;
+
+    private String cnapsNumber;
+
+    private Integer childrenCount;
+
+    private Integer id_image;
 
     private Integer cinId;
 

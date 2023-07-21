@@ -15,17 +15,21 @@ import java.util.Date;
 public class EmployeeDto {
     private Integer id;
 
+    private String personnelNumber;
+
     private String firstname;
 
     private String lastname;
 
     private Date birthday;
 
-    private Integer id_image;
-
-    private String personnelNumber;
-
     private Sex sex;
+
+    private String cnapsNumber;
+
+    private Integer childrenCount;
+
+    private Integer id_image;
 
     private CinDto cin;
 }

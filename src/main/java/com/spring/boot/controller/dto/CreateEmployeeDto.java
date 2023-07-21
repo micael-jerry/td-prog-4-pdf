@@ -32,6 +32,10 @@ public class CreateEmployeeDto {
     @Size(min = 1, max = 1, message = "Te sex is M or F")
     private String sex;
 
+    private String cnapsNumber;
+
+    private Integer childrenCount;
+
     //  ---------------  CIN Information ----------------
     @NotNull(message = "The cin number is mandatory")
     @NotBlank(message = "The cin number is mandatory")
