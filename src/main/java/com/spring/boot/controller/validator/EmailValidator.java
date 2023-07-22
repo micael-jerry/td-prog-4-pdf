@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class EmailValidator implements ConstraintValidator<EmailConstraint, String> {
     private EmailRepository emailRepository;
+
     @Override
     public void initialize(EmailConstraint constraintAnnotation) {
         ConstraintValidator.super.initialize(constraintAnnotation);

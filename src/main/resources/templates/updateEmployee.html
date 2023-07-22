@@ -58,8 +58,10 @@
                     <label for="children-count-input">Children count:</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <select class="form-select form-select-sm" aria-label="Socio-professional Category" th:field="*{socioProfessionalCategory}">
-                        <option selected th:value="*{socioProfessionalCategory}">Select Socio-professional Category</option>
+                    <select class="form-select form-select-sm" aria-label="Socio-professional Category"
+                            th:field="*{socioProfessionalCategory}">
+                        <option selected th:value="*{socioProfessionalCategory}">Select Socio-professional Category
+                        </option>
                         <option th:value="'MANAGERS'" th:text="MANAGERS"></option>
                         <option th:value="'INTERMEDIATE_PROFESSIONS'" th:text="INTERMEDIATE_PROFESSIONS"></option>
                         <option th:value="'EMPLOYEES'" th:text="EMPLOYEES"></option>
