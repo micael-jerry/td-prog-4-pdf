@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 public class EmployeeMapper {
     private CinMapper cinMapper;
     private EmailMapper emailMapper;
+    private PhoneMapper phoneMapper;
 
     public Employee toEntity(CreateEmployeeDto createEmployeeDto) {
         Employee employee = new Employee();
@@ -28,6 +29,7 @@ public class EmployeeMapper {
         employee.setCin(cinMapper.toEntity(createEmployeeDto));
         employee.setPersonalEmail(emailMapper.toEntity(null, createEmployeeDto.getPersonalEmail()));
         employee.setProfessionalEmail(emailMapper.toEntity(null, createEmployeeDto.getProfessionalEmail()));
+        employee.setPhones(phoneMapper.toEntity(createEmployeeDto.getPhones()));
         return employee;
     }
 
@@ -64,6 +66,7 @@ public class EmployeeMapper {
                 .cin(cinMapper.fromEntity(employee.getCin()))
                 .personalEmail(emailMapper.fromEntity(employee.getPersonalEmail()))
                 .professionalEmail(emailMapper.fromEntity(employee.getProfessionalEmail()))
+                .phones(phoneMapper.fromEntity(employee.getPhones()))
                 .build();
     }
 

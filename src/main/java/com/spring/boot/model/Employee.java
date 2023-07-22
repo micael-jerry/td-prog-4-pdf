@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.PostPersist;
 import jakarta.persistence.Temporal;
@@ -20,8 +21,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.Date;
+import java.util.List;
 
-//        TODO: Téléphones : un employé peut avoir plusieurs
+//        TODO: Téléphones : un employé peut avoir plusieurs - update sisa
 //        TODO: adresse exacte,
 //        TODO: fonction au sein de l’entreprise,
 //        TODO: date de son embauche et la date de son départ.
@@ -73,6 +75,10 @@ public class Employee {
     @OneToOne
     @JoinColumn(unique = true)
     private Email professionalEmail;
+
+    @OneToMany(mappedBy = "employee")
+    @ToString.Exclude
+    private List<Phone> phones;
 
     @PostPersist
     private void createPersonnelNumber() {

@@ -101,6 +101,15 @@
                                             </li>
                                         </ul>
                                     </li>
+                                    <li>
+                                        <h4>Phones</h4>
+                                        <ul th:if="${fileEmployee.phones.isEmpty()}">
+                                            <li class="mb-2 mb-xl-3 display-28">No Phones</li>
+                                        </ul>
+                                        <ul th:each="phone: ${fileEmployee.phones}">
+                                            <li th:text="${phone.number}"></li>
+                                        </ul>
+                                    </li>
                                     <li class="mb-2 mb-xl-3 display-28">
                                         <a class="btn btn-sm btn-outline-secondary"
                                            th:href="@{'/update-employee?id='+ ${fileEmployee.id}}">update</a>

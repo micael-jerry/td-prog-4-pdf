@@ -65,4 +65,7 @@ public class CreateEmployeeDto {
     @NotBlank(message = "Professional email is mandatory")
     @EmailConstraint(message = "professional email already exist")
     private String professionalEmail;
+
+    @Pattern(regexp = "^[0-9+,]+$", message = "phones not well formed")
+    private String phones;
 }

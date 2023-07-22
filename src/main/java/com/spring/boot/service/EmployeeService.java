@@ -4,6 +4,7 @@ import com.spring.boot.model.Cin;
 import com.spring.boot.model.Email;
 import com.spring.boot.model.Employee;
 import com.spring.boot.model.Image;
+import com.spring.boot.model.Phone;
 import com.spring.boot.repository.EmployeeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ public class EmployeeService {
     private ImageService imageService;
     private CinService cinService;
     private EmailService emailService;
+    private PhoneService phoneService;
 
     public List<Employee> findAll(String search) {
         if (search != null && !search.isBlank()) {
@@ -41,7 +43,11 @@ public class EmployeeService {
         Email professional = emailService.save(employee.getProfessionalEmail());
         employee.setProfessionalEmail(professional);
 
-        return employeeRepository.save(employee);
+        List<Phone> phones = employee.getPhones();
+        Employee employeeSaved = employeeRepository.save(employee);
+        employeeSaved.setPhones(null);
+        phoneService.saveAll(phones, employeeSaved);
+        return employeeSaved;
     }
 
     public Employee update(Employee employee, MultipartFile image) throws IOException {

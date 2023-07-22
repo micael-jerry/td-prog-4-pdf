@@ -90,15 +90,19 @@
                     </div>
                 </div>
                 <div id="email">
-                    <h4>Email address</h4>
+                    <h4>Contact</h4>
                     <div class="form-floating mb-3">
                         <input class="form-control" id="professional-email-input" type="text"
                                th:field="*{professionalEmail}"/>
-                        <label for="professional-email-input">Professional:</label>
+                        <label for="professional-email-input">Professional email address:</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input class="form-control" id="personal-email-input" type="text" th:field="*{personalEmail}"/>
-                        <label for="personal-email-input">Personal:</label>
+                        <label for="personal-email-input">Personal email address:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="phone-input" type="text" placeholder="Separated by ," th:field="*{phones}"/>
+                        <label for="phone-input">Phones:</label>
                     </div>
                 </div>
             </div>
