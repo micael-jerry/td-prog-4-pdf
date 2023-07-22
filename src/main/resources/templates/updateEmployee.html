@@ -28,7 +28,6 @@
         <div class="row">
             <div class="col-lg-6">
                 <input type="hidden" th:field="*{id}">
-                <input type="hidden" th:field="*{birthday}">
                 <input type="hidden" th:field="*{id_image}">
                 <input type="hidden" th:field="*{personnelNumber}">
                 <div class="form-floating mb-3">
@@ -38,6 +37,10 @@
                 <div class="form-floating mb-3">
                     <input class="form-control" id="lastname-input" type="text" th:field="*{lastname}"/>
                     <label for="lastname-input">Lastname:</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input class="form-control" id="birthday-input" type="date" th:field="*{birthday}"/>
+                    <label for="birthday-input">Birthday:</label>
                 </div>
                 <div class="form-floating mb-3">
                     <select class="form-select form-select-sm" aria-label="Sex" th:field="*{sex}">
@@ -72,10 +75,14 @@
             <div class="col-lg-6">
                 <div id="cin">
                     <input type="hidden" th:field="*{cinId}">
-                    <input type="hidden" th:field="*{cinDeliveryDate}">
                     <div class="form-floating mb-3">
                         <input class="form-control" id="cin-number-input" type="text" th:field="*{cinNumber}"/>
                         <label for="cin-number-input">Cin number:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="cin-delivery-date-input" type="date"
+                               th:field="*{cinDeliveryDate}"/>
+                        <label for="cin-delivery-date-input">Cin delivery date:</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input class="form-control" id="cin-delivery-place-input" type="text"

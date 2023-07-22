@@ -20,7 +20,7 @@ public class UpdateEmployeeDto {
 
     private String lastname;
 
-    private LocalDate birthday;
+    private String birthday;
 
     private String sex;
 
@@ -36,7 +36,7 @@ public class UpdateEmployeeDto {
 
     private String cinNumber;
 
-    private LocalDate cinDeliveryDate;
+    private String cinDeliveryDate;
 
     private String cinDeliveryPlace;
 

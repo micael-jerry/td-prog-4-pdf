@@ -6,13 +6,13 @@ import com.spring.boot.controller.dto.UpdateEmployeeDto;
 import com.spring.boot.model.Employee;
 import com.spring.boot.model.Sex;
 import com.spring.boot.model.SocioProfessionalCategory;
+import com.spring.boot.utils.Convert;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
 
 @Component
 @AllArgsConstructor
@@ -21,11 +21,10 @@ public class EmployeeMapper {
     private EmailMapper emailMapper;
 
     public Employee toEntity(CreateEmployeeDto createEmployeeDto) {
-        Date birthday = Date.from(createEmployeeDto.getBirthday().atStartOfDay(ZoneId.systemDefault()).toInstant());
         Employee employee = new Employee();
         employee.setFirstname(createEmployeeDto.getFirstname());
         employee.setLastname(createEmployeeDto.getLastname());
-        employee.setBirthday(birthday);
+        employee.setBirthday(Convert.stringToDateAndFormat(createEmployeeDto.getBirthday()));
         employee.setSex(Sex.valueOf(createEmployeeDto.getSex()));
         employee.setCnapsNumber(createEmployeeDto.getCnapsNumber());
         employee.setChildrenCount(createEmployeeDto.getChildrenCount());
@@ -37,13 +36,12 @@ public class EmployeeMapper {
     }
 
     public Employee toEntity(UpdateEmployeeDto updateEmployeeDto) {
-        Date birthday = Date.from(updateEmployeeDto.getBirthday().atStartOfDay(ZoneId.systemDefault()).toInstant());
         Employee employee = new Employee();
         employee.setId(updateEmployeeDto.getId());
         employee.setPersonnelNumber(updateEmployeeDto.getPersonnelNumber());
         employee.setFirstname(updateEmployeeDto.getFirstname());
         employee.setLastname(updateEmployeeDto.getLastname());
-        employee.setBirthday(birthday);
+        employee.setBirthday(Convert.stringToDateAndFormat(updateEmployeeDto.getBirthday()));
         employee.setSex(Sex.valueOf(updateEmployeeDto.getSex()));
         employee.setCnapsNumber(updateEmployeeDto.getCnapsNumber());
         employee.setChildrenCount(updateEmployeeDto.getChildrenCount());
@@ -74,20 +72,12 @@ public class EmployeeMapper {
     }
 
     public UpdateEmployeeDto fromEntityUpdate(Employee employee) {
-        LocalDate birthday = Instant
-                .ofEpochMilli(employee.getBirthday().getTime())
-                .atZone(ZoneId.systemDefault())
-                .toLocalDate();
-        LocalDate cinDeliveryDate = Instant
-                .ofEpochMilli(employee.getCin().getCinDeliveryDate().getTime())
-                .atZone(ZoneId.systemDefault())
-                .toLocalDate();
         return UpdateEmployeeDto.builder()
                 .id(employee.getId())
                 .personnelNumber(employee.getPersonnelNumber())
                 .firstname(employee.getFirstname())
                 .lastname(employee.getLastname())
-                .birthday(birthday)
+                .birthday(Convert.dateToStringAndFormat(employee.getBirthday()))
                 .sex(employee.getSex().toString())
                 .cnapsNumber(employee.getCnapsNumber())
                 .childrenCount(employee.getChildrenCount())
@@ -95,7 +85,7 @@ public class EmployeeMapper {
                 .id_image(employee.getId_image())
                 .cinId(employee.getCin().getId())
                 .cinNumber(employee.getCin().getCinNumber())
-                .cinDeliveryDate(cinDeliveryDate)
+                .cinDeliveryDate(Convert.dateToStringAndFormat(employee.getCin().getCinDeliveryDate()))
                 .cinDeliveryPlace(employee.getCin().getCinDeliveryPlace())
                 .personalEmailId(employee.getPersonalEmail().getId())
                 .personalEmail(employee.getPersonalEmail().getAddress())
