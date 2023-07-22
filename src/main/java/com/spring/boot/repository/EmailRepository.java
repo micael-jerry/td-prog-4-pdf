@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EmailRepository extends JpaRepository<Email, Integer> {
+    Email getByAddress(String address);
 }

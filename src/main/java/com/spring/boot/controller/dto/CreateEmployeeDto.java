@@ -1,5 +1,6 @@
 package com.spring.boot.controller.dto;
 
+import com.spring.boot.controller.validator.EmailConstraint;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -57,13 +58,13 @@ public class CreateEmployeeDto {
     private String cinDeliveryPlace;
     //  ---------------  CIN Information ----------------
 
-    //    TODO: add custom validator verify if email already exist
-
     @Email(message = "Personal email is not well formed")
+    @EmailConstraint(message = "personal email already exist")
     private String personalEmail;
 
     @Email(message = "Personal email is not well formed")
     @NotNull(message = "Professional email is mandatory")
     @NotBlank(message = "Professional email is mandatory")
+    @EmailConstraint(message = "professional email already exist")
     private String professionalEmail;
 }
