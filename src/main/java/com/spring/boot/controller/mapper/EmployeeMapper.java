@@ -5,6 +5,7 @@ import com.spring.boot.controller.dto.EmployeeDto;
 import com.spring.boot.controller.dto.UpdateEmployeeDto;
 import com.spring.boot.model.Employee;
 import com.spring.boot.model.Sex;
+import com.spring.boot.model.SocioProfessionalCategory;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -28,6 +29,7 @@ public class EmployeeMapper {
         employee.setSex(Sex.valueOf(createEmployeeDto.getSex()));
         employee.setCnapsNumber(createEmployeeDto.getCnapsNumber());
         employee.setChildrenCount(createEmployeeDto.getChildrenCount());
+        employee.setSocioProfessionalCategory(SocioProfessionalCategory.valueOf(createEmployeeDto.getSocioProfessionalCategory()));
         employee.setCin(cinMapper.toEntity(createEmployeeDto));
         employee.setPersonalEmail(emailMapper.toEntity(null, createEmployeeDto.getPersonalEmail()));
         employee.setProfessionalEmail(emailMapper.toEntity(null, createEmployeeDto.getProfessionalEmail()));
@@ -45,6 +47,7 @@ public class EmployeeMapper {
         employee.setSex(Sex.valueOf(updateEmployeeDto.getSex()));
         employee.setCnapsNumber(updateEmployeeDto.getCnapsNumber());
         employee.setChildrenCount(updateEmployeeDto.getChildrenCount());
+        employee.setSocioProfessionalCategory(SocioProfessionalCategory.valueOf(updateEmployeeDto.getSocioProfessionalCategory()));
         employee.setId_image(updateEmployeeDto.getId_image());
         employee.setCin(cinMapper.toEntity(updateEmployeeDto));
         employee.setPersonalEmail(emailMapper.toEntity(updateEmployeeDto.getPersonalEmailId(), updateEmployeeDto.getPersonalEmail()));
@@ -62,6 +65,7 @@ public class EmployeeMapper {
                 .sex(employee.getSex())
                 .cnapsNumber(employee.getCnapsNumber())
                 .childrenCount(employee.getChildrenCount())
+                .socioProfessionalCategory(employee.getSocioProfessionalCategory())
                 .id_image(employee.getId_image())
                 .cin(cinMapper.fromEntity(employee.getCin()))
                 .personalEmail(emailMapper.fromEntity(employee.getPersonalEmail()))
@@ -87,6 +91,7 @@ public class EmployeeMapper {
                 .sex(employee.getSex().toString())
                 .cnapsNumber(employee.getCnapsNumber())
                 .childrenCount(employee.getChildrenCount())
+                .socioProfessionalCategory(employee.getSocioProfessionalCategory().toString())
                 .id_image(employee.getId_image())
                 .cinId(employee.getCin().getId())
                 .cinNumber(employee.getCin().getCinNumber())

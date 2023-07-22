@@ -42,7 +42,7 @@
                 </div>
                 <div class="form-floating mb-3">
                     <select class="form-select form-select-sm" aria-label="Sex" th:field="*{sex}">
-                        <option selected th:value="'M'">Select sex</option>
+                        <option selected th:value="''">Select sex</option>
                         <option th:value="'M'" th:text="Male"></option>
                         <option th:value="'F'" th:text="Female"></option>
                     </select>
@@ -54,6 +54,16 @@
                 <div class="form-floating mb-3">
                     <input class="form-control" id="children-count-input" type="text" th:field="*{childrenCount}"/>
                     <label for="children-count-input">Children count:</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <select class="form-select form-select-sm" aria-label="Socio-professional Category" th:field="*{socioProfessionalCategory}">
+                        <option selected th:value="''">Select Socio-professional Category</option>
+                        <option th:value="'MANAGERS'" th:text="MANAGERS"></option>
+                        <option th:value="'INTERMEDIATE_PROFESSIONS'" th:text="INTERMEDIATE_PROFESSIONS"></option>
+                        <option th:value="'EMPLOYEES'" th:text="EMPLOYEES"></option>
+                        <option th:value="'WORKERS'" th:text="WORKERS"></option>
+                        <option th:value="'UNSKILLED'" th:text="UNSKILLED"></option>
+                    </select>
                 </div>
                 <div class="form-floating mb-3">
                     <input class="form-control form-control-sm" name="image" type="file" id="image-input"/>

@@ -1,6 +1,7 @@
 package com.spring.boot.controller.dto;
 
 import com.spring.boot.model.Sex;
+import com.spring.boot.model.SocioProfessionalCategory;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,6 +29,8 @@ public class EmployeeDto {
     private String cnapsNumber;
 
     private Integer childrenCount;
+
+    private SocioProfessionalCategory socioProfessionalCategory;
 
     private Integer id_image;
 

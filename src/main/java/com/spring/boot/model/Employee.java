@@ -25,7 +25,6 @@ import java.util.Date;
 //        TODO: adresse exacte,
 //        TODO: fonction au sein de l’entreprise,
 //        TODO: date de son embauche et la date de son départ.
-//        TODO: sa catégorie socio-professionnelle, voir  http://bitly.ws/LEL4 pour plus de détails.
 
 @Getter
 @Setter
@@ -56,6 +55,9 @@ public class Employee {
     private String cnapsNumber;
 
     private Integer childrenCount;
+
+    @Enumerated(EnumType.STRING)
+    private SocioProfessionalCategory socioProfessionalCategory;
 
     @Column(unique = true)
     private Integer id_image;

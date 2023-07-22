@@ -37,6 +37,10 @@ public class CreateEmployeeDto {
 
     private Integer childrenCount;
 
+    @NotNull(message = "The socio-professional category is mandatory")
+    @NotBlank(message = "The socio-professional category is mandatory")
+    private String socioProfessionalCategory;
+
     //  ---------------  CIN Information ----------------
     @NotNull(message = "The cin number is mandatory")
     @NotBlank(message = "The cin number is mandatory")

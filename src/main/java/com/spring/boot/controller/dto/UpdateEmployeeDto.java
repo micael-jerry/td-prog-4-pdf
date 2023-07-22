@@ -28,6 +28,8 @@ public class UpdateEmployeeDto {
 
     private Integer childrenCount;
 
+    private String socioProfessionalCategory;
+
     private Integer id_image;
 
     private Integer cinId;
