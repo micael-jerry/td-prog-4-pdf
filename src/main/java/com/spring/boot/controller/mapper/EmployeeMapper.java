@@ -16,6 +16,7 @@ public class EmployeeMapper {
     private CinMapper cinMapper;
     private EmailMapper emailMapper;
     private PhoneMapper phoneMapper;
+    private AddressMapper addressMapper;
 
     public Employee toEntity(CreateEmployeeDto createEmployeeDto) {
         Employee employee = new Employee();
@@ -27,6 +28,7 @@ public class EmployeeMapper {
         employee.setChildrenCount(createEmployeeDto.getChildrenCount());
         employee.setSocioProfessionalCategory(SocioProfessionalCategory.valueOf(createEmployeeDto.getSocioProfessionalCategory()));
         employee.setStartDate(Convert.stringToDateAndFormat(createEmployeeDto.getStartDate()));
+        employee.setAddress(addressMapper.toEntity(createEmployeeDto));
         employee.setCin(cinMapper.toEntity(createEmployeeDto));
         employee.setPersonalEmail(emailMapper.toEntity(null, createEmployeeDto.getPersonalEmail()));
         employee.setProfessionalEmail(emailMapper.toEntity(null, createEmployeeDto.getProfessionalEmail()));
@@ -48,6 +50,7 @@ public class EmployeeMapper {
         employee.setStartDate(Convert.stringToDateAndFormat(updateEmployeeDto.getStartDate()));
         employee.setDepartureDate(Convert.stringToDateAndFormat(updateEmployeeDto.getDepartureDate()));
         employee.setId_image(updateEmployeeDto.getId_image());
+        employee.setAddress(addressMapper.toEntity(updateEmployeeDto));
         employee.setCin(cinMapper.toEntity(updateEmployeeDto));
         employee.setPersonalEmail(emailMapper.toEntity(updateEmployeeDto.getPersonalEmailId(), updateEmployeeDto.getPersonalEmail()));
         employee.setProfessionalEmail(emailMapper.toEntity(updateEmployeeDto.getProfessionalEmailId(), updateEmployeeDto.getProfessionalEmail()));
@@ -68,6 +71,7 @@ public class EmployeeMapper {
                 .startDate(employee.getStartDate())
                 .departureDate(employee.getDepartureDate())
                 .id_image(employee.getId_image())
+                .address(addressMapper.fromEntity(employee.getAddress()))
                 .cin(cinMapper.fromEntity(employee.getCin()))
                 .personalEmail(emailMapper.fromEntity(employee.getPersonalEmail()))
                 .professionalEmail(emailMapper.fromEntity(employee.getProfessionalEmail()))
@@ -89,6 +93,11 @@ public class EmployeeMapper {
                 .startDate(Convert.dateToStringAndFormat(employee.getStartDate()))
                 .departureDate(Convert.dateToStringAndFormat(employee.getDepartureDate()))
                 .id_image(employee.getId_image())
+                .addressId(employee.getAddress().getId())
+                .addressHouse(employee.getAddress().getHouse())
+                .addressStreet(employee.getAddress().getStreet())
+                .addressCity(employee.getAddress().getCity())
+                .addressZipCode(String.valueOf(employee.getAddress().getZipCode()))
                 .cinId(employee.getCin().getId())
                 .cinNumber(employee.getCin().getCinNumber())
                 .cinDeliveryDate(Convert.dateToStringAndFormat(employee.getCin().getCinDeliveryDate()))

@@ -22,6 +22,7 @@ public class EmployeeService {
     private CinService cinService;
     private EmailService emailService;
     private PhoneService phoneService;
+    private AddressService addressService;
 
     public List<Employee> findAll(String search) {
         if (search != null && !search.isBlank()) {
@@ -59,6 +60,8 @@ public class EmployeeService {
 //        Email update
         emailService.update(employee.getPersonalEmail());
         emailService.update(employee.getProfessionalEmail());
+//        Address update
+        addressService.update(employee.getAddress());
 
         return employeeRepository.save(employee);
     }

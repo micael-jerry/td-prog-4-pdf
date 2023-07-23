@@ -45,6 +45,21 @@ public class CreateEmployeeDto {
     @NotBlank(message = "start date is mandatory")
     private String startDate;
 
+    //    ----------------- Address Information --------------------
+    private String addressHouse;
+
+    private String addressStreet;
+
+    @NotNull(message = "The city is mandatory")
+    @NotBlank(message = "The city is mandatory")
+    private String addressCity;
+
+    @NotNull(message = "The zipCode is mandatory")
+    @NotBlank(message = "The zipCode is mandatory")
+    @Pattern(regexp = "[0-9]+", message = "The zipCode must contain only numbers")
+    private String addressZipCode;
+    //    --------------- Address Information ---------------------
+
     //  ---------------  CIN Information ----------------
     @NotNull(message = "The cin number is mandatory")
     @NotBlank(message = "The cin number is mandatory")

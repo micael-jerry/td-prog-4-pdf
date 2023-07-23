@@ -34,19 +34,20 @@ public class UpdateEmployeeDto {
 
     private Integer id_image;
 
+    private Integer addressId;
+    private String addressHouse;
+    private String addressStreet;
+    private String addressCity;
+    private String addressZipCode;
+
     private Integer cinId;
-
     private String cinNumber;
-
     private String cinDeliveryDate;
-
     private String cinDeliveryPlace;
 
     private Integer personalEmailId;
-
     private String personalEmail;
 
     private Integer professionalEmailId;
-
     private String professionalEmail;
 }

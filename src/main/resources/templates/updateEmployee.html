@@ -111,6 +111,26 @@
                 </div>
             </div>
             <div class="col-lg-4">
+                <div id="address">
+                    <h4>Address</h4>
+                    <input type="hidden" th:field="*{addressId}">
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="address-house-input" type="text" th:field="*{addressHouse}"/>
+                        <label for="address-house-input">House:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="address-street-input" type="text" th:field="*{addressStreet}"/>
+                        <label for="address-street-input">Street:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="address-city-input" type="text" th:field="*{addressCity}"/>
+                        <label for="address-city-input">City:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="address-zipcode-input" type="text" th:field="*{addressZipCode}"/>
+                        <label for="address-zipcode-input">ZipCode:</label>
+                    </div>
+                </div>
                 <div id="contact">
                     <h4>Contact</h4>
                     <input type="hidden" th:field="*{professionalEmailId}">

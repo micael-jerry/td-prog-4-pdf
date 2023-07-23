@@ -1,6 +1,7 @@
 package com.spring.boot.model;
 
 import com.spring.boot.utils.EmployeeUtil;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -24,7 +25,6 @@ import java.util.Date;
 import java.util.List;
 
 //        TODO: Téléphones : un employé peut avoir plusieurs - update sisa
-//        TODO: adresse exacte,
 //        TODO: fonction au sein de l’entreprise,
 
 @Getter
@@ -69,6 +69,9 @@ public class Employee {
 
     @Column(unique = true)
     private Integer id_image;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private Address address;
 
     @OneToOne
     @JoinColumn(nullable = false)

@@ -39,6 +39,8 @@ public class EmployeeDto {
 
     private Integer id_image;
 
+    private AddressDto address;
+
     private CinDto cin;
 
     private EmailDto personalEmail;
