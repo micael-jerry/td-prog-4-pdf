@@ -45,7 +45,9 @@
                 <th scope="col">Personnel Number</th>
                 <th scope="col">Firstname</th>
                 <th scope="col">Lastname</th>
-                <th scope="col">Birthday</th>
+                <th scope="col">Function</th>
+                <th scope="col">Sex</th>
+                <th scope="col">Start - Departure</th>
             </tr>
             </thead>
             <tbody>
@@ -53,7 +55,9 @@
                 <td th:text="${employee.personnelNumber}"></td>
                 <td th:text="${employee.firstname}"></td>
                 <td th:text="${employee.lastname}"></td>
-                <td th:text="${employee.birthday}"></td>
+                <td th:text="${employee.function}"></td>
+                <td th:text="${employee.sex}"></td>
+                <td th:text="${employee.startDate} + ' -> ' + ${employee.departureDate}"></td>
                 <td>
                     <a class="btn btn-sm btn-outline-secondary"
                        th:href="@{'/file-employee?id='+ ${employee.id}}">view</a>
