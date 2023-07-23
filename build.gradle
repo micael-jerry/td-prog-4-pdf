@@ -35,6 +35,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	// https://mvnrepository.com/artifact/org.apache.commons/commons-csv
 	implementation 'org.apache.commons:commons-csv:1.10.0'
+	// https://mvnrepository.com/artifact/javax.json/javax.json-api
+	implementation 'javax.json:javax.json-api:1.1.4'
+	// https://mvnrepository.com/artifact/org.glassfish/javax.json
+	implementation 'org.glassfish:javax.json:1.1.4'
 }
 
 tasks.named('test') {

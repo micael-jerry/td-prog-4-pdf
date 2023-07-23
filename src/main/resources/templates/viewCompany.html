@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Company</title>
+    <link rel="stylesheet" href="webjars/bootstrap/5.2.3/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/styles/viewCompany.css}">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+        <a href="/" class="navbar-brand">Employee Administration</a>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav me-auto mb-2 mb-md-0"></div>
+            <div class="d-flex">
+                <a class="btn btn-sm btn-outline-secondary me-2" href="/">Home</a>
+                <a class="btn btn-sm btn-outline-secondary me-2" href="/employees">Employees List</a>
+                <a class="btn btn-sm btn-outline-secondary me-2" href="/create-employee">Create Employee</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<section>
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-body text-center">
+                        <img id="logo" th:src="@{'/show-logo-company'}"
+                             alt="No Logo"
+                             class="img-fluid">
+                        <h5 class="my-3" th:text="${company.name}"></h5>
+                        <p class="text-muted mb-4">[[${company.slogan}]]</p>
+                        <div class="d-flex justify-content-center mb-2">
+                            <a class="btn btn-outline-primary ms-1"
+                               th:href="@{'/update-company'}">Update</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Name</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">[[${company.name}]]</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Description</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">[[${company.description}]]</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Slogan</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">[[${company.slogan}]]</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
