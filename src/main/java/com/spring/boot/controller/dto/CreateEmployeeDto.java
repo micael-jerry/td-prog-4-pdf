@@ -1,6 +1,8 @@
 package com.spring.boot.controller.dto;
 
+import com.spring.boot.controller.validator.CinNumberConstraint;
 import com.spring.boot.controller.validator.EmailConstraint;
+import com.spring.boot.controller.validator.PhoneNumberConstraint;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -68,6 +70,7 @@ public class CreateEmployeeDto {
     @NotNull(message = "The cin number is mandatory")
     @NotBlank(message = "The cin number is mandatory")
     @Pattern(regexp = "[0-9]+", message = "The cin number must contain only numbers")
+    @CinNumberConstraint
     private String cinNumber;
 
     @NotNull(message = "The cin delivery date is mandatory")
@@ -90,5 +93,6 @@ public class CreateEmployeeDto {
     private String professionalEmail;
 
     @Pattern(regexp = "^[0-9+,]+$", message = "phones not well formed")
+    @PhoneNumberConstraint
     private String phones;
 }

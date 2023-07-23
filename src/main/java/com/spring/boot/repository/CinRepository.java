@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CinRepository extends JpaRepository<Cin, Integer> {
+    Cin getByCinNumber(String number);
 }
