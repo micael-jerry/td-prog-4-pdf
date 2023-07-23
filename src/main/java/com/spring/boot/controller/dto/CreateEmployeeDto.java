@@ -1,6 +1,7 @@
 package com.spring.boot.controller.dto;
 
 import com.spring.boot.controller.validator.CinNumberConstraint;
+import com.spring.boot.controller.validator.CnapsNumberConstraint;
 import com.spring.boot.controller.validator.EmailConstraint;
 import com.spring.boot.controller.validator.PhoneNumberConstraint;
 import jakarta.validation.constraints.Email;
@@ -35,6 +36,7 @@ public class CreateEmployeeDto {
     @Size(min = 1, max = 1, message = "Te sex is M or F")
     private String sex;
 
+    @CnapsNumberConstraint
     private String cnapsNumber;
 
     private Integer childrenCount;

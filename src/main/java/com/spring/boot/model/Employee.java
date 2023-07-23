@@ -52,6 +52,7 @@ public class Employee {
     @Enumerated(EnumType.STRING)
     private Sex sex;
 
+    @Column(unique = true)
     private String cnapsNumber;
 
     private Integer childrenCount;
