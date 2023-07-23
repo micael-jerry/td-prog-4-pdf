@@ -8,4 +8,5 @@ public class ModelAttributeName {
     public static final String EMPLOYEE_LIST_ATTRIBUTE = "employees";
     public static final String FILE_EMPLOYEE_ATTRIBUTE = "fileEmployee";
     public static final String UPDATE_EMPLOYEE_ATTRIBUTE = "updateEmployee";
+    public static final String EXPORT_URL_PARAMS_ATTRIBUTE = "exportParams";
 }

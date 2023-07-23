@@ -47,7 +47,8 @@
                                 <option th:value="'F'" th:text="Female"></option>
                             </select>
                             <div class="row">
-                                <select class="form-select form-select-sm me-3 mb-2 col-6" aria-label="Sex" name="order_by">
+                                <select class="form-select form-select-sm me-3 mb-2 col-6" aria-label="Sex"
+                                        name="order_by">
                                     <option th:value="${param.order_by}">Order by [[${param.order_by}]]</option>
                                     <option th:value="''">Not order</option>
                                     <option th:value="'firstname'" th:text="firstname"></option>
@@ -55,13 +56,16 @@
                                     <option th:value="'function'" th:text="function"></option>
                                     <option th:value="'sex'" th:text="sex"></option>
                                 </select>
-                                <select class="form-select form-select-sm me-3 mb-2 col-6" aria-label="Sex" name="order_direction">
-                                    <option th:value="${param.order_direction}">Direction [[${param.order_direction}]]</option>
+                                <select class="form-select form-select-sm me-3 mb-2 col-6" aria-label="Sex"
+                                        name="order_direction">
+                                    <option th:value="${param.order_direction}">Direction [[${param.order_direction}]]
+                                    </option>
                                     <option th:value="'ASC'" th:text="ASC"></option>
                                     <option th:value="'DESC'" th:text="DESC"></option>
                                 </select>
                             </div>
                         </div>
+                        <a class="btn btn-outline-success ms-3" th:href="@{'/employees/export'+ ${exportParams}}">Export</a>
                         <button class="btn btn-outline-success ms-3" type="submit">Filter</button>
                     </div>
                 </div>

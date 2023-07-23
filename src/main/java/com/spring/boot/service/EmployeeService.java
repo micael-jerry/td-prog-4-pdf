@@ -39,17 +39,6 @@ public class EmployeeService {
                         function, lastname, firstname, this.createSort(orderBy, direction));
     }
 
-    private Sort createSort(String orderBy, String direction) {
-        if (!orderBy.isBlank()) {
-            if (Objects.equals(direction, "ASC")) {
-                return Sort.by(orderBy).ascending();
-            } else if (Objects.equals(direction, "DESC")) {
-                return Sort.by(orderBy).descending();
-            }
-        }
-        return null;
-    }
-
     @Transactional
     public Employee save(Employee employee, MultipartFile image) throws IOException {
 //        Save image
@@ -88,5 +77,25 @@ public class EmployeeService {
 
     public Optional<Employee> findById(Integer id) {
         return employeeRepository.findById(id);
+    }
+
+    public String exportUrlParams(String function, String lastname, String firstname, String sex, String orderBy, String direction) {
+        return "?firstname_filter=" + firstname.replaceAll(" ", "+") +
+                "&lastname_filter=" + lastname.replaceAll(" ", "+") +
+                "&function_filter=" + function.replaceAll(" ", "+") +
+                "&sex_filter=" + sex +
+                "&order_by=" + orderBy +
+                "&order_direction=" + direction;
+    }
+
+    private Sort createSort(String orderBy, String direction) {
+        if (!orderBy.isBlank()) {
+            if (Objects.equals(direction, "ASC")) {
+                return Sort.by(orderBy).ascending();
+            } else if (Objects.equals(direction, "DESC")) {
+                return Sort.by(orderBy).descending();
+            }
+        }
+        return null;
     }
 }
