@@ -27,6 +27,7 @@ public class EmployeeMapper {
         employee.setCnapsNumber(createEmployeeDto.getCnapsNumber());
         employee.setChildrenCount(createEmployeeDto.getChildrenCount());
         employee.setSocioProfessionalCategory(SocioProfessionalCategory.valueOf(createEmployeeDto.getSocioProfessionalCategory()));
+        employee.setFunction(createEmployeeDto.getFunction());
         employee.setStartDate(Convert.stringToDateAndFormat(createEmployeeDto.getStartDate()));
         employee.setAddress(addressMapper.toEntity(createEmployeeDto));
         employee.setCin(cinMapper.toEntity(createEmployeeDto));
@@ -47,6 +48,7 @@ public class EmployeeMapper {
         employee.setCnapsNumber(updateEmployeeDto.getCnapsNumber());
         employee.setChildrenCount(updateEmployeeDto.getChildrenCount());
         employee.setSocioProfessionalCategory(SocioProfessionalCategory.valueOf(updateEmployeeDto.getSocioProfessionalCategory()));
+        employee.setFunction(updateEmployeeDto.getFunction());
         employee.setStartDate(Convert.stringToDateAndFormat(updateEmployeeDto.getStartDate()));
         employee.setDepartureDate(Convert.stringToDateAndFormat(updateEmployeeDto.getDepartureDate()));
         employee.setId_image(updateEmployeeDto.getId_image());
@@ -68,6 +70,7 @@ public class EmployeeMapper {
                 .cnapsNumber(employee.getCnapsNumber())
                 .childrenCount(employee.getChildrenCount())
                 .socioProfessionalCategory(employee.getSocioProfessionalCategory())
+                .function(employee.getFunction())
                 .startDate(employee.getStartDate())
                 .departureDate(employee.getDepartureDate())
                 .id_image(employee.getId_image())
@@ -90,6 +93,7 @@ public class EmployeeMapper {
                 .cnapsNumber(employee.getCnapsNumber())
                 .childrenCount(employee.getChildrenCount())
                 .socioProfessionalCategory(employee.getSocioProfessionalCategory().toString())
+                .function(employee.getFunction())
                 .startDate(Convert.dateToStringAndFormat(employee.getStartDate()))
                 .departureDate(Convert.dateToStringAndFormat(employee.getDepartureDate()))
                 .id_image(employee.getId_image())

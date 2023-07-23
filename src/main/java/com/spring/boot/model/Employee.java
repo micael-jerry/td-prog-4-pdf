@@ -25,7 +25,6 @@ import java.util.Date;
 import java.util.List;
 
 //        TODO: Téléphones : un employé peut avoir plusieurs - update sisa
-//        TODO: fonction au sein de l’entreprise,
 
 @Getter
 @Setter
@@ -59,6 +58,9 @@ public class Employee {
 
     @Enumerated(EnumType.STRING)
     private SocioProfessionalCategory socioProfessionalCategory;
+
+    @Column(nullable = false)
+    private String function;
 
     @Temporal(TemporalType.DATE)
     @Column(nullable = false)

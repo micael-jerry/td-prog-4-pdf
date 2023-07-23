@@ -33,6 +33,8 @@ public class EmployeeDto {
 
     private SocioProfessionalCategory socioProfessionalCategory;
 
+    private String function;
+
     private Date startDate;
 
     private Date departureDate;

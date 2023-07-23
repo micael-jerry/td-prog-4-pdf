@@ -28,6 +28,8 @@ public class UpdateEmployeeDto {
 
     private String socioProfessionalCategory;
 
+    private String function;
+
     private String startDate;
 
     private String departureDate;

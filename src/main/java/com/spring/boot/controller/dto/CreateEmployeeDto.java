@@ -41,6 +41,10 @@ public class CreateEmployeeDto {
     @NotBlank(message = "The socio-professional category is mandatory")
     private String socioProfessionalCategory;
 
+    @NotNull(message = "Function is mandatory")
+    @NotBlank(message = "Function is mandatory")
+    private String function;
+
     @NotNull(message = "start date is mandatory")
     @NotBlank(message = "start date is mandatory")
     private String startDate;
