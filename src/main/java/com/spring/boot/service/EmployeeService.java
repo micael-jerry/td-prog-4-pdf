@@ -5,6 +5,7 @@ import com.spring.boot.model.Email;
 import com.spring.boot.model.Employee;
 import com.spring.boot.model.Image;
 import com.spring.boot.model.Phone;
+import com.spring.boot.model.Sex;
 import com.spring.boot.repository.EmployeeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -24,11 +26,11 @@ public class EmployeeService {
     private PhoneService phoneService;
     private AddressService addressService;
 
-    public List<Employee> findAll(String search) {
-        if (search != null && !search.isBlank()) {
-            return employeeRepository.findAllByPersonnelNumberContainsIgnoreCaseOrLastnameContainsIgnoreCaseOrFirstnameContainsIgnoreCase(search, search, search);
+    public List<Employee> findAll(String function, String lastname, String firstname, String sex) {
+        if (sex.length() == 1) {
+            return employeeRepository.findAllByFunctionContainsIgnoreCaseAndLastnameContainsIgnoreCaseAndFirstnameContainsIgnoreCaseAndSex(function, lastname, firstname, Sex.valueOf(sex));
         }
-        return employeeRepository.findAll();
+        return employeeRepository.findAllByFunctionContainsIgnoreCaseAndLastnameContainsIgnoreCaseAndFirstnameContainsIgnoreCase(function, lastname, firstname);
     }
 
     public Employee save(Employee employee, MultipartFile image) throws IOException {

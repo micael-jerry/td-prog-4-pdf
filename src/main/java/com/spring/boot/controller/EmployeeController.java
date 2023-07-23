@@ -34,10 +34,13 @@ public class EmployeeController {
 
     @GetMapping("/employees")
     public String getEmployees(
-            @RequestParam(value = "search", required = false) String search,
+            @RequestParam(value = "function_filter", required = false, defaultValue = "") String function,
+            @RequestParam(value = "lastname_filter", required = false, defaultValue = "") String lastname,
+            @RequestParam(value = "firstname_filter", required = false, defaultValue = "") String firstname,
+            @RequestParam(value = "sex_filter", required = false, defaultValue = "") String sex,
             Model model
     ) {
-        List<EmployeeDto> employees = employeeService.findAll(search)
+        List<EmployeeDto> employees = employeeService.findAll(function, lastname, firstname, sex)
                 .stream().map(employeeMapper::fromEntity)
                 .toList();
         model.addAttribute(EMPLOYEE_LIST_ATTRIBUTE, employees);
