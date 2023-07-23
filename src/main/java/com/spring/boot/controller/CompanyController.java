@@ -18,6 +18,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
+import static com.spring.boot.utils.ModelAttributeName.COMPANY_ATTRIBUTE;
+import static com.spring.boot.utils.ModelAttributeName.CREATE_COMPANY_ATTRIBUTE;
+import static com.spring.boot.utils.ModelAttributeName.UPDATE_COMPANY_ATTRIBUTE;
+
 @Controller
 @AllArgsConstructor
 public class CompanyController {
@@ -27,13 +31,13 @@ public class CompanyController {
     @GetMapping("/company")
     public String getCompany(Model model) {
         CompanyDto companyDto = companyMapper.fromEntity(companyService.get());
-        model.addAttribute("company", companyDto);
+        model.addAttribute(COMPANY_ATTRIBUTE, companyDto);
         return "viewCompany";
     }
 
     @GetMapping("/save-company")
     public String getSaveCompanyPage(Model model) {
-        model.addAttribute("createCompany", new CreateOrUpdateCompanyDto());
+        model.addAttribute(CREATE_COMPANY_ATTRIBUTE, new CreateOrUpdateCompanyDto());
         return "saveCompany";
     }
 
@@ -57,7 +61,7 @@ public class CompanyController {
     @GetMapping("/update-company")
     public String getUpdateCompanyPage(Model model) {
         CreateOrUpdateCompanyDto updateCompanyDto = companyMapper.fromEntityToUpdate(companyService.get());
-        model.addAttribute("updateCompany", updateCompanyDto);
+        model.addAttribute(UPDATE_COMPANY_ATTRIBUTE, updateCompanyDto);
         return "updateCompany";
     }
 
