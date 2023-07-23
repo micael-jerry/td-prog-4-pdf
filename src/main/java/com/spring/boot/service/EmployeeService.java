@@ -7,7 +7,9 @@ import com.spring.boot.model.Image;
 import com.spring.boot.model.Phone;
 import com.spring.boot.model.Sex;
 import com.spring.boot.repository.EmployeeRepository;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,13 +28,29 @@ public class EmployeeService {
     private PhoneService phoneService;
     private AddressService addressService;
 
-    public List<Employee> findAll(String function, String lastname, String firstname, String sex) {
+    public List<Employee> findAll(String function, String lastname, String firstname, String sex, String orderBy, String direction) {
         if (sex.length() == 1) {
-            return employeeRepository.findAllByFunctionContainsIgnoreCaseAndLastnameContainsIgnoreCaseAndFirstnameContainsIgnoreCaseAndSex(function, lastname, firstname, Sex.valueOf(sex));
+            return employeeRepository
+                    .findAllByFunctionContainsIgnoreCaseAndLastnameContainsIgnoreCaseAndFirstnameContainsIgnoreCaseAndSex(
+                            function, lastname, firstname, Sex.valueOf(sex), this.createSort(orderBy, direction));
         }
-        return employeeRepository.findAllByFunctionContainsIgnoreCaseAndLastnameContainsIgnoreCaseAndFirstnameContainsIgnoreCase(function, lastname, firstname);
+        return employeeRepository
+                .findAllByFunctionContainsIgnoreCaseAndLastnameContainsIgnoreCaseAndFirstnameContainsIgnoreCase(
+                        function, lastname, firstname, this.createSort(orderBy, direction));
     }
 
+    private Sort createSort(String orderBy, String direction) {
+        if (!orderBy.isBlank()) {
+            if (Objects.equals(direction, "ASC")) {
+                return Sort.by(orderBy).ascending();
+            } else if (Objects.equals(direction, "DESC")) {
+                return Sort.by(orderBy).descending();
+            }
+        }
+        return null;
+    }
+
+    @Transactional
     public Employee save(Employee employee, MultipartFile image) throws IOException {
 //        Save image
         Image imageSaved = imageService.save(image);

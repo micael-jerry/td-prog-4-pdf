@@ -38,9 +38,11 @@ public class EmployeeController {
             @RequestParam(value = "lastname_filter", required = false, defaultValue = "") String lastname,
             @RequestParam(value = "firstname_filter", required = false, defaultValue = "") String firstname,
             @RequestParam(value = "sex_filter", required = false, defaultValue = "") String sex,
+            @RequestParam(value = "order_by", required = false, defaultValue = "") String orderBy,
+            @RequestParam(value = "order_direction", required = false, defaultValue = "ASC") String direction,
             Model model
     ) {
-        List<EmployeeDto> employees = employeeService.findAll(function, lastname, firstname, sex)
+        List<EmployeeDto> employees = employeeService.findAll(function, lastname, firstname, sex, orderBy, direction)
                 .stream().map(employeeMapper::fromEntity)
                 .toList();
         model.addAttribute(EMPLOYEE_LIST_ATTRIBUTE, employees);
