@@ -1,0 +1,16 @@
+body {
+    margin-top: 20px;
+    background-color: #eee;
+}
+
+#profile-image {
+    max-width: 1800px;
+    max-height: 300px;
+}
+
+.information-list-label {
+    font-size: 1.3rem;
+}
+.information-list-content {
+    font-size: 0.9rem
+}
