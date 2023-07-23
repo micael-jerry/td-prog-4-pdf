@@ -39,6 +39,9 @@ public class Convert {
     }
 
     public static String dateToStringAndFormat(Date date) {
+        if (date == null) {
+            return null;
+        }
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return simpleDateFormat.format(date);
     }

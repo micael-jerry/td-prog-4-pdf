@@ -28,6 +28,10 @@ public class UpdateEmployeeDto {
 
     private String socioProfessionalCategory;
 
+    private String startDate;
+
+    private String departureDate;
+
     private Integer id_image;
 
     private Integer cinId;

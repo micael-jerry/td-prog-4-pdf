@@ -26,56 +26,73 @@
     <form class="form-create-employee" th:action="@{/employees/update}" th:object="${updateEmployee}" method="post"
           enctype="multipart/form-data">
         <div class="row">
-            <div class="col-lg-6">
-                <input type="hidden" th:field="*{id}">
-                <input type="hidden" th:field="*{id_image}">
-                <input type="hidden" th:field="*{personnelNumber}">
-                <div class="form-floating mb-3">
-                    <input class="form-control" id="firstname-input" type="text" th:field="*{firstname}"/>
-                    <label for="firstname-input">Firstname:</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input class="form-control" id="lastname-input" type="text" th:field="*{lastname}"/>
-                    <label for="lastname-input">Lastname:</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input class="form-control" id="birthday-input" type="date" th:field="*{birthday}"/>
-                    <label for="birthday-input">Birthday:</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <select class="form-select form-select-sm" aria-label="Sex" th:field="*{sex}">
-                        <option selected th:value="*{sex}">Select sex</option>
-                        <option th:value="'M'" th:text="Male"></option>
-                        <option th:value="'F'" th:text="Female"></option>
-                    </select>
-                </div>
-                <div class="form-floating mb-3">
-                    <input class="form-control" id="cnaps-number-input" type="text" th:field="*{cnapsNumber}"/>
-                    <label for="cnaps-number-input">Cnaps Number:</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input class="form-control" id="children-count-input" type="text" th:field="*{childrenCount}"/>
-                    <label for="children-count-input">Children count:</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <select class="form-select form-select-sm" aria-label="Socio-professional Category"
-                            th:field="*{socioProfessionalCategory}">
-                        <option selected th:value="*{socioProfessionalCategory}">Select Socio-professional Category
-                        </option>
-                        <option th:value="'MANAGERS'" th:text="MANAGERS"></option>
-                        <option th:value="'INTERMEDIATE_PROFESSIONS'" th:text="INTERMEDIATE_PROFESSIONS"></option>
-                        <option th:value="'EMPLOYEES'" th:text="EMPLOYEES"></option>
-                        <option th:value="'WORKERS'" th:text="WORKERS"></option>
-                        <option th:value="'UNSKILLED'" th:text="UNSKILLED"></option>
-                    </select>
-                </div>
-                <div class="form-floating mb-3">
-                    <input class="form-control form-control-sm" name="image" type="file" id="image-input"/>
-                    <label for="image-input" class="p-2">Profile picture:</label>
+            <div class="col-lg-4">
+                <div id="personal">
+                    <h4>Personal Information</h4>
+                    <input type="hidden" th:field="*{id}">
+                    <input type="hidden" th:field="*{id_image}">
+                    <input type="hidden" th:field="*{personnelNumber}">
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="firstname-input" type="text" th:field="*{firstname}"/>
+                        <label for="firstname-input">Firstname:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="lastname-input" type="text" th:field="*{lastname}"/>
+                        <label for="lastname-input">Lastname:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="birthday-input" type="date" th:field="*{birthday}"/>
+                        <label for="birthday-input">Birthday:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select class="form-select form-select-sm" aria-label="Sex" th:field="*{sex}">
+                            <option selected th:value="*{sex}">Select sex</option>
+                            <option th:value="'M'" th:text="Male"></option>
+                            <option th:value="'F'" th:text="Female"></option>
+                        </select>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="children-count-input" type="text" th:field="*{childrenCount}"/>
+                        <label for="children-count-input">Children count:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control form-control-sm" name="image" type="file" id="image-input"/>
+                        <label for="image-input" class="p-2">Profile picture:</label>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-4">
+                <div id="professional">
+                    <h4>Professional information</h4>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="cnaps-number-input" type="text" th:field="*{cnapsNumber}"/>
+                        <label for="cnaps-number-input">Cnaps Number:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select class="form-select form-select-sm" aria-label="Socio-professional Category"
+                                th:field="*{socioProfessionalCategory}">
+                            <option selected th:value="*{socioProfessionalCategory}">Select Socio-professional Category
+                            </option>
+                            <option th:value="'MANAGERS'" th:text="MANAGERS"></option>
+                            <option th:value="'INTERMEDIATE_PROFESSIONS'" th:text="INTERMEDIATE_PROFESSIONS"></option>
+                            <option th:value="'EMPLOYEES'" th:text="EMPLOYEES"></option>
+                            <option th:value="'WORKERS'" th:text="WORKERS"></option>
+                            <option th:value="'UNSKILLED'" th:text="UNSKILLED"></option>
+                        </select>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="start-date-input" type="date"
+                               th:field="*{startDate}"/>
+                        <label for="start-date-input">Start date:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="departure-date-input" type="date"
+                               th:field="*{departureDate}"/>
+                        <label for="departure-date-input">Departure date:</label>
+                    </div>
+                </div>
                 <div id="cin">
+                    <h4>CIN information</h4>
                     <input type="hidden" th:field="*{cinId}">
                     <div class="form-floating mb-3">
                         <input class="form-control" id="cin-number-input" type="text" th:field="*{cinNumber}"/>
@@ -92,7 +109,10 @@
                         <label for="cin-delivery-place-input">Cin delivery place:</label>
                     </div>
                 </div>
-                <div id="email">
+            </div>
+            <div class="col-lg-4">
+                <div id="contact">
+                    <h4>Contact</h4>
                     <input type="hidden" th:field="*{professionalEmailId}">
                     <input type="hidden" th:field="*{personalEmailId}">
                     <div class="form-floating mb-3">

@@ -26,7 +26,6 @@ import java.util.List;
 //        TODO: Téléphones : un employé peut avoir plusieurs - update sisa
 //        TODO: adresse exacte,
 //        TODO: fonction au sein de l’entreprise,
-//        TODO: date de son embauche et la date de son départ.
 
 @Getter
 @Setter
@@ -60,6 +59,13 @@ public class Employee {
 
     @Enumerated(EnumType.STRING)
     private SocioProfessionalCategory socioProfessionalCategory;
+
+    @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
+    private Date startDate;
+
+    @Temporal(TemporalType.DATE)
+    private Date departureDate;
 
     @Column(unique = true)
     private Integer id_image;

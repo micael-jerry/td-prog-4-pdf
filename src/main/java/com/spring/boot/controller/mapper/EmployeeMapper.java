@@ -26,6 +26,7 @@ public class EmployeeMapper {
         employee.setCnapsNumber(createEmployeeDto.getCnapsNumber());
         employee.setChildrenCount(createEmployeeDto.getChildrenCount());
         employee.setSocioProfessionalCategory(SocioProfessionalCategory.valueOf(createEmployeeDto.getSocioProfessionalCategory()));
+        employee.setStartDate(Convert.stringToDateAndFormat(createEmployeeDto.getStartDate()));
         employee.setCin(cinMapper.toEntity(createEmployeeDto));
         employee.setPersonalEmail(emailMapper.toEntity(null, createEmployeeDto.getPersonalEmail()));
         employee.setProfessionalEmail(emailMapper.toEntity(null, createEmployeeDto.getProfessionalEmail()));
@@ -44,6 +45,8 @@ public class EmployeeMapper {
         employee.setCnapsNumber(updateEmployeeDto.getCnapsNumber());
         employee.setChildrenCount(updateEmployeeDto.getChildrenCount());
         employee.setSocioProfessionalCategory(SocioProfessionalCategory.valueOf(updateEmployeeDto.getSocioProfessionalCategory()));
+        employee.setStartDate(Convert.stringToDateAndFormat(updateEmployeeDto.getStartDate()));
+        employee.setDepartureDate(Convert.stringToDateAndFormat(updateEmployeeDto.getDepartureDate()));
         employee.setId_image(updateEmployeeDto.getId_image());
         employee.setCin(cinMapper.toEntity(updateEmployeeDto));
         employee.setPersonalEmail(emailMapper.toEntity(updateEmployeeDto.getPersonalEmailId(), updateEmployeeDto.getPersonalEmail()));
@@ -62,6 +65,8 @@ public class EmployeeMapper {
                 .cnapsNumber(employee.getCnapsNumber())
                 .childrenCount(employee.getChildrenCount())
                 .socioProfessionalCategory(employee.getSocioProfessionalCategory())
+                .startDate(employee.getStartDate())
+                .departureDate(employee.getDepartureDate())
                 .id_image(employee.getId_image())
                 .cin(cinMapper.fromEntity(employee.getCin()))
                 .personalEmail(emailMapper.fromEntity(employee.getPersonalEmail()))
@@ -81,6 +86,8 @@ public class EmployeeMapper {
                 .cnapsNumber(employee.getCnapsNumber())
                 .childrenCount(employee.getChildrenCount())
                 .socioProfessionalCategory(employee.getSocioProfessionalCategory().toString())
+                .startDate(Convert.dateToStringAndFormat(employee.getStartDate()))
+                .departureDate(Convert.dateToStringAndFormat(employee.getDepartureDate()))
                 .id_image(employee.getId_image())
                 .cinId(employee.getCin().getId())
                 .cinNumber(employee.getCin().getCinNumber())

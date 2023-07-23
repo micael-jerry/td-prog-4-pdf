@@ -33,6 +33,10 @@ public class EmployeeDto {
 
     private SocioProfessionalCategory socioProfessionalCategory;
 
+    private Date startDate;
+
+    private Date departureDate;
+
     private Integer id_image;
 
     private CinDto cin;
