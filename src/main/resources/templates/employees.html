@@ -23,51 +23,51 @@
 
 <div class="container mt-lg-5 pt-lg-5">
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-3">
             <h2>Employees List</h2>
         </div>
-        <form class="mb-lg-5 col-lg-6" th:action="@{/employees}" method="get">
-            <div class="row">
-                <div>
-                    <div class="d-flex">
-                        <div class="me-2">
-                            <input class="form-control me-3 mb-2" type="search" id="firstname-filter-input"
-                                   name="firstname_filter" placeholder="firstname"
-                                   aria-label="Firstname" th:value="${param.firstname_filter}"/>
-                            <input class="form-control me-3 mb-2" type="search" id="lastname-filter-input"
-                                   name="lastname_filter" placeholder="lastname"
-                                   aria-label="Lastname" th:value="${param.lastname_filter}"/>
-                            <input class="form-control me-3 mb-2" type="search" id="function-filter-input"
-                                   name="function_filter" placeholder="function"
-                                   aria-label="Function" th:value="${param.function_filter}"/>
-                            <select class="form-select form-select-sm me-3 mb-2" aria-label="Sex" name="sex_filter">
-                                <option th:value="${param.sex_filter}">Sex [[${param.sex_filter}]]</option>
-                                <option th:value="''">M and F</option>
-                                <option th:value="'M'" th:text="Male"></option>
-                                <option th:value="'F'" th:text="Female"></option>
-                            </select>
-                            <div class="row">
-                                <select class="form-select form-select-sm me-3 mb-2 col-6" aria-label="Sex"
-                                        name="order_by">
-                                    <option th:value="${param.order_by}">Order by [[${param.order_by}]]</option>
-                                    <option th:value="''">Not order</option>
-                                    <option th:value="'firstname'" th:text="firstname"></option>
-                                    <option th:value="'lastname'" th:text="lastname"></option>
-                                    <option th:value="'function'" th:text="function"></option>
-                                    <option th:value="'sex'" th:text="sex"></option>
-                                </select>
-                                <select class="form-select form-select-sm me-3 mb-2 col-6" aria-label="Sex"
-                                        name="order_direction">
-                                    <option th:value="${param.order_direction}">Direction [[${param.order_direction}]]
-                                    </option>
-                                    <option th:value="'ASC'" th:text="ASC"></option>
-                                    <option th:value="'DESC'" th:text="DESC"></option>
-                                </select>
-                            </div>
-                        </div>
-                        <a class="btn btn-outline-success ms-3" th:href="@{'/employees/export'+ ${exportParams}}">Export</a>
-                        <button class="btn btn-outline-success ms-3" type="submit">Filter</button>
-                    </div>
+        <form class="mb-lg-5 col-lg-9" th:action="@{/employees}" method="get">
+            <div class="d-flex">
+                <div class="me-3 ms-3 mb-2">
+                    <input class="form-control me-3 mb-2" type="search" id="firstname-filter-input"
+                           name="firstname_filter" placeholder="firstname"
+                           aria-label="Firstname" th:value="${param.firstname_filter}"/>
+                    <input class="form-control me-3 mb-2" type="search" id="lastname-filter-input"
+                           name="lastname_filter" placeholder="lastname"
+                           aria-label="Lastname" th:value="${param.lastname_filter}"/>
+                </div>
+                <div class="me-3 ms-3 mb-2">
+                    <input class="form-control me-3 mb-2" type="search" id="function-filter-input"
+                           name="function_filter" placeholder="function"
+                           aria-label="Function" th:value="${param.function_filter}"/>
+                    <select class="form-select form-select-sm me-3 mb-2" aria-label="Sex" name="sex_filter">
+                        <option th:value="${param.sex_filter}">Sex [[${param.sex_filter}]]</option>
+                        <option th:value="''">M and F</option>
+                        <option th:value="'M'" th:text="Male"></option>
+                        <option th:value="'F'" th:text="Female"></option>
+                    </select>
+                </div>
+                <div class="me-3 ms-3 mb-2">
+                    <select class="form-select form-select-sm me-3 mb-2 col-6" aria-label="Sex"
+                            name="order_by">
+                        <option th:value="${param.order_by}">Order by [[${param.order_by}]]</option>
+                        <option th:value="''">Not order</option>
+                        <option th:value="'firstname'" th:text="firstname"></option>
+                        <option th:value="'lastname'" th:text="lastname"></option>
+                        <option th:value="'function'" th:text="function"></option>
+                        <option th:value="'sex'" th:text="sex"></option>
+                    </select>
+                    <select class="form-select form-select-sm me-3 mb-2 col-6" aria-label="Sex"
+                            name="order_direction">
+                        <option th:value="${param.order_direction}">Direction [[${param.order_direction}]]
+                        </option>
+                        <option th:value="'ASC'" th:text="ASC"></option>
+                        <option th:value="'DESC'" th:text="DESC"></option>
+                    </select>
+                </div>
+                <div class="me-3 ms-3 mb-2">
+                    <button class="btn btn-outline-success me-3 mb-2 col-6" type="submit">Filter</button>
+                    <a class="btn btn-outline-success me-3 mb-2 col-6" th:href="@{'/employees/export'+ ${exportParams}}">Export</a>
                 </div>
             </div>
         </form>
