@@ -5,7 +5,6 @@ import com.spring.boot.model.Email;
 import com.spring.boot.model.Employee;
 import com.spring.boot.model.Image;
 import com.spring.boot.model.Phone;
-import com.spring.boot.model.Sex;
 import com.spring.boot.repository.EmployeeRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -29,14 +28,14 @@ public class EmployeeService {
     private AddressService addressService;
 
     public List<Employee> findAll(String function, String lastname, String firstname, String sex, String orderBy, String direction) {
-        if (sex.length() == 1) {
+        if (orderBy.length() > 1) {
             return employeeRepository
-                    .findAllByFunctionContainsIgnoreCaseAndLastnameContainsIgnoreCaseAndFirstnameContainsIgnoreCaseAndSex(
-                            function, lastname, firstname, Sex.valueOf(sex), this.createSort(orderBy, direction));
+                    .findAllByFunctionLastnameFirstnameSexAllContainsIgnoreCaseWithSort(
+                            function, lastname, firstname, sex, orderBy, direction);
+        } else {
+            return employeeRepository
+                    .findAllByFunctionLastnameFirstnameSexAllContainsIgnoreCase(function, lastname, firstname, sex);
         }
-        return employeeRepository
-                .findAllByFunctionContainsIgnoreCaseAndLastnameContainsIgnoreCaseAndFirstnameContainsIgnoreCase(
-                        function, lastname, firstname, this.createSort(orderBy, direction));
     }
 
     @Transactional
