@@ -29,7 +29,7 @@
     <form class="form-create-employee" th:action="@{/company}" th:object="${createCompany}" method="post"
           enctype="multipart/form-data">
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <div id="company">
                     <h4>Company</h4>
                     <div class="form-floating mb-3">
@@ -49,12 +49,16 @@
                         <label for="email-input">Email:</label>
                     </div>
                     <div class="form-floating mb-3">
+                        <input class="form-control" id="phones-input" type="text" th:field="*{phones}"/>
+                        <label for="phones-input">Phones:</label>
+                    </div>
+                    <div class="form-floating mb-3">
                         <input class="form-control form-control-sm" name="logo" type="file" id="logo-input"/>
                         <label for="logo-input" class="p-2">Logo:</label>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <div id="company-address">
                     <h4>Company Address</h4>
                     <div class="form-floating mb-3">

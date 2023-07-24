@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Builder
 @Data
 @AllArgsConstructor
@@ -20,4 +22,6 @@ public class CompanyDto {
     private CompanyAddress address;
 
     private String email;
+
+    private List<String> phones;
 }

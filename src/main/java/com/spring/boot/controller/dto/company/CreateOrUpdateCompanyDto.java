@@ -49,4 +49,9 @@ public class CreateOrUpdateCompanyDto {
     @Pattern(regexp = "[0-9]+", message = "The zipCode must contain only numbers")
     private String addressZipCode;
     //    --------------- Address Information ---------------------
+
+    @Pattern(regexp = "^[0-9+,]+$", message = "phones not well formed")
+    @NotNull(message = "phones is mandatory")
+    @NotBlank(message = "phones is mandatory")
+    private String phones;
 }

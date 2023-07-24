@@ -10,6 +10,9 @@
         "zipCode": "101"
     },
     "email": "hei@gmail.com",
+    "phones": [
+        "0341212212"
+    ],
     "logo": [
         -119,
         80,

@@ -20,7 +20,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -40,11 +42,12 @@ public class CompanyService {
             company.setSlogan(companyObject.getString("slogan"));
             company.setAddress(this.getCompanyAddress(companyObject.getJsonObject("address")));
             company.setEmail(companyObject.getString("email"));
+            company.setPhones(this.getPhones(companyObject.getJsonArray("phones")));
             company.setLogo(this.getLogo(companyObject.getJsonArray("logo")));
             return company;
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-            return new Company(null,null,null,new CompanyAddress(),null,null);
+            return new Company(null, null, null, new CompanyAddress(), null, new ArrayList<>(), null);
         }
     }
 
@@ -57,6 +60,7 @@ public class CompanyService {
                 .add("slogan", company.getSlogan())
                 .add("address", this.saveAddress(company.getAddress()))
                 .add("email", company.getEmail())
+                .add("phones", this.savePhones(company.getPhones()))
                 .add("logo", this.saveLogo(logo, isUpdate));
 
         JsonObject companyObject = companyObjectBuilder.build();
@@ -77,10 +81,10 @@ public class CompanyService {
     private JsonObjectBuilder saveAddress(CompanyAddress address) {
         JsonObjectBuilder companyAddressObjectBuilder = Json.createObjectBuilder();
         companyAddressObjectBuilder
-                .add("house",address.getHouse())
+                .add("house", address.getHouse())
                 .add("street", address.getStreet())
-                .add("city",address.getCity())
-                .add("zipCode",address.getZipCode());
+                .add("city", address.getCity())
+                .add("zipCode", address.getZipCode());
         return companyAddressObjectBuilder;
     }
 
@@ -93,6 +97,14 @@ public class CompanyService {
         }
         for (byte b : logo) {
             companyLogoArrayBuilder.add(b);
+        }
+        return companyLogoArrayBuilder;
+    }
+
+    private JsonArrayBuilder savePhones(List<String> phones) {
+        JsonArrayBuilder companyLogoArrayBuilder = Json.createArrayBuilder();
+        for (String phone : phones) {
+            companyLogoArrayBuilder.add(phone);
         }
         return companyLogoArrayBuilder;
     }
@@ -113,5 +125,13 @@ public class CompanyService {
                 addressCompanyObject.getString("city"),
                 addressCompanyObject.getString("zipCode")
         );
+    }
+
+    private List<String> getPhones(JsonArray phonesListJsonArray) {
+        List<String> phones = new ArrayList<>();
+        for (JsonValue value : phonesListJsonArray) {
+            phones.add(value.toString());
+        }
+        return phones;
     }
 }

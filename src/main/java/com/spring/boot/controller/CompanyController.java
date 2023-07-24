@@ -65,11 +65,15 @@ public class CompanyController {
         return "updateCompany";
     }
 
-    @PostMapping("/company/update")
+    @PostMapping("/update-company")
     public String updateCompany(
-            @ModelAttribute("updateCompany") CreateOrUpdateCompanyDto updateCompanyDto,
+            @Valid @ModelAttribute("updateCompany") CreateOrUpdateCompanyDto updateCompanyDto,
+            BindingResult result,
             @RequestParam("logo") MultipartFile logo
     ) throws IOException {
+        if (result.hasErrors()) {
+            return "updateCompany";
+        }
         companyService.save(companyMapper.toEntity(updateCompanyDto), logo.getBytes(), true);
         return "redirect:/company";
     }

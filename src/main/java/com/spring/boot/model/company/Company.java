@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
@@ -21,6 +23,8 @@ public class Company {
     private CompanyAddress address;
 
     private String email;
+
+    private List<String> phones;
 
     private byte[] logo;
 }

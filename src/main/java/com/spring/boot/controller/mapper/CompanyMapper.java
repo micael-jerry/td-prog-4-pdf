@@ -6,6 +6,8 @@ import com.spring.boot.controller.dto.company.CreateOrUpdateCompanyDto;
 import com.spring.boot.model.company.CompanyAddress;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class CompanyMapper {
 
@@ -20,6 +22,7 @@ public class CompanyMapper {
                 createCompanyDto.getAddressCity(),
                 createCompanyDto.getAddressZipCode()));
         company.setEmail(createCompanyDto.getEmail());
+        company.setPhones(this.getPhonesNumberList(createCompanyDto.getPhones()));
         return company;
     }
 
@@ -30,6 +33,7 @@ public class CompanyMapper {
         company.setSlogan(companyDto.getSlogan());
         company.setAddress(companyDto.getAddress());
         company.setEmail(company.getEmail());
+        company.setPhones(companyDto.getPhones());
         return company;
     }
 
@@ -40,6 +44,7 @@ public class CompanyMapper {
                 .slogan(company.getSlogan())
                 .address(company.getAddress())
                 .email(company.getEmail())
+                .phones(company.getPhones())
                 .build();
     }
 
@@ -53,6 +58,16 @@ public class CompanyMapper {
                 .addressCity(company.getAddress().getCity())
                 .addressZipCode(company.getAddress().getZipCode())
                 .email(company.getEmail())
+                .phones(this.getPhoneNumberString(company.getPhones()))
                 .build();
+    }
+
+    private List<String> getPhonesNumberList(String phones) {
+        String[] phoneArray = phones.replaceAll("\\s+", "").split(",");
+        return List.of(phoneArray);
+    }
+
+    private String getPhoneNumberString(List<String> phones) {
+        return String.join(", ", phones);
     }
 }

@@ -39,7 +39,7 @@
                         <p class="text-muted mb-4">[[${company.slogan}]]</p>
                         <div class="d-flex justify-content-center mb-2">
                             <a class="btn btn-outline-primary ms-1"
-                               th:href="@{'/update-company'}">Update</a>
+                               th:href="@{'/save-company'}">Save company</a>
                         </div>
                     </div>
                 </div>
@@ -80,6 +80,18 @@
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0">[[${company.email}]]</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Phones</p>
+                            </div>
+                            <div class="col-sm-9" th:if="${company.phones.isEmpty()}">
+                                <p class="text-muted mb-0">No phones number</p>
+                            </div>
+                            <div class="col-sm-9" th:each="phone: ${company.phones}">
+                                <p class="text-muted mb-0" th:text="${phone}"></p>
                             </div>
                         </div>
                     </div>
