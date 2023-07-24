@@ -1,4 +1,4 @@
-package com.spring.boot.model;
+package com.spring.boot.model.company;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,7 +13,14 @@ import lombok.ToString;
 @NoArgsConstructor
 public class Company {
     private String name;
+
     private String description;
+
     private String slogan;
+
+    private CompanyAddress address;
+
+    private String email;
+
     private byte[] logo;
 }

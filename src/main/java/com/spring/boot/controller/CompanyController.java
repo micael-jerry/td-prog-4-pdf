@@ -1,8 +1,8 @@
 package com.spring.boot.controller;
 
 import com.spring.boot.service.CompanyService;
-import com.spring.boot.controller.dto.CompanyDto;
-import com.spring.boot.controller.dto.CreateOrUpdateCompanyDto;
+import com.spring.boot.controller.dto.company.CompanyDto;
+import com.spring.boot.controller.dto.company.CreateOrUpdateCompanyDto;
 import com.spring.boot.controller.mapper.CompanyMapper;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
@@ -55,7 +55,7 @@ public class CompanyController {
                 logo.getBytes(),
                 false
         );
-        return "redirect:/save-company";
+        return "redirect:/company";
     }
 
     @GetMapping("/update-company")

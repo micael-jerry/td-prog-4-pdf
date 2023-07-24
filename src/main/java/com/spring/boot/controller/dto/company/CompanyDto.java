@@ -1,5 +1,6 @@
-package com.spring.boot.controller.dto;
+package com.spring.boot.controller.dto.company;
 
+import com.spring.boot.model.company.CompanyAddress;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,6 +12,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CompanyDto {
     private String name;
+
     private String description;
+
     private String slogan;
+
+    private CompanyAddress address;
+
+    private String email;
 }

@@ -1,6 +1,7 @@
 package com.spring.boot.service;
 
-import com.spring.boot.model.Company;
+import com.spring.boot.model.company.Company;
+import com.spring.boot.model.company.CompanyAddress;
 import org.springframework.stereotype.Service;
 
 import javax.json.Json;
@@ -37,33 +38,26 @@ public class CompanyService {
             company.setName(companyObject.getString("name"));
             company.setDescription(companyObject.getString("description"));
             company.setSlogan(companyObject.getString("slogan"));
+            company.setAddress(this.getCompanyAddress(companyObject.getJsonObject("address")));
+            company.setEmail(companyObject.getString("email"));
             company.setLogo(this.getLogo(companyObject.getJsonArray("logo")));
             return company;
         } catch (IOException e) {
             e.printStackTrace();
-            return new Company();
+            return new Company(null,null,null,new CompanyAddress(),null,null);
         }
     }
 
     public void save(Company company, byte[] logo, boolean isUpdate) throws FileNotFoundException {
         JsonObjectBuilder companyObjectBuilder = Json.createObjectBuilder();
-        JsonArrayBuilder companyLogoArrayBuilder = Json.createArrayBuilder();
-
-        if (isUpdate) {
-            if (logo.length == 0) {
-                logo = this.get().getLogo();
-            }
-        }
-
-        for (byte b : logo) {
-            companyLogoArrayBuilder.add(b);
-        }
 
         companyObjectBuilder
                 .add("name", company.getName())
                 .add("description", company.getDescription())
                 .add("slogan", company.getSlogan())
-                .add("logo", companyLogoArrayBuilder);
+                .add("address", this.saveAddress(company.getAddress()))
+                .add("email", company.getEmail())
+                .add("logo", this.saveLogo(logo, isUpdate));
 
         JsonObject companyObject = companyObjectBuilder.build();
 
@@ -80,6 +74,29 @@ public class CompanyService {
         jsonWriter.close();
     }
 
+    private JsonObjectBuilder saveAddress(CompanyAddress address) {
+        JsonObjectBuilder companyAddressObjectBuilder = Json.createObjectBuilder();
+        companyAddressObjectBuilder
+                .add("house",address.getHouse())
+                .add("street", address.getStreet())
+                .add("city",address.getCity())
+                .add("zipCode",address.getZipCode());
+        return companyAddressObjectBuilder;
+    }
+
+    private JsonArrayBuilder saveLogo(byte[] logo, boolean isUpdate) {
+        JsonArrayBuilder companyLogoArrayBuilder = Json.createArrayBuilder();
+        if (isUpdate) {
+            if (logo.length == 0) {
+                logo = this.get().getLogo();
+            }
+        }
+        for (byte b : logo) {
+            companyLogoArrayBuilder.add(b);
+        }
+        return companyLogoArrayBuilder;
+    }
+
     private byte[] getLogo(JsonArray logoByteJsonArray) {
         byte[] logoByteArray = new byte[logoByteJsonArray.size()];
         int index = 0;
@@ -87,5 +104,14 @@ public class CompanyService {
             logoByteArray[index++] = Byte.parseByte(value.toString());
         }
         return logoByteArray;
+    }
+
+    private CompanyAddress getCompanyAddress(JsonObject addressCompanyObject) {
+        return new CompanyAddress(
+                addressCompanyObject.getString("house"),
+                addressCompanyObject.getString("street"),
+                addressCompanyObject.getString("city"),
+                addressCompanyObject.getString("zipCode")
+        );
     }
 }

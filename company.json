@@ -3,6 +3,13 @@
     "name": "HEI",
     "description": "HEI description",
     "slogan": "HEI slogan",
+    "address": {
+        "house": "Lot 444",
+        "street": "Ivandry",
+        "city": "Antananarivo",
+        "zipCode": "101"
+    },
+    "email": "hei@gmail.com",
     "logo": [
         -119,
         80,
