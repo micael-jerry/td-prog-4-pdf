@@ -28,7 +28,7 @@ public class CreateEmployeeDto {
     private String lastname;
 
     @NotNull(message = "The birthday is mandatory")
-    @NotBlank(message = "The cin delivery date is mandatory")
+    @NotBlank(message = "The birthday is mandatory")
     private String birthday;
 
     @NotNull(message = "The sex is mandatory")
