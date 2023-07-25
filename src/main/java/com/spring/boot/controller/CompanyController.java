@@ -1,5 +1,6 @@
 package com.spring.boot.controller;
 
+import com.spring.boot.model.company.Company;
 import com.spring.boot.service.CompanyService;
 import com.spring.boot.controller.dto.company.CompanyDto;
 import com.spring.boot.controller.dto.company.CreateOrUpdateCompanyDto;
@@ -60,20 +61,20 @@ public class CompanyController {
 
     @GetMapping("/update-company")
     public String getUpdateCompanyPage(Model model) {
-        CreateOrUpdateCompanyDto updateCompanyDto = companyMapper.fromEntityToUpdate(companyService.get());
+        Company company = companyService.get();
+        if (company.getName() == null) {
+            return "redirect:/save-company";
+        }
+        CreateOrUpdateCompanyDto updateCompanyDto = companyMapper.fromEntityToUpdate(company);
         model.addAttribute(UPDATE_COMPANY_ATTRIBUTE, updateCompanyDto);
         return "updateCompany";
     }
 
     @PostMapping("/update-company")
     public String updateCompany(
-            @Valid @ModelAttribute("updateCompany") CreateOrUpdateCompanyDto updateCompanyDto,
-            BindingResult result,
+            @ModelAttribute("updateCompany") CreateOrUpdateCompanyDto updateCompanyDto,
             @RequestParam("logo") MultipartFile logo
     ) throws IOException {
-        if (result.hasErrors()) {
-            return "updateCompany";
-        }
         companyService.save(companyMapper.toEntity(updateCompanyDto), logo.getBytes(), true);
         return "redirect:/company";
     }

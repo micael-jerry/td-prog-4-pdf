@@ -17,7 +17,6 @@ import javax.json.stream.JsonGenerator;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -130,7 +129,7 @@ public class CompanyService {
     private List<String> getPhones(JsonArray phonesListJsonArray) {
         List<String> phones = new ArrayList<>();
         for (JsonValue value : phonesListJsonArray) {
-            phones.add(value.toString());
+            phones.add(value.toString().replaceAll("\"", ""));
         }
         return phones;
     }
