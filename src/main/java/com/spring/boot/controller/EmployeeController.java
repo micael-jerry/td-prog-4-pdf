@@ -49,7 +49,7 @@ public class EmployeeController {
             @RequestParam(value = "order_direction", required = false, defaultValue = "DESC") String direction,
             Model model
     ) {
-        List<EmployeeDto> employees = employeeService.findAllWithCriteria(function, lastname, firstname, sex, startDate, departureDate, orderBy, direction)
+        List<EmployeeDto> employees = employeeService.findAll(function, lastname, firstname, sex, startDate, departureDate, orderBy, direction)
                 .stream().map(employeeMapper::fromEntity)
                 .toList();
         model.addAttribute(EMPLOYEE_LIST_ATTRIBUTE, employees);
@@ -71,7 +71,7 @@ public class EmployeeController {
     ) throws IOException {
         response.setContentType("text/csv");
         response.addHeader("Content-Disposition", "attachment; filename=\"employees.csv\"");
-        List<Employee> employees = employeeService.findAllWithCriteria(function, lastname, firstname, sex, startDate, departureDate, orderBy, direction);
+        List<Employee> employees = employeeService.findAll(function, lastname, firstname, sex, startDate, departureDate, orderBy, direction);
         csvFileGenerator.writeEmployeeToCsv(employees, response.getWriter());
     }
 

@@ -29,34 +29,13 @@ public class EmployeeService {
     private PhoneService phoneService;
     private AddressService addressService;
 
-    public List<Employee> findAllWithCriteria(
-            String function, String lastname, String firstname, String sex, String startDate, String departureDate, String orderBy, String direction) {
+    public List<Employee> findAll(
+            String function, String lastname, String firstname, String sex, String startDate, String departureDate, String orderBy, String direction
+    ) {
         if (orderBy.length() > 1) {
-            if (this.isValidDate(startDate) && this.isValidDate(departureDate)) {
-                return employeeRepository
-                        .findAllByCriteriaBetweenStartAndDepartureWithSort(function, lastname, firstname, sex, startDate, departureDate, orderBy, direction);
-            } else if (this.isValidDate(startDate) && !this.isValidDate(departureDate)) {
-                return employeeRepository
-                        .findAllByCriteriaAfterStartWithSort(function, lastname, firstname, sex, startDate, orderBy, direction);
-            } else if (!this.isValidDate(startDate) && this.isValidDate(departureDate)) {
-                return employeeRepository
-                        .findAllByCriteriaBeforeDepartureWithSort(function, lastname, firstname, sex, departureDate, orderBy, direction);
-            }
-            return employeeRepository
-                    .findAllByCriteriaWithSort(function, lastname, firstname, sex, orderBy, direction);
+            return this.findAllByCriteriaWithSort(function, lastname, firstname, sex, startDate, departureDate, orderBy, direction);
         } else {
-            if (this.isValidDate(startDate) && this.isValidDate(departureDate)) {
-                return employeeRepository
-                        .findAllByCriteriaBetweenStartAndDeparture(function, lastname, firstname, sex, startDate, departureDate);
-            } else if (this.isValidDate(startDate) && !this.isValidDate(departureDate)) {
-                return employeeRepository
-                        .findAllByCriteriaAfterStart(function, lastname, firstname, sex, startDate);
-            } else if (!this.isValidDate(startDate) && this.isValidDate(departureDate)) {
-                return employeeRepository
-                        .findAllByCriteriaBeforeDeparture(function, lastname, firstname, sex, departureDate);
-            }
-            return employeeRepository
-                    .findAllByCriteria(function, lastname, firstname, sex);
+            return this.findAllByCriteria(function, lastname, firstname, sex, startDate, departureDate);
         }
     }
 
@@ -100,13 +79,37 @@ public class EmployeeService {
         return employeeRepository.findById(id);
     }
 
-    public String exportUrlParams(String function, String lastname, String firstname, String sex, String orderBy, String direction) {
-        return "?firstname_filter=" + firstname.replaceAll(" ", "+") +
-                "&lastname_filter=" + lastname.replaceAll(" ", "+") +
-                "&function_filter=" + function.replaceAll(" ", "+") +
-                "&sex_filter=" + sex +
-                "&order_by=" + orderBy +
-                "&order_direction=" + direction;
+    private List<Employee> findAllByCriteria(
+            String function, String lastname, String firstname, String sex, String startDate, String departureDate
+    ) {
+        if (this.isValidDate(startDate) && this.isValidDate(departureDate)) {
+            return employeeRepository
+                    .findAllByCriteriaBetweenStartAndDeparture(function, lastname, firstname, sex, startDate, departureDate);
+        } else if (this.isValidDate(startDate) && !this.isValidDate(departureDate)) {
+            return employeeRepository
+                    .findAllByCriteriaAfterStart(function, lastname, firstname, sex, startDate);
+        } else if (!this.isValidDate(startDate) && this.isValidDate(departureDate)) {
+            return employeeRepository
+                    .findAllByCriteriaBeforeDeparture(function, lastname, firstname, sex, departureDate);
+        }
+        return employeeRepository
+                .findAllByCriteria(function, lastname, firstname, sex);
+    }
+
+    private List<Employee> findAllByCriteriaWithSort(
+            String function, String lastname, String firstname, String sex, String startDate, String departureDate, String orderBy, String direction) {
+        if (this.isValidDate(startDate) && this.isValidDate(departureDate)) {
+            return employeeRepository
+                    .findAllByCriteriaBetweenStartAndDepartureWithSort(function, lastname, firstname, sex, startDate, departureDate, orderBy, direction);
+        } else if (this.isValidDate(startDate) && !this.isValidDate(departureDate)) {
+            return employeeRepository
+                    .findAllByCriteriaAfterStartWithSort(function, lastname, firstname, sex, startDate, orderBy, direction);
+        } else if (!this.isValidDate(startDate) && this.isValidDate(departureDate)) {
+            return employeeRepository
+                    .findAllByCriteriaBeforeDepartureWithSort(function, lastname, firstname, sex, departureDate, orderBy, direction);
+        }
+        return employeeRepository
+                .findAllByCriteriaWithSort(function, lastname, firstname, sex, orderBy, direction);
     }
 
     private boolean isValidDate(String date) {
@@ -118,5 +121,14 @@ public class EmployeeService {
             log.error("PARSE DATE ERROR: " + date);
             return false;
         }
+    }
+
+    public String exportUrlParams(String function, String lastname, String firstname, String sex, String orderBy, String direction) {
+        return "?firstname_filter=" + firstname.replaceAll(" ", "+") +
+                "&lastname_filter=" + lastname.replaceAll(" ", "+") +
+                "&function_filter=" + function.replaceAll(" ", "+") +
+                "&sex_filter=" + sex +
+                "&order_by=" + orderBy +
+                "&order_direction=" + direction;
     }
 }
