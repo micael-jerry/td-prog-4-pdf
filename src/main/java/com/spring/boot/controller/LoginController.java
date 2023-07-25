@@ -18,7 +18,10 @@ public class LoginController {
     private LoginService loginService;
 
     @GetMapping("/login")
-    public String login(Model model) {
+    public String login(HttpSession session, Model model) {
+        if (loginService.isAuthenticated(session)) {
+            return "redirect:/";
+        }
         model.addAttribute("loginObject", new LoginDto());
         return "login";
     }
@@ -30,6 +33,9 @@ public class LoginController {
             BindingResult result) {
         if (result.hasErrors()) {
             return "login";
+        }
+        if (loginService.isAuthenticated(session)) {
+            return "redirect:/";
         }
         loginService.login(session, loginDto.getUsername(), loginDto.getPassword());
         return "redirect:/login";

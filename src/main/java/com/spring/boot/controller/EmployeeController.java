@@ -6,8 +6,10 @@ import com.spring.boot.controller.dto.UpdateEmployeeDto;
 import com.spring.boot.controller.mapper.EmployeeMapper;
 import com.spring.boot.model.Employee;
 import com.spring.boot.service.EmployeeService;
+import com.spring.boot.service.LoginService;
 import com.spring.boot.utils.CsvFileGenerator;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,9 +38,11 @@ public class EmployeeController {
     private EmployeeMapper employeeMapper;
     private EmployeeService employeeService;
     private CsvFileGenerator csvFileGenerator;
+    private LoginService loginService;
 
     @GetMapping("/employees")
     public String getEmployees(
+            HttpSession session,
             @RequestParam(value = "function_filter", required = false, defaultValue = "") String function,
             @RequestParam(value = "lastname_filter", required = false, defaultValue = "") String lastname,
             @RequestParam(value = "firstname_filter", required = false, defaultValue = "") String firstname,
@@ -49,6 +53,9 @@ public class EmployeeController {
             @RequestParam(value = "order_direction", required = false, defaultValue = "DESC") String direction,
             Model model
     ) {
+        if (!loginService.isAuthenticated(session)) {
+            return "redirect:/login";
+        }
         List<EmployeeDto> employees = employeeService.findAll(function, lastname, firstname, sex, startDate, departureDate, orderBy, direction)
                 .stream().map(employeeMapper::fromEntity)
                 .toList();
@@ -77,26 +84,37 @@ public class EmployeeController {
 
     @GetMapping("/file-employee")
     public String viewEmployee(
+            HttpSession session,
             @RequestParam("id") Integer id,
             Model model
     ) {
+        if (!loginService.isAuthenticated(session)) {
+            return "redirect:/login";
+        }
         EmployeeDto employeeDto = employeeMapper.fromEntity(employeeService.findById(id).get());
         model.addAttribute(FILE_EMPLOYEE_ATTRIBUTE, employeeDto);
         return "viewEmployee";
     }
 
     @GetMapping("/create-employee")
-    public String showAddEmployeeForm(Model model) {
+    public String showAddEmployeeForm(HttpSession session, Model model) {
+        if (!loginService.isAuthenticated(session)) {
+            return "redirect:/login";
+        }
         model.addAttribute(CREATE_EMPLOYEE_ATTRIBUTE, new CreateEmployeeDto());
         return "createEmployee";
     }
 
     @PostMapping("/employees")
     public String addEmployee(
+            HttpSession session,
             @Valid @ModelAttribute(CREATE_EMPLOYEE_ATTRIBUTE) CreateEmployeeDto createEmployeeDto,
             BindingResult result,
             @RequestParam("image") MultipartFile image
     ) throws IOException {
+        if (!loginService.isAuthenticated(session)) {
+            return "redirect:/login";
+        }
         if (result.hasErrors()) {
             return "createEmployee";
         }
@@ -105,7 +123,10 @@ public class EmployeeController {
     }
 
     @GetMapping("/update-employee")
-    public String showUpdateEmployeeForm(Model model, @RequestParam("id") Integer id) {
+    public String showUpdateEmployeeForm(HttpSession session, Model model, @RequestParam("id") Integer id) {
+        if (!loginService.isAuthenticated(session)) {
+            return "redirect:/login";
+        }
         UpdateEmployeeDto updateEmployeeDto = employeeMapper.fromEntityUpdate(employeeService.findById(id).get());
         model.addAttribute(UPDATE_EMPLOYEE_ATTRIBUTE, updateEmployeeDto);
         return "updateEmployee";
@@ -113,9 +134,13 @@ public class EmployeeController {
 
     @PostMapping("/employees/update")
     public String updateEmployee(
+            HttpSession session,
             @ModelAttribute(UPDATE_EMPLOYEE_ATTRIBUTE) UpdateEmployeeDto updateEmployeeDto,
             @RequestParam(value = "image") MultipartFile image
     ) throws IOException {
+        if (!loginService.isAuthenticated(session)) {
+            return "redirect:/login";
+        }
         employeeService.update(employeeMapper.toEntity(updateEmployeeDto), image);
         return "redirect:/file-employee?id=" + updateEmployeeDto.getId();
     }

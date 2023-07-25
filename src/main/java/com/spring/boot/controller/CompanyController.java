@@ -5,7 +5,9 @@ import com.spring.boot.service.CompanyService;
 import com.spring.boot.controller.dto.company.CompanyDto;
 import com.spring.boot.controller.dto.company.CreateOrUpdateCompanyDto;
 import com.spring.boot.controller.mapper.CompanyMapper;
+import com.spring.boot.service.LoginService;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -28,26 +30,37 @@ import static com.spring.boot.utils.ModelAttributeName.UPDATE_COMPANY_ATTRIBUTE;
 public class CompanyController {
     private CompanyService companyService;
     private CompanyMapper companyMapper;
+    private LoginService loginService;
 
     @GetMapping("/company")
-    public String getCompany(Model model) {
+    public String getCompany(HttpSession session, Model model) {
+        if (!loginService.isAuthenticated(session)) {
+            return "redirect:/login";
+        }
         CompanyDto companyDto = companyMapper.fromEntity(companyService.get());
         model.addAttribute(COMPANY_ATTRIBUTE, companyDto);
         return "viewCompany";
     }
 
     @GetMapping("/save-company")
-    public String getSaveCompanyPage(Model model) {
+    public String getSaveCompanyPage(HttpSession session, Model model) {
+        if (!loginService.isAuthenticated(session)) {
+            return "redirect:/login";
+        }
         model.addAttribute(CREATE_COMPANY_ATTRIBUTE, new CreateOrUpdateCompanyDto());
         return "saveCompany";
     }
 
     @PostMapping("/company")
     public String saveCompany(
+            HttpSession session,
             @Valid @ModelAttribute("createCompany") CreateOrUpdateCompanyDto createCompanyDto,
             BindingResult result,
             @RequestParam("logo") MultipartFile logo
     ) throws IOException {
+        if (!loginService.isAuthenticated(session)) {
+            return "redirect:/login";
+        }
         if (result.hasErrors()) {
             return "saveCompany";
         }
@@ -60,7 +73,10 @@ public class CompanyController {
     }
 
     @GetMapping("/update-company")
-    public String getUpdateCompanyPage(Model model) {
+    public String getUpdateCompanyPage(HttpSession session, Model model) {
+        if (!loginService.isAuthenticated(session)) {
+            return "redirect:/login";
+        }
         Company company = companyService.get();
         if (company.getName() == null) {
             return "redirect:/save-company";
@@ -72,9 +88,13 @@ public class CompanyController {
 
     @PostMapping("/update-company")
     public String updateCompany(
+            HttpSession session,
             @ModelAttribute("updateCompany") CreateOrUpdateCompanyDto updateCompanyDto,
             @RequestParam("logo") MultipartFile logo
     ) throws IOException {
+        if (!loginService.isAuthenticated(session)) {
+            return "redirect:/login";
+        }
         companyService.save(companyMapper.toEntity(updateCompanyDto), logo.getBytes(), true);
         return "redirect:/company";
     }
