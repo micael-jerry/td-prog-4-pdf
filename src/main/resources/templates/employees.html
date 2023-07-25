@@ -39,6 +39,8 @@
                     <input class="form-control me-3 mb-2" type="search" id="lastname-filter-input"
                            name="lastname_filter" placeholder="lastname"
                            aria-label="Lastname" th:value="${param.lastname_filter}"/>
+                    <input class="form-control me-3 mb-2" type="date" id="start-date-filter-input"
+                           name="start_date" aria-label="Start date" th:value="${param.start_date}">
                 </div>
                 <div class="me-3 ms-3 mb-2">
                     <input class="form-control me-3 mb-2" type="search" id="function-filter-input"
@@ -50,6 +52,8 @@
                         <option th:value="'M'" th:text="Male"></option>
                         <option th:value="'F'" th:text="Female"></option>
                     </select>
+                    <input class="form-control me-3 mb-2" type="date" id="departure-date-filter-input"
+                           name="departure_date" aria-label="Departure date" th:value="${param.departure_date}">
                 </div>
                 <div class="me-3 ms-3 mb-2">
                     <select class="form-select form-select-sm me-3 mb-2 col-6" aria-label="Sex"
@@ -59,6 +63,7 @@
                         <option th:value="'firstname'" th:text="firstname"></option>
                         <option th:value="'lastname'" th:text="lastname"></option>
                         <option th:value="'function'" th:text="function"></option>
+                        <option th:value="'start_date'" th:text="start_date"></option>
                         <option th:value="'sex'" th:text="sex"></option>
                     </select>
                     <select class="form-select form-select-sm me-3 mb-2 col-6" aria-label="Sex"
@@ -71,7 +76,8 @@
                 </div>
                 <div class="me-3 ms-3 mb-2">
                     <button class="btn btn-outline-success me-3 mb-2 col-6" type="submit">Filter</button>
-                    <a class="btn btn-outline-success me-3 mb-2 col-6" th:href="@{'/employees/export'+ ${exportParams}}">Export</a>
+                    <a class="btn btn-outline-success me-3 mb-2 col-6"
+                       th:href="@{'/employees/export'+ ${exportParams}}">Export</a>
                 </div>
             </div>
         </form>

@@ -8,16 +8,18 @@ import com.spring.boot.model.Phone;
 import com.spring.boot.repository.EmployeeRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Sort;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
+@Slf4j
 @AllArgsConstructor
 public class EmployeeService {
     private EmployeeRepository employeeRepository;
@@ -27,13 +29,25 @@ public class EmployeeService {
     private PhoneService phoneService;
     private AddressService addressService;
 
-    public List<Employee> findAll(String function, String lastname, String firstname, String sex, String orderBy, String direction) {
+    public List<Employee> findAllWithCriteria(
+            String function, String lastname, String firstname, String sex, String startDate, String departureDate, String orderBy, String direction) {
         if (orderBy.length() > 1) {
+            if (this.isValidDate(startDate) && this.isValidDate(departureDate)) {
+                return employeeRepository
+                        .findAllByCriteriaBetweenStartAndDepartureWithSort(function, lastname, firstname, sex, startDate, departureDate, orderBy, direction);
+            }
             return employeeRepository
-                    .findAllByFunctionLastnameFirstnameSexAllContainsIgnoreCaseWithSort(function, lastname, firstname, sex, orderBy, direction);
+                    .findAllByCriteriaWithSort(function, lastname, firstname, sex, orderBy, direction);
         } else {
+            if (this.isValidDate(startDate) && this.isValidDate(departureDate)) {
+                System.out.println("===========================");
+                System.out.println(List.of(startDate, departureDate));
+                System.out.println("===========================");
+                return employeeRepository
+                        .findAllByCriteriaBetweenStartAndDeparture(function, lastname, firstname, sex, startDate, departureDate);
+            }
             return employeeRepository
-                    .findAllByFunctionLastnameFirstnameSexAllContainsIgnoreCase(function, lastname, firstname, sex);
+                    .findAllByCriteria(function, lastname, firstname, sex);
         }
     }
 
@@ -84,5 +98,16 @@ public class EmployeeService {
                 "&sex_filter=" + sex +
                 "&order_by=" + orderBy +
                 "&order_direction=" + direction;
+    }
+
+    private boolean isValidDate(String date) {
+        try {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            simpleDateFormat.parse(date);
+            return true;
+        } catch (ParseException e) {
+            log.error("PARSE DATE ERROR: " + date);
+            return false;
+        }
     }
 }
