@@ -44,7 +44,7 @@ public class EmployeeController {
             @RequestParam(value = "firstname_filter", required = false, defaultValue = "") String firstname,
             @RequestParam(value = "sex_filter", required = false, defaultValue = "") String sex,
             @RequestParam(value = "order_by", required = false, defaultValue = "") String orderBy,
-            @RequestParam(value = "order_direction", required = false, defaultValue = "ASC") String direction,
+            @RequestParam(value = "order_direction", required = false, defaultValue = "DESC") String direction,
             Model model
     ) {
         List<EmployeeDto> employees = employeeService.findAll(function, lastname, firstname, sex, orderBy, direction)
@@ -63,7 +63,7 @@ public class EmployeeController {
             @RequestParam(value = "firstname_filter", required = false, defaultValue = "") String firstname,
             @RequestParam(value = "sex_filter", required = false, defaultValue = "") String sex,
             @RequestParam(value = "order_by", required = false, defaultValue = "") String orderBy,
-            @RequestParam(value = "order_direction", required = false, defaultValue = "ASC") String direction
+            @RequestParam(value = "order_direction", required = false, defaultValue = "DESC") String direction
     ) throws IOException {
         response.setContentType("text/csv");
         response.addHeader("Content-Disposition", "attachment; filename=\"employees.csv\"");

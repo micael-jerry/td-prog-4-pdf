@@ -30,8 +30,7 @@ public class EmployeeService {
     public List<Employee> findAll(String function, String lastname, String firstname, String sex, String orderBy, String direction) {
         if (orderBy.length() > 1) {
             return employeeRepository
-                    .findAllByFunctionLastnameFirstnameSexAllContainsIgnoreCaseWithSort(
-                            function, lastname, firstname, sex, orderBy, direction);
+                    .findAllByFunctionLastnameFirstnameSexAllContainsIgnoreCaseWithSort(function, lastname, firstname, sex, orderBy, direction);
         } else {
             return employeeRepository
                     .findAllByFunctionLastnameFirstnameSexAllContainsIgnoreCase(function, lastname, firstname, sex);
@@ -85,16 +84,5 @@ public class EmployeeService {
                 "&sex_filter=" + sex +
                 "&order_by=" + orderBy +
                 "&order_direction=" + direction;
-    }
-
-    private Sort createSort(String orderBy, String direction) {
-        if (!orderBy.isBlank()) {
-            if (Objects.equals(direction, "ASC")) {
-                return Sort.by(orderBy).ascending();
-            } else if (Objects.equals(direction, "DESC")) {
-                return Sort.by(orderBy).descending();
-            }
-        }
-        return null;
     }
 }
