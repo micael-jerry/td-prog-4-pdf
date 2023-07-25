@@ -35,16 +35,25 @@ public class EmployeeService {
             if (this.isValidDate(startDate) && this.isValidDate(departureDate)) {
                 return employeeRepository
                         .findAllByCriteriaBetweenStartAndDepartureWithSort(function, lastname, firstname, sex, startDate, departureDate, orderBy, direction);
+            } else if (this.isValidDate(startDate) && !this.isValidDate(departureDate)) {
+                return employeeRepository
+                        .findAllByCriteriaAfterStartWithSort(function, lastname, firstname, sex, startDate, orderBy, direction);
+            } else if (!this.isValidDate(startDate) && this.isValidDate(departureDate)) {
+                return employeeRepository
+                        .findAllByCriteriaBeforeDepartureWithSort(function, lastname, firstname, sex, departureDate, orderBy, direction);
             }
             return employeeRepository
                     .findAllByCriteriaWithSort(function, lastname, firstname, sex, orderBy, direction);
         } else {
             if (this.isValidDate(startDate) && this.isValidDate(departureDate)) {
-                System.out.println("===========================");
-                System.out.println(List.of(startDate, departureDate));
-                System.out.println("===========================");
                 return employeeRepository
                         .findAllByCriteriaBetweenStartAndDeparture(function, lastname, firstname, sex, startDate, departureDate);
+            } else if (this.isValidDate(startDate) && !this.isValidDate(departureDate)) {
+                return employeeRepository
+                        .findAllByCriteriaAfterStart(function, lastname, firstname, sex, startDate);
+            } else if (!this.isValidDate(startDate) && this.isValidDate(departureDate)) {
+                return employeeRepository
+                        .findAllByCriteriaBeforeDeparture(function, lastname, firstname, sex, departureDate);
             }
             return employeeRepository
                     .findAllByCriteria(function, lastname, firstname, sex);
