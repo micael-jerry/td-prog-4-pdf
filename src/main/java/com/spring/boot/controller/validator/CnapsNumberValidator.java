@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class CnapsNumberValidator implements ConstraintValidator<CnapsNumberConstraint, String> {
     private EmployeeRepository employeeRepository;
+
     @Override
     public void initialize(CnapsNumberConstraint constraintAnnotation) {
         ConstraintValidator.super.initialize(constraintAnnotation);

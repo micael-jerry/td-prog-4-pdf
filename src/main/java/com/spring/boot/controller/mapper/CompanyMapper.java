@@ -1,8 +1,8 @@
 package com.spring.boot.controller.mapper;
 
-import com.spring.boot.model.company.Company;
 import com.spring.boot.controller.dto.company.CompanyDto;
 import com.spring.boot.controller.dto.company.CreateOrUpdateCompanyDto;
+import com.spring.boot.model.company.Company;
 import com.spring.boot.model.company.CompanyAddress;
 import org.springframework.stereotype.Component;
 

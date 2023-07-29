@@ -1,10 +1,10 @@
 package com.spring.boot.controller;
 
-import com.spring.boot.model.company.Company;
-import com.spring.boot.service.CompanyService;
 import com.spring.boot.controller.dto.company.CompanyDto;
 import com.spring.boot.controller.dto.company.CreateOrUpdateCompanyDto;
 import com.spring.boot.controller.mapper.CompanyMapper;
+import com.spring.boot.model.company.Company;
+import com.spring.boot.service.CompanyService;
 import com.spring.boot.service.LoginService;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
