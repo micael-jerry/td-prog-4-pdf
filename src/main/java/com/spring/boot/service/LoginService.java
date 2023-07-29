@@ -14,7 +14,7 @@ public class LoginService {
 
     public void login(HttpSession session, String username, String password) {
         User user = userRepository.findByUsername(username);
-        if (user.getPassword().equals(password)) {
+        if (user != null && user.getPassword().equals(password)) {
             String sessionId = session.getId();
             user.setSessionId(sessionId);
             userRepository.save(user);
