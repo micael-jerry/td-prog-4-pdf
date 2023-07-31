@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PhoneRepository extends JpaRepository<Phone, Integer> {
-    Phone getByNumber(String number);
+    boolean existsByCountryCodeAndNumber(String countryCode, String number);
 }

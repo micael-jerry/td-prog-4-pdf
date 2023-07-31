@@ -1,6 +1,7 @@
 package com.spring.boot.controller.validator;
 
 import com.spring.boot.repository.PhoneRepository;
+import com.spring.boot.utils.PhoneUtil;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import lombok.AllArgsConstructor;
@@ -17,18 +18,16 @@ public class PhoneNumberValidator implements ConstraintValidator<PhoneNumberCons
     }
 
     @Override
-    public boolean isValid(String value, ConstraintValidatorContext context) {
-        List<String> phonesList = this.getPhonesNumber(value);
-        for (String phone : phonesList) {
-            if (phoneRepository.getByNumber(phone) != null) {
+    public boolean isValid(String phones, ConstraintValidatorContext context) {
+        List<String[]> phonesList = PhoneUtil.getCountryCodeAndNumber(phones);
+        if (phonesList.stream().distinct().count() != phonesList.size()) {
+            return false;
+        }
+        for (String[] phone : phonesList) {
+            if (phoneRepository.existsByCountryCodeAndNumber(phone[0], phone[1])) {
                 return false;
             }
         }
         return true;
-    }
-
-    private List<String> getPhonesNumber(String phones) {
-        String[] phoneArray = phones.replaceAll("\\s+", "").split(",");
-        return List.of(phoneArray);
     }
 }

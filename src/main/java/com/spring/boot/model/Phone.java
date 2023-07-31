@@ -24,7 +24,10 @@ public class Phone {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
+    private String countryCode;
+
+    @Column(nullable = false)
     private String number;
 
     @ManyToOne

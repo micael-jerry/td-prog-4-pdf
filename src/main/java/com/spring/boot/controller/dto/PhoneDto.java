@@ -11,5 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PhoneDto {
     private Integer id;
+    private String countryCode;
     private String number;
 }

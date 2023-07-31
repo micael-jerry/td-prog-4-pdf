@@ -94,7 +94,7 @@ public class CreateEmployeeDto {
     @EmailConstraint(message = "professional email already exist")
     private String professionalEmail;
 
-    @Pattern(regexp = "^[0-9+,]+$", message = "phones not well formed")
+    @Pattern(regexp = "^[0-9+,-]+$", message = "phones not well formed")
     @PhoneNumberConstraint
     private String phones;
 }
