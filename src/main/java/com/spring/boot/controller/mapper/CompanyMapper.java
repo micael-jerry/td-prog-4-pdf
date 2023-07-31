@@ -16,6 +16,9 @@ public class CompanyMapper {
         company.setName(createCompanyDto.getName());
         company.setDescription(createCompanyDto.getDescription());
         company.setSlogan(createCompanyDto.getSlogan());
+        company.setFiscalIdentityNif(createCompanyDto.getFiscalIdentityNif());
+        company.setFiscalIdentityStat(createCompanyDto.getFiscalIdentityStat());
+        company.setFiscalIdentityRcs(createCompanyDto.getFiscalIdentityRcs());
         company.setAddress(new CompanyAddress(
                 createCompanyDto.getAddressHouse(),
                 createCompanyDto.getAddressStreet(),
@@ -31,6 +34,9 @@ public class CompanyMapper {
         company.setName(companyDto.getName());
         company.setDescription(companyDto.getDescription());
         company.setSlogan(companyDto.getSlogan());
+        company.setFiscalIdentityNif(companyDto.getFiscalIdentityNif());
+        company.setFiscalIdentityStat(companyDto.getFiscalIdentityStat());
+        company.setFiscalIdentityRcs(companyDto.getFiscalIdentityRcs());
         company.setAddress(companyDto.getAddress());
         company.setEmail(company.getEmail());
         company.setPhones(companyDto.getPhones());
@@ -42,6 +48,9 @@ public class CompanyMapper {
                 .name(company.getName())
                 .description(company.getDescription())
                 .slogan(company.getSlogan())
+                .fiscalIdentityNif(company.getFiscalIdentityNif())
+                .fiscalIdentityStat(company.getFiscalIdentityStat())
+                .fiscalIdentityRcs(company.getFiscalIdentityRcs())
                 .address(company.getAddress())
                 .email(company.getEmail())
                 .phones(company.getPhones())
@@ -53,6 +62,9 @@ public class CompanyMapper {
                 .name(company.getName())
                 .description(company.getDescription())
                 .slogan(company.getSlogan())
+                .fiscalIdentityNif(company.getFiscalIdentityNif())
+                .fiscalIdentityStat(company.getFiscalIdentityStat())
+                .fiscalIdentityRcs(company.getFiscalIdentityRcs())
                 .addressHouse(company.getAddress().getHouse())
                 .addressStreet(company.getAddress().getStreet())
                 .addressCity(company.getAddress().getCity())

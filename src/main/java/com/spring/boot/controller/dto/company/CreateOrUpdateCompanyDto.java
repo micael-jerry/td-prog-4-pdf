@@ -26,6 +26,18 @@ public class CreateOrUpdateCompanyDto {
     @NotNull(message = "slogan is mandatory")
     private String slogan;
 
+    @NotBlank(message = "Nif is mandatory")
+    @NotNull(message = "Nif is mandatory")
+    private String fiscalIdentityNif;
+
+    @NotBlank(message = "Stat is mandatory")
+    @NotNull(message = "Stat is mandatory")
+    private String fiscalIdentityStat;
+
+    @NotBlank(message = "Rcs is mandatory")
+    @NotNull(message = "Rcs is mandatory")
+    private String fiscalIdentityRcs;
+
     @Email(message = "Personal email is not well formed")
     @NotNull(message = "Professional email is mandatory")
     @NotBlank(message = "Professional email is mandatory")
@@ -50,7 +62,7 @@ public class CreateOrUpdateCompanyDto {
     private String addressZipCode;
     //    --------------- Address Information ---------------------
 
-    @Pattern(regexp = "^[0-9+,]+$", message = "phones not well formed")
+    @Pattern(regexp = "^[0-9+,-]+$", message = "phones not well formed")
     @NotNull(message = "phones is mandatory")
     @NotBlank(message = "phones is mandatory")
     private String phones;

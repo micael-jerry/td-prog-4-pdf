@@ -29,7 +29,7 @@
     <form class="form-create-employee" th:action="@{/update-company}" th:object="${updateCompany}" method="post"
           enctype="multipart/form-data">
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-4">
                 <div id="company">
                     <h4>Company</h4>
                     <div class="form-floating mb-3">
@@ -58,7 +58,24 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-4">
+                <div id="company-fiscal-identity">
+                    <h4>Fiscal Identity</h4>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="nif-input" type="text" th:field="*{fiscalIdentityNif}"/>
+                        <label for="nif-input">NIF:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="stat-input" type="text" th:field="*{fiscalIdentityStat}"/>
+                        <label for="stat-input">STAT:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="rcs-input" type="text" th:field="*{fiscalIdentityRcs}"/>
+                        <label for="rcs-input">RCS:</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
                 <div id="company-address">
                     <h4>Company Address</h4>
                     <div class="form-floating mb-3">

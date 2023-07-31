@@ -3,6 +3,9 @@
     "name": "HEI",
     "description": "HEI description",
     "slogan": "HEI slogan",
+    "fiscalIdentityNif":"nif",
+    "fiscalIdentityStat": "stat",
+    "fiscalIdentityRcs": "rcs",
     "address": {
         "house": "Lot 444",
         "street": "Ivandry",

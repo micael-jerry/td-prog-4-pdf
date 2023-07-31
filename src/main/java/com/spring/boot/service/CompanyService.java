@@ -39,6 +39,9 @@ public class CompanyService {
             company.setName(companyObject.getString("name"));
             company.setDescription(companyObject.getString("description"));
             company.setSlogan(companyObject.getString("slogan"));
+            company.setFiscalIdentityNif(companyObject.getString("fiscalIdentityNif"));
+            company.setFiscalIdentityStat(companyObject.getString("fiscalIdentityStat"));
+            company.setFiscalIdentityRcs(companyObject.getString("fiscalIdentityRcs"));
             company.setAddress(this.getCompanyAddress(companyObject.getJsonObject("address")));
             company.setEmail(companyObject.getString("email"));
             company.setPhones(this.getPhones(companyObject.getJsonArray("phones")));
@@ -46,7 +49,18 @@ public class CompanyService {
             return company;
         } catch (Exception e) {
             e.printStackTrace();
-            return new Company(null, null, null, new CompanyAddress(), null, new ArrayList<>(), null);
+            return new Company(
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    new CompanyAddress(),
+                    null,
+                    new ArrayList<>(),
+                    null
+            );
         }
     }
 
@@ -57,6 +71,9 @@ public class CompanyService {
                 .add("name", company.getName())
                 .add("description", company.getDescription())
                 .add("slogan", company.getSlogan())
+                .add("fiscalIdentityNif", company.getFiscalIdentityNif())
+                .add("fiscalIdentityStat", company.getFiscalIdentityStat())
+                .add("fiscalIdentityRcs", company.getFiscalIdentityRcs())
                 .add("address", this.saveAddress(company.getAddress()))
                 .add("email", company.getEmail())
                 .add("phones", this.savePhones(company.getPhones()))

@@ -20,6 +20,12 @@ public class Company {
 
     private String slogan;
 
+    private String fiscalIdentityNif;
+
+    private String fiscalIdentityStat;
+
+    private String fiscalIdentityRcs;
+
     private CompanyAddress address;
 
     private String email;
