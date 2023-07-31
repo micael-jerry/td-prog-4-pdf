@@ -39,7 +39,8 @@
                     <input class="form-control me-3 mb-2" type="search" id="lastname-filter-input"
                            name="lastname_filter" placeholder="lastname"
                            aria-label="Lastname" th:value="${param.lastname_filter}"/>
-                    <input class="form-control me-3 mb-2" type="date" id="start-date-filter-input"
+                    <input class="form-control me-3 mb-2" type="text" id="start-date-filter-input"
+                           onfocus="(this.type = 'date')" placeholder="Start date"
                            name="start_date" aria-label="Start date" th:value="${param.start_date}">
                 </div>
                 <div class="me-3 ms-3 mb-2">
@@ -52,7 +53,8 @@
                         <option th:value="'M'" th:text="Male"></option>
                         <option th:value="'F'" th:text="Female"></option>
                     </select>
-                    <input class="form-control me-3 mb-2" type="date" id="departure-date-filter-input"
+                    <input class="form-control me-3 mb-2" type="text" id="departure-date-filter-input"
+                           onfocus="(this.type = 'date')" placeholder="Departure date"
                            name="departure_date" aria-label="Departure date" th:value="${param.departure_date}">
                 </div>
                 <div class="me-3 ms-3 mb-2">
