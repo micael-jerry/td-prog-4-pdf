@@ -62,7 +62,7 @@
                                 </p>
                                 <div class="mb-0">
                                     <p th:each="phone: ${fileEmployee.phones}">
-                                        <span th:text="${phone.countryCode} '-' + ${phone.number}"></span>
+                                        <span th:text="${phone.countryCode} + '-' + ${phone.number}"></span>
                                     </p>
                                 </div>
                             </li>

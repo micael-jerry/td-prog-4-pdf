@@ -24,7 +24,7 @@ public class PhoneNumberValidator implements ConstraintValidator<PhoneNumberCons
             return false;
         }
         for (String[] phone : phonesList) {
-            if (phoneRepository.existsByCountryCodeAndNumber(phone[0], phone[1])) {
+            if (phoneRepository.existsByCountryCodeAndNumber(phone[0], phone[1]) || phone[1].length() != 9) {
                 return false;
             }
         }

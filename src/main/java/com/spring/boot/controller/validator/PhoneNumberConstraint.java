@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
 @Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface PhoneNumberConstraint {
-    String message() default "Phone number already exists";
+    String message() default "Phone number already exists or not well formed";
 
     Class<?>[] groups() default {};
 
