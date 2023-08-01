@@ -134,7 +134,7 @@ public class EmployeeService {
         return "?firstname_filter=" + firstname.replaceAll(" ", "+") +
                 "&lastname_filter=" + lastname.replaceAll(" ", "+") +
                 "&function_filter=" + function.replaceAll(" ", "+") +
-                "&country_code_filter=" + countryCode.replaceAll(" ","+") +
+                "&country_code_filter=" + countryCode.replaceAll(" ", "+") +
                 "&sex_filter=" + sex +
                 "&order_by=" + orderBy +
                 "&order_direction=" + direction;
