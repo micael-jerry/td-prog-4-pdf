@@ -130,13 +130,20 @@ public class EmployeeService {
         }
     }
 
-    public String exportUrlParams(String function, String lastname, String firstname, String sex, String countryCode, String orderBy, String direction) {
-        return "?firstname_filter=" + firstname.replaceAll(" ", "+") +
+    public String exportUrlParams(
+            String function, String lastname, String firstname, String sex, String countryCode, String startDate, String departureDate, String orderBy, String direction
+    ) {
+        String params = "?firstname_filter=" + firstname.replaceAll(" ", "+") +
                 "&lastname_filter=" + lastname.replaceAll(" ", "+") +
                 "&function_filter=" + function.replaceAll(" ", "+") +
                 "&country_code_filter=" + countryCode.replaceAll(" ", "+") +
                 "&sex_filter=" + sex +
+                "&country_code_filter=" + countryCode +
+                "&start_date=" + startDate +
+                "&departure_date=" + departureDate +
                 "&order_by=" + orderBy +
                 "&order_direction=" + direction;
+        log.info("EXPORT PARAMS => " + params);
+        return params;
     }
 }

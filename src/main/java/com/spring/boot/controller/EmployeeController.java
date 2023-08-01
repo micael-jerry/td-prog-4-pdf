@@ -61,7 +61,7 @@ public class EmployeeController {
                 .stream().map(employeeMapper::fromEntity)
                 .toList();
         model.addAttribute(EMPLOYEE_LIST_ATTRIBUTE, employees);
-        model.addAttribute(EXPORT_URL_PARAMS_ATTRIBUTE, employeeService.exportUrlParams(function, lastname, firstname, sex, countryCode, orderBy, direction));
+        model.addAttribute(EXPORT_URL_PARAMS_ATTRIBUTE, employeeService.exportUrlParams(function, lastname, firstname, sex, countryCode, startDate, departureDate, orderBy, direction));
         return "employees";
     }
 
