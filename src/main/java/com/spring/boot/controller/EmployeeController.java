@@ -47,6 +47,7 @@ public class EmployeeController {
             @RequestParam(value = "lastname_filter", required = false, defaultValue = "") String lastname,
             @RequestParam(value = "firstname_filter", required = false, defaultValue = "") String firstname,
             @RequestParam(value = "sex_filter", required = false, defaultValue = "") String sex,
+            @RequestParam(value = "country_code_filter", required = false, defaultValue = "") String countryCode,
             @RequestParam(value = "start_date", required = false, defaultValue = "") String startDate,
             @RequestParam(value = "departure_date", required = false, defaultValue = "") String departureDate,
             @RequestParam(value = "order_by", required = false, defaultValue = "") String orderBy,
@@ -56,11 +57,11 @@ public class EmployeeController {
         if (!loginService.isAuthenticated(session)) {
             return "redirect:/login";
         }
-        List<EmployeeDto> employees = employeeService.findAll(function, lastname, firstname, sex, startDate, departureDate, orderBy, direction)
+        List<EmployeeDto> employees = employeeService.findAll(function, lastname, firstname, sex, countryCode, startDate, departureDate, orderBy, direction)
                 .stream().map(employeeMapper::fromEntity)
                 .toList();
         model.addAttribute(EMPLOYEE_LIST_ATTRIBUTE, employees);
-        model.addAttribute(EXPORT_URL_PARAMS_ATTRIBUTE, employeeService.exportUrlParams(function, lastname, firstname, sex, orderBy, direction));
+        model.addAttribute(EXPORT_URL_PARAMS_ATTRIBUTE, employeeService.exportUrlParams(function, lastname, firstname, sex, countryCode, orderBy, direction));
         return "employees";
     }
 
@@ -71,6 +72,7 @@ public class EmployeeController {
             @RequestParam(value = "lastname_filter", required = false, defaultValue = "") String lastname,
             @RequestParam(value = "firstname_filter", required = false, defaultValue = "") String firstname,
             @RequestParam(value = "sex_filter", required = false, defaultValue = "") String sex,
+            @RequestParam(value = "country_code_filter", required = false, defaultValue = "") String countryCode,
             @RequestParam(value = "start_date", required = false, defaultValue = "") String startDate,
             @RequestParam(value = "departure_date", required = false, defaultValue = "") String departureDate,
             @RequestParam(value = "order_by", required = false, defaultValue = "") String orderBy,
@@ -78,7 +80,7 @@ public class EmployeeController {
     ) throws IOException {
         response.setContentType("text/csv");
         response.addHeader("Content-Disposition", "attachment; filename=\"employees.csv\"");
-        List<Employee> employees = employeeService.findAll(function, lastname, firstname, sex, startDate, departureDate, orderBy, direction);
+        List<Employee> employees = employeeService.findAll(function, lastname, firstname, sex, countryCode, startDate, departureDate, orderBy, direction);
         csvFileGenerator.writeEmployeeToCsv(employees, response.getWriter());
     }
 

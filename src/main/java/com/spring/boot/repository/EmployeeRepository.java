@@ -12,6 +12,14 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     Employee getByCnapsNumber(String cnapsNumber);
 
     @Query(
+            value = "SELECT DISTINCT e.* FROM employee e " +
+                    "LEFT JOIN phone p ON e.id = p.employee_id " +
+                    "WHERE  p.country_code LIKE CONCAT('%', :countryCode, '%')",
+            nativeQuery = true
+    )
+    List<Employee> findAllByCountryCode(String countryCode);
+
+    @Query(
             value = "SELECT * FROM employee " +
                     "WHERE UPPER(function) LIKE CONCAT('%', UPPER(:function), '%') " +
                     "AND UPPER(lastname) LIKE CONCAT('%', UPPER(:lastname), '%') " +

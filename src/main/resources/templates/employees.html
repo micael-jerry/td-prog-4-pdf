@@ -58,6 +58,9 @@
                            name="departure_date" aria-label="Departure date" th:value="${param.departure_date}">
                 </div>
                 <div class="me-3 ms-3 mb-2">
+                    <input class="form-control me-3 mb-2" type="search" id="country-code-filter-input"
+                           name="country_code_filter" placeholder="Country code"
+                           aria-label="CountryCode" th:value="${param.country_code_filter}"/>
                     <select class="form-select form-select-sm me-3 mb-2 col-6" aria-label="Sex"
                             name="order_by">
                         <option th:value="${param.order_by}">Order by [[${param.order_by}]]</option>

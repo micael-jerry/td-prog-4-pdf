@@ -30,13 +30,20 @@ public class EmployeeService {
     private AddressService addressService;
 
     public List<Employee> findAll(
-            String function, String lastname, String firstname, String sex, String startDate, String departureDate, String orderBy, String direction
+            String function, String lastname, String firstname, String sex, String countryCode, String startDate, String departureDate, String orderBy, String direction
     ) {
+        if (countryCode.length() > 1) {
+            return this.findByCountryCode(countryCode);
+        }
         if (orderBy.length() > 1) {
             return this.findAllByCriteriaWithSort(function, lastname, firstname, sex, startDate, departureDate, orderBy, direction);
         } else {
             return this.findAllByCriteria(function, lastname, firstname, sex, startDate, departureDate);
         }
+    }
+
+    public List<Employee> findByCountryCode(String countryCode) {
+        return employeeRepository.findAllByCountryCode(countryCode);
     }
 
     @Transactional
@@ -123,10 +130,11 @@ public class EmployeeService {
         }
     }
 
-    public String exportUrlParams(String function, String lastname, String firstname, String sex, String orderBy, String direction) {
+    public String exportUrlParams(String function, String lastname, String firstname, String sex, String countryCode, String orderBy, String direction) {
         return "?firstname_filter=" + firstname.replaceAll(" ", "+") +
                 "&lastname_filter=" + lastname.replaceAll(" ", "+") +
                 "&function_filter=" + function.replaceAll(" ", "+") +
+                "&country_code_filter=" + countryCode.replaceAll(" ","+") +
                 "&sex_filter=" + sex +
                 "&order_by=" + orderBy +
                 "&order_direction=" + direction;
