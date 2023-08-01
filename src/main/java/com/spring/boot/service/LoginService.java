@@ -2,7 +2,6 @@ package com.spring.boot.service;
 
 import com.spring.boot.model.User;
 import com.spring.boot.repository.UserRepository;
-import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,11 +23,5 @@ public class LoginService {
     public boolean isAuthenticated(HttpSession session) {
         String sessionId = session.getId();
         return userRepository.existsBySessionId(sessionId);
-    }
-
-    @PostConstruct
-    public void createUser() {
-        User user = new User(null, "admin", "admin", null);
-        userRepository.save(user);
     }
 }
