@@ -1,9 +1,9 @@
-package com.spring.boot.employee.controller.mapper;
+package com.spring.boot.company.controller.mapper;
 
-import com.spring.boot.employee.controller.dto.company.CompanyDto;
-import com.spring.boot.employee.controller.dto.company.CreateOrUpdateCompanyDto;
-import com.spring.boot.employee.model.company.Company;
-import com.spring.boot.employee.model.company.CompanyAddress;
+import com.spring.boot.company.controller.dto.CompanyDto;
+import com.spring.boot.company.controller.dto.CreateOrUpdateCompanyDto;
+import com.spring.boot.company.model.Company;
+import com.spring.boot.company.model.CompanyAddress;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

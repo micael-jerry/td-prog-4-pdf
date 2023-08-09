@@ -1,4 +1,4 @@
-package com.spring.boot.employee.controller.dto.company;
+package com.spring.boot.company.controller.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

@@ -1,18 +1,19 @@
-package com.spring.boot.employee.controller.dto.company;
+package com.spring.boot.company.model;
 
-import com.spring.boot.employee.model.company.CompanyAddress;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.util.List;
 
-@Builder
-@Data
+@Getter
+@Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class CompanyDto {
+public class Company {
     private String name;
 
     private String description;
@@ -30,4 +31,6 @@ public class CompanyDto {
     private String email;
 
     private List<String> phones;
+
+    private byte[] logo;
 }

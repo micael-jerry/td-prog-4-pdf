@@ -1,10 +1,10 @@
-package com.spring.boot.employee.controller;
+package com.spring.boot.company.controller;
 
-import com.spring.boot.employee.controller.dto.company.CompanyDto;
-import com.spring.boot.employee.controller.dto.company.CreateOrUpdateCompanyDto;
-import com.spring.boot.employee.controller.mapper.CompanyMapper;
-import com.spring.boot.employee.model.company.Company;
-import com.spring.boot.employee.service.CompanyService;
+import com.spring.boot.company.controller.dto.CompanyDto;
+import com.spring.boot.company.controller.dto.CreateOrUpdateCompanyDto;
+import com.spring.boot.company.controller.mapper.CompanyMapper;
+import com.spring.boot.company.model.Company;
+import com.spring.boot.company.service.CompanyService;
 import com.spring.boot.employee.service.LoginService;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;

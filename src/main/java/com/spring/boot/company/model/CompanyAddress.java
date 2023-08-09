@@ -1,4 +1,4 @@
-package com.spring.boot.employee.model.company;
+package com.spring.boot.company.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,7 +1,7 @@
-package com.spring.boot.employee.service;
+package com.spring.boot.company.service;
 
-import com.spring.boot.employee.model.company.Company;
-import com.spring.boot.employee.model.company.CompanyAddress;
+import com.spring.boot.company.model.Company;
+import com.spring.boot.company.model.CompanyAddress;
 import org.springframework.stereotype.Service;
 
 import javax.json.Json;
