@@ -51,7 +51,7 @@ public class CnapsDatasourceConfiguration {
     @ConfigurationProperties("spring.jpa")
     public PlatformTransactionManager transactionManager(
             @Qualifier("cnapsEntityManagerFactory") EntityManagerFactory entityManagerFactory
-            ) {
+    ) {
         return new JpaTransactionManager(entityManagerFactory);
     }
 }

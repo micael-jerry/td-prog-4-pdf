@@ -56,7 +56,7 @@ public class EmployeeDatasourceConfiguration {
     @ConfigurationProperties("spring.jpa")
     public PlatformTransactionManager transactionManager(
             @Qualifier("employeeEntityManagerFactory") EntityManagerFactory entityManagerFactory
-            ) {
+    ) {
         return new JpaTransactionManager(entityManagerFactory);
     }
 
