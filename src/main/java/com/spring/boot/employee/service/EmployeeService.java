@@ -5,7 +5,7 @@ import com.spring.boot.employee.model.Email;
 import com.spring.boot.employee.model.Employee;
 import com.spring.boot.employee.model.Image;
 import com.spring.boot.employee.model.Phone;
-import com.spring.boot.employee.repository.EmployeeRepository;
+import com.spring.boot.repository.Repository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +22,7 @@ import java.util.Optional;
 @Slf4j
 @AllArgsConstructor
 public class EmployeeService {
-    private EmployeeRepository employeeRepository;
+    private Repository repository;
     private ImageService imageService;
     private CinService cinService;
     private EmailService emailService;
@@ -43,7 +43,7 @@ public class EmployeeService {
     }
 
     public List<Employee> findByCountryCode(String countryCode) {
-        return employeeRepository.findAllByCountryCode(countryCode);
+        return repository.findAllByCountryCode(countryCode);
     }
 
     @Transactional
@@ -61,7 +61,7 @@ public class EmployeeService {
         employee.setProfessionalEmail(professional);
 
         List<Phone> phones = employee.getPhones();
-        Employee employeeSaved = employeeRepository.save(employee);
+        Employee employeeSaved = repository.save(employee);
         employeeSaved.setPhones(null);
         phoneService.saveAll(phones, employeeSaved);
         return employeeSaved;
@@ -79,43 +79,43 @@ public class EmployeeService {
 //        Address update
         addressService.update(employee.getAddress());
 
-        return employeeRepository.save(employee);
+        return repository.save(employee);
     }
 
     public Optional<Employee> findById(Integer id) {
-        return employeeRepository.findById(id);
+        return repository.findById(id);
     }
 
     private List<Employee> findAllByCriteria(
             String function, String lastname, String firstname, String sex, String startDate, String departureDate
     ) {
         if (this.isValidDate(startDate) && this.isValidDate(departureDate)) {
-            return employeeRepository
+            return repository
                     .findAllByCriteriaBetweenStartAndDeparture(function, lastname, firstname, sex, startDate, departureDate);
         } else if (this.isValidDate(startDate) && !this.isValidDate(departureDate)) {
-            return employeeRepository
+            return repository
                     .findAllByCriteriaAfterStart(function, lastname, firstname, sex, startDate);
         } else if (!this.isValidDate(startDate) && this.isValidDate(departureDate)) {
-            return employeeRepository
+            return repository
                     .findAllByCriteriaBeforeDeparture(function, lastname, firstname, sex, departureDate);
         }
-        return employeeRepository
+        return repository
                 .findAllByCriteria(function, lastname, firstname, sex);
     }
 
     private List<Employee> findAllByCriteriaWithSort(
             String function, String lastname, String firstname, String sex, String startDate, String departureDate, String orderBy, String direction) {
         if (this.isValidDate(startDate) && this.isValidDate(departureDate)) {
-            return employeeRepository
+            return repository
                     .findAllByCriteriaBetweenStartAndDepartureWithSort(function, lastname, firstname, sex, startDate, departureDate, orderBy, direction);
         } else if (this.isValidDate(startDate) && !this.isValidDate(departureDate)) {
-            return employeeRepository
+            return repository
                     .findAllByCriteriaAfterStartWithSort(function, lastname, firstname, sex, startDate, orderBy, direction);
         } else if (!this.isValidDate(startDate) && this.isValidDate(departureDate)) {
-            return employeeRepository
+            return repository
                     .findAllByCriteriaBeforeDepartureWithSort(function, lastname, firstname, sex, departureDate, orderBy, direction);
         }
-        return employeeRepository
+        return repository
                 .findAllByCriteriaWithSort(function, lastname, firstname, sex, orderBy, direction);
     }
 

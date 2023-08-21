@@ -9,7 +9,8 @@ import java.util.List;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
-    Employee getByCnapsNumber(String cnapsNumber);
+
+    Employee findByEndToEndId(Integer endToEndId);
 
     @Query(
             value = "SELECT DISTINCT e.* FROM employee e " +

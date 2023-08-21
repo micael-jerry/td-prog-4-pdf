@@ -1,13 +1,15 @@
 package com.spring.boot.employee.controller.validator;
 
-import com.spring.boot.employee.repository.EmployeeRepository;
+import com.spring.boot.cnaps.repository.CnapsEmployeeRepository;
+import com.spring.boot.repository.Repository;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class CnapsNumberValidator implements ConstraintValidator<CnapsNumberConstraint, String> {
-    private EmployeeRepository employeeRepository;
+    private Repository repository;
+    private CnapsEmployeeRepository cnapsEmployeeRepository;
 
     @Override
     public void initialize(CnapsNumberConstraint constraintAnnotation) {
@@ -16,6 +18,6 @@ public class CnapsNumberValidator implements ConstraintValidator<CnapsNumberCons
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        return employeeRepository.getByCnapsNumber(value) == null;
+        return (cnapsEmployeeRepository.getByCnapsNumber(value) != null) && (repository.getByCnapsNumber(value) == null);
     }
 }

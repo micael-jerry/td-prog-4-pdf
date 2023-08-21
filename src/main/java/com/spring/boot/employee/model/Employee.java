@@ -15,6 +15,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.PostPersist;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,7 +25,6 @@ import lombok.ToString;
 import java.util.Date;
 import java.util.List;
 
-//        TODO: Téléphones : un employé peut avoir plusieurs - update sisa
 
 @Getter
 @Setter
@@ -36,6 +36,9 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(unique = true, nullable = false)
+    private Integer endToEndId;
 
     @Column(unique = true)
     private String personnelNumber;
@@ -52,7 +55,7 @@ public class Employee {
     @Enumerated(EnumType.STRING)
     private Sex sex;
 
-    @Column(unique = true)
+    @Transient
     private String cnapsNumber;
 
     private Integer childrenCount;

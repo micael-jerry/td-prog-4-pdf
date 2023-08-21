@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
 @Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface CnapsNumberConstraint {
-    String message() default "Cnaps number already exists";
+    String message() default "The Cnaps number is already in use by another employee OR not exist";
 
     Class<?>[] groups() default {};
 
