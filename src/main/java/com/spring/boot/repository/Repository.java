@@ -22,35 +22,14 @@ public interface Repository {
             String sex
     );
 
-    List<Employee> findAllByCriteriaWithSortAsc(
-            String function,
-            String lastname,
-            String firstname,
-            String sex,
-            String orderBy
-    );
-
-    List<Employee> findAllByCriteriaWithSortDesc(
-            String function,
-            String lastname,
-            String firstname,
-            String sex,
-            String orderBy
-    );
-
-    default List<Employee> findAllByCriteriaWithSort(
+    List<Employee> findAllByCriteriaWithSort(
             String function,
             String lastname,
             String firstname,
             String sex,
             String orderBy,
             String direction
-    ) {
-        if (direction.equals("ASC")) {
-            return findAllByCriteriaWithSortAsc(function, lastname, firstname, sex, orderBy);
-        }
-        return findAllByCriteriaWithSortDesc(function, lastname, firstname, sex, orderBy);
-    }
+    );
 
     List<Employee> findAllByCriteriaAfterStart(
             String function,
@@ -75,62 +54,6 @@ public interface Repository {
             String sex,
             String startDate,
             String departureDate
-    );
-
-    List<Employee> findAllByCriteriaAfterStartWithSortAsc(
-            String function,
-            String lastname,
-            String firstname,
-            String sex,
-            String startDate,
-            String orderBy
-    );
-
-    List<Employee> findAllByCriteriaBeforeDepartureWithSortAsc(
-            String function,
-            String lastname,
-            String firstname,
-            String sex,
-            String departureDate,
-            String orderBy
-    );
-
-    List<Employee> findAllByCriteriaBetweenStartAndDepartureWithSortAsc(
-            String function,
-            String lastname,
-            String firstname,
-            String sex,
-            String startDate,
-            String departureDate,
-            String orderBy
-    );
-
-    List<Employee> findAllByCriteriaAfterStartWithSortDesc(
-            String function,
-            String lastname,
-            String firstname,
-            String sex,
-            String startDate,
-            String orderBy
-    );
-
-    List<Employee> findAllByCriteriaBeforeDepartureWithSortDesc(
-            String function,
-            String lastname,
-            String firstname,
-            String sex,
-            String departureDate,
-            String orderBy
-    );
-
-    List<Employee> findAllByCriteriaBetweenStartAndDepartureWithSortDesc(
-            String function,
-            String lastname,
-            String firstname,
-            String sex,
-            String startDate,
-            String departureDate,
-            String orderBy
     );
 
     List<Employee> findAllByCriteriaAfterStartWithSort(

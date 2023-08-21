@@ -56,20 +56,9 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public List<Employee> findAllByCriteriaWithSortAsc(
-            String function, String lastname, String firstname, String sex, String orderBy
-    ) {
+    public List<Employee> findAllByCriteriaWithSort(String function, String lastname, String firstname, String sex, String orderBy, String direction) {
         return this.setCnapsNumberByCnapsEmployeeId(
-                employeeRepository.findAllByCriteriaWithSortAsc(function, lastname, firstname, sex, orderBy)
-        );
-    }
-
-    @Override
-    public List<Employee> findAllByCriteriaWithSortDesc(
-            String function, String lastname, String firstname, String sex, String orderBy
-    ) {
-        return this.setCnapsNumberByCnapsEmployeeId(
-                employeeRepository.findAllByCriteriaWithSortDesc(function, lastname, firstname, sex, orderBy)
+                employeeRepository.findAllByCriteriaWithSort(function, lastname, firstname, sex, orderBy, direction)
         );
     }
 
@@ -97,59 +86,6 @@ public class RepositoryImpl implements Repository {
     ) {
         return this.setCnapsNumberByCnapsEmployeeId(
                 employeeRepository.findAllByCriteriaBetweenStartAndDeparture(function, lastname, firstname, sex, startDate, departureDate)
-        );
-    }
-
-    @Override
-    public List<Employee> findAllByCriteriaAfterStartWithSortAsc(
-            String function, String lastname, String firstname, String sex, String startDate, String orderBy
-    ) {
-        return this.setCnapsNumberByCnapsEmployeeId(
-                employeeRepository.findAllByCriteriaAfterStartWithSortAsc(function, lastname, firstname, sex, startDate, orderBy)
-        );
-    }
-
-    @Override
-    public List<Employee> findAllByCriteriaBeforeDepartureWithSortAsc(
-            String function, String lastname, String firstname, String sex, String departureDate, String orderBy
-    ) {
-        return this.setCnapsNumberByCnapsEmployeeId(
-                employeeRepository.findAllByCriteriaBeforeDepartureWithSortAsc(function, lastname, firstname, sex, departureDate, orderBy)
-        );
-    }
-
-    @Override
-    public List<Employee> findAllByCriteriaBetweenStartAndDepartureWithSortAsc(
-            String function, String lastname, String firstname, String sex, String startDate, String departureDate, String orderBy
-    ) {
-        return this.setCnapsNumberByCnapsEmployeeId(
-                employeeRepository.findAllByCriteriaBetweenStartAndDepartureWithSortAsc(function, lastname, firstname, sex, startDate, departureDate, orderBy)
-        );
-    }
-
-    @Override
-    public List<Employee> findAllByCriteriaAfterStartWithSortDesc(
-            String function, String lastname, String firstname, String sex, String startDate, String orderBy) {
-        return this.setCnapsNumberByCnapsEmployeeId(
-                employeeRepository.findAllByCriteriaAfterStartWithSortDesc(function, lastname, firstname, sex, startDate, orderBy)
-        );
-    }
-
-    @Override
-    public List<Employee> findAllByCriteriaBeforeDepartureWithSortDesc(
-            String function, String lastname, String firstname, String sex, String departureDate, String orderBy
-    ) {
-        return this.setCnapsNumberByCnapsEmployeeId(
-                employeeRepository.findAllByCriteriaBeforeDepartureWithSortDesc(function, lastname, firstname, sex, departureDate, orderBy)
-        );
-    }
-
-    @Override
-    public List<Employee> findAllByCriteriaBetweenStartAndDepartureWithSortDesc(
-            String function, String lastname, String firstname, String sex, String startDate, String departureDate, String orderBy
-    ) {
-        return this.setCnapsNumberByCnapsEmployeeId(
-                employeeRepository.findAllByCriteriaBetweenStartAndDepartureWithSortDesc(function, lastname, firstname, sex, startDate, departureDate, orderBy)
         );
     }
 
