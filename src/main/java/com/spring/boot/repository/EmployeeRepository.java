@@ -1,8 +1,8 @@
 package com.spring.boot.repository;
 
-import com.spring.boot.cnaps.repository.CnapsEmployeeRepository;
+import com.spring.boot.cnaps.repository.CnapsEmployeeJpaRepository;
 import com.spring.boot.employee.model.Employee;
-import com.spring.boot.employee.repository.EmployeeRepository;
+import com.spring.boot.employee.repository.EmployeeJpaRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 
@@ -12,37 +12,37 @@ import java.util.stream.Collectors;
 
 @org.springframework.stereotype.Repository
 @AllArgsConstructor
-public class RepositoryImpl implements Repository {
-    private final CnapsEmployeeRepository cnapsEmployeeRepository;
-    private final EmployeeRepository employeeRepository;
+public class EmployeeRepository implements Repository {
+    private final CnapsEmployeeJpaRepository cnapsEmployeeJpaRepository;
+    private final EmployeeJpaRepository employeeJpaRepository;
 
     @Override
     @Transactional
     public Employee save(Employee employee) {
-        com.spring.boot.cnaps.model.Employee cnapsEmployee = cnapsEmployeeRepository.getByCnapsNumber(employee.getCnapsNumber());
+        com.spring.boot.cnaps.model.Employee cnapsEmployee = cnapsEmployeeJpaRepository.getByCnapsNumber(employee.getCnapsNumber());
         employee.setEndToEndId(cnapsEmployee.getId());
-        return employeeRepository.save(employee);
+        return employeeJpaRepository.save(employee);
     }
 
     public Optional<Employee> findById(Integer id) {
-        return employeeRepository.findById(id)
+        return employeeJpaRepository.findById(id)
                 .map(this::setCnapsNumberByCnapsEmployeeId);
     }
 
     public Employee getByCnapsNumber(String cnapsNumber) {
-        com.spring.boot.cnaps.model.Employee cnapsEmployee = cnapsEmployeeRepository.getByCnapsNumber(cnapsNumber);
+        com.spring.boot.cnaps.model.Employee cnapsEmployee = cnapsEmployeeJpaRepository.getByCnapsNumber(cnapsNumber);
         if (cnapsEmployee == null) {
             return null;
         }
         return this.setCnapsNumberByCnapsEmployeeId(
-                employeeRepository.findByEndToEndId(cnapsEmployee.getId())
+                employeeJpaRepository.findByEndToEndId(cnapsEmployee.getId())
         );
     }
 
     @Override
     public List<Employee> findAllByCountryCode(String countryCode) {
         return this.setCnapsNumberByCnapsEmployeeId(
-                employeeRepository.findAllByCountryCode(countryCode)
+                employeeJpaRepository.findAllByCountryCode(countryCode)
         );
     }
 
@@ -51,14 +51,14 @@ public class RepositoryImpl implements Repository {
             String function, String lastname, String firstname, String sex
     ) {
         return this.setCnapsNumberByCnapsEmployeeId(
-                employeeRepository.findAllByCriteria(function, lastname, firstname, sex)
+                employeeJpaRepository.findAllByCriteria(function, lastname, firstname, sex)
         );
     }
 
     @Override
     public List<Employee> findAllByCriteriaWithSort(String function, String lastname, String firstname, String sex, String orderBy, String direction) {
         return this.setCnapsNumberByCnapsEmployeeId(
-                employeeRepository.findAllByCriteriaWithSort(function, lastname, firstname, sex, orderBy, direction)
+                employeeJpaRepository.findAllByCriteriaWithSort(function, lastname, firstname, sex, orderBy, direction)
         );
     }
 
@@ -67,7 +67,7 @@ public class RepositoryImpl implements Repository {
             String function, String lastname, String firstname, String sex, String startDate
     ) {
         return this.setCnapsNumberByCnapsEmployeeId(
-                employeeRepository.findAllByCriteriaAfterStart(function, lastname, firstname, sex, startDate)
+                employeeJpaRepository.findAllByCriteriaAfterStart(function, lastname, firstname, sex, startDate)
         );
     }
 
@@ -76,7 +76,7 @@ public class RepositoryImpl implements Repository {
             String function, String lastname, String firstname, String sex, String departureDate
     ) {
         return this.setCnapsNumberByCnapsEmployeeId(
-                employeeRepository.findAllByCriteriaBeforeDeparture(function, lastname, firstname, sex, departureDate)
+                employeeJpaRepository.findAllByCriteriaBeforeDeparture(function, lastname, firstname, sex, departureDate)
         );
     }
 
@@ -85,7 +85,7 @@ public class RepositoryImpl implements Repository {
             String function, String lastname, String firstname, String sex, String startDate, String departureDate
     ) {
         return this.setCnapsNumberByCnapsEmployeeId(
-                employeeRepository.findAllByCriteriaBetweenStartAndDeparture(function, lastname, firstname, sex, startDate, departureDate)
+                employeeJpaRepository.findAllByCriteriaBetweenStartAndDeparture(function, lastname, firstname, sex, startDate, departureDate)
         );
     }
 
@@ -94,7 +94,7 @@ public class RepositoryImpl implements Repository {
             String function, String lastname, String firstname, String sex, String startDate, String orderBy, String direction
     ) {
         return this.setCnapsNumberByCnapsEmployeeId(
-                employeeRepository.findAllByCriteriaAfterStartWithSort(function, lastname, firstname, sex, startDate, orderBy, direction)
+                employeeJpaRepository.findAllByCriteriaAfterStartWithSort(function, lastname, firstname, sex, startDate, orderBy, direction)
         );
     }
 
@@ -103,7 +103,7 @@ public class RepositoryImpl implements Repository {
             String function, String lastname, String firstname, String sex, String departureDate, String orderBy, String direction
     ) {
         return this.setCnapsNumberByCnapsEmployeeId(
-                employeeRepository.findAllByCriteriaBeforeDepartureWithSort(function, lastname, firstname, sex, departureDate, orderBy, direction)
+                employeeJpaRepository.findAllByCriteriaBeforeDepartureWithSort(function, lastname, firstname, sex, departureDate, orderBy, direction)
         );
     }
 
@@ -112,7 +112,7 @@ public class RepositoryImpl implements Repository {
             String function, String lastname, String firstname, String sex, String startDate, String departureDate, String orderBy, String direction
     ) {
         return this.setCnapsNumberByCnapsEmployeeId(
-                employeeRepository.findAllByCriteriaBetweenStartAndDepartureWithSort(function, lastname, firstname, sex, startDate, departureDate, orderBy, direction)
+                employeeJpaRepository.findAllByCriteriaBetweenStartAndDepartureWithSort(function, lastname, firstname, sex, startDate, departureDate, orderBy, direction)
         );
     }
 
@@ -126,7 +126,7 @@ public class RepositoryImpl implements Repository {
         if (employee == null) {
             return null;
         }
-        com.spring.boot.cnaps.model.Employee cnapsEmployee = cnapsEmployeeRepository.findById(employee.getEndToEndId()).get();
+        com.spring.boot.cnaps.model.Employee cnapsEmployee = cnapsEmployeeJpaRepository.findById(employee.getEndToEndId()).get();
         employee.setCnapsNumber(cnapsEmployee.getCnapsNumber());
         return employee;
     }
