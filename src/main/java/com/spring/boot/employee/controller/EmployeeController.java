@@ -7,12 +7,14 @@ import com.spring.boot.employee.controller.mapper.EmployeeMapper;
 import com.spring.boot.employee.model.Employee;
 import com.spring.boot.employee.service.EmployeeService;
 import com.spring.boot.employee.service.LoginService;
+import com.spring.boot.employee.service.pdf.ExportPdfService;
 import com.spring.boot.employee.utils.CsvFileGenerator;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -39,6 +42,7 @@ public class EmployeeController {
     private EmployeeService employeeService;
     private CsvFileGenerator csvFileGenerator;
     private LoginService loginService;
+    private ExportPdfService exportPdfService;
 
     @GetMapping("/employees")
     public String getEmployees(
@@ -96,6 +100,18 @@ public class EmployeeController {
         EmployeeDto employeeDto = employeeMapper.fromEntity(employeeService.findById(id).get());
         model.addAttribute(FILE_EMPLOYEE_ATTRIBUTE, employeeDto);
         return "viewEmployee";
+    }
+
+    @GetMapping("/download-file-employee")
+    public void downloadFileEmployee(
+            HttpServletResponse response,
+            @RequestParam("id") Integer id
+    ) throws IOException {
+        EmployeeDto employeeDto = employeeMapper.fromEntity(employeeService.findById(id).get());
+        ByteArrayInputStream  exportEmployee = exportPdfService.exportEmployeePdf(employeeDto);
+        response.setContentType("application/octet-stream");
+        response.setHeader("Content-Disposition", "attachment; filename=employee.pdf");
+        IOUtils.copy(exportEmployee, response.getOutputStream());
     }
 
     @GetMapping("/create-employee")

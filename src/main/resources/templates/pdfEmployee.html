@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+body {
+    margin-top: 20px;
+    background-color: #eee;
+}
+#profile-image {
+    max-width: 140px;
+}
+.information-list-label {
+    font-size: 1.3rem;
+}
+.information-list-content {
+    font-size: 0.9rem
+}
+
+
+    </style>
+</head>
+<body>
+<section>
+    <img id="profile-image" th:src="@{'http://localhost:8080/show-image?id='+ ${fileEmployee.id_image}}"
+         alt="No Image"
+         class="img-fluid"/>
+    <p class="mb-4 information-list-label">
+        <span class="text-primary font-italic me-1">Professional</span>
+        Information
+    </p>
+    <p class="mb-2 information-list-content d-flex justify-content-between align-items-center">
+        <span>Cnaps Number:</span>
+        <span>[[${fileEmployee.cnapsNumber}]]</span>
+    </p>
+    <p class="mb-2 information-list-content d-flex justify-content-between align-items-center">
+        <span>Cin delivery date:</span>
+        <span>[[${fileEmployee.socioProfessionalCategory}]]</span>
+    </p>
+    <p class="mb-2 information-list-content d-flex justify-content-between align-items-center">
+        <span>Function:</span>
+        <span>[[${fileEmployee.function}]]</span>
+    </p>
+    <p class="mb-2 information-list-content d-flex justify-content-between align-items-center">
+        <span>Start date:</span>
+        <span>[[${fileEmployee.startDate}]]</span>
+    </p>
+    <p class="mb-2 information-list-content d-flex justify-content-between align-items-center">
+        <span>Departure date:</span>
+        <span>[[${fileEmployee.departureDate}]]</span>
+    </p>
+</section>
+</body>
+</html>

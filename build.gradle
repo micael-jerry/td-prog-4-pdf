@@ -39,9 +39,9 @@ dependencies {
 	implementation 'javax.json:javax.json-api:1.1.4'
 	// https://mvnrepository.com/artifact/org.glassfish/javax.json
 	implementation 'org.glassfish:javax.json:1.1.4'
-	//	generate pdf
-	// https://mvnrepository.com/artifact/com.itextpdf/itextpdf
-	implementation group: 'com.itextpdf', name: 'itextpdf', version: '5.0.6'
+	//	GENERATE PDF
+	// https://mvnrepository.com/artifact/org.xhtmlrenderer/flying-saucer-pdf
+	implementation group: 'org.xhtmlrenderer', name: 'flying-saucer-pdf', version: '9.1.22'
 }
 
 tasks.named('test') {
