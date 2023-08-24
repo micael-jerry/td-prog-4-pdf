@@ -8,6 +8,7 @@ import jakarta.annotation.PreDestroy;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+
 @Component
 @AllArgsConstructor
 public class InitData {
@@ -15,13 +16,17 @@ public class InitData {
     private UserRepository userRepository;
 
     @PostConstruct
-    public void createUser() {
-        User user = new User(null, "admin", "admin", null);
-        userService.save(user);
+    public void initData() {
+        this.createUser();
     }
 
     @PreDestroy
     public void cleanUp() {
         userRepository.deleteAll();
+    }
+
+    public void createUser() {
+        User user = new User(null, "admin", "admin", null);
+        userService.save(user);
     }
 }
