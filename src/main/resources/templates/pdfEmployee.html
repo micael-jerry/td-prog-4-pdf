@@ -358,9 +358,9 @@ hr {
     </style>
 </head>
 <body>
-    <main>
-        <h1 class="text-center">FICHE EMPLOYE</h1>
-        <table class="info">
+    <h1 class="text-center">FICHE EMPLOYE</h1>
+    <main class="mt-5">
+        <table class="info mt-5">
             <tr>
                 <td>
                     <table>
@@ -424,8 +424,7 @@ hr {
         </table>
 
         <br/>
-
-        <table>
+        <table class="mt-5">
             <tr>
                 <th>INFORMATION SUR LE SALAIRE</th>
             </tr>
@@ -493,7 +492,7 @@ hr {
                             <tr>
                                 <td>
                                     <span class="labels">Address:</span>
-                                    <!--                                <span th:text="${exportEmployee.companyAddress.house} + ', ' + ${exportEmployee.companyAddress.street}"></span>-->
+                                    <!-- <span th:text="${exportEmployee.companyAddress.house} + ', ' + ${exportEmployee.companyAddress.street}"></span>-->
                                     <span th:text="${exportEmployee.companyAddress.zipCode} + ', ' + ${exportEmployee.companyAddress.city}"></span>
                                 </td>
                             </tr>
