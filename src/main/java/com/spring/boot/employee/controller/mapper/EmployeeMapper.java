@@ -2,11 +2,13 @@ package com.spring.boot.employee.controller.mapper;
 
 import com.spring.boot.employee.controller.dto.CreateEmployeeDto;
 import com.spring.boot.employee.controller.dto.EmployeeDto;
+import com.spring.boot.employee.controller.dto.EmployeeExportDto;
 import com.spring.boot.employee.controller.dto.UpdateEmployeeDto;
 import com.spring.boot.employee.model.Employee;
 import com.spring.boot.employee.model.Sex;
 import com.spring.boot.employee.model.SocioProfessionalCategory;
 import com.spring.boot.employee.utils.Convert;
+import com.spring.boot.employee.utils.DateUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -110,6 +112,20 @@ public class EmployeeMapper {
                 .personalEmail(employee.getPersonalEmail().getAddress())
                 .professionalEmailId(employee.getProfessionalEmail().getId())
                 .professionalEmail(employee.getProfessionalEmail().getAddress())
+                .build();
+    }
+
+    public EmployeeExportDto toExport(EmployeeDto employeeDto) {
+        return EmployeeExportDto.builder()
+                .personnelNumber(employeeDto.getPersonnelNumber())
+                .firstname(employeeDto.getFirstname())
+                .lastname(employeeDto.getLastname())
+                .age(DateUtil.ageCalculator(employeeDto.getBirthday()))
+                .id_image(employeeDto.getId_image())
+                .cnapsNumber(employeeDto.getCnapsNumber())
+                .startDate(employeeDto.getStartDate())
+                .departureDate(employeeDto.getDepartureDate())
+                .professionalEmail(employeeDto.getProfessionalEmail())
                 .build();
     }
 }

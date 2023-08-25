@@ -1,7 +1,7 @@
 package com.spring.boot.employee.service.pdf;
 
 import com.lowagie.text.DocumentException;
-import com.spring.boot.employee.controller.dto.EmployeeDto;
+import com.spring.boot.employee.controller.dto.EmployeeExportDto;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -18,9 +18,9 @@ import java.io.ByteArrayOutputStream;
 public class ExportPdfService {
     private TemplateEngine templateEngine;
 
-    public ByteArrayInputStream exportEmployeePdf(EmployeeDto employeeDto) {
+    public ByteArrayInputStream exportEmployeePdf(EmployeeExportDto employeeExportDto) {
         Context context = new Context();
-        context.setVariable("fileEmployee", employeeDto);
+        context.setVariable("exportEmployee", employeeExportDto);
         String htmlContent = templateEngine.process("pdfEmployee", context);
         ByteArrayInputStream byteArrayInputStream = null;
         try {

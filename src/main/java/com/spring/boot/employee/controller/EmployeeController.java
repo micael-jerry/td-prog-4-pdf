@@ -2,6 +2,7 @@ package com.spring.boot.employee.controller;
 
 import com.spring.boot.employee.controller.dto.CreateEmployeeDto;
 import com.spring.boot.employee.controller.dto.EmployeeDto;
+import com.spring.boot.employee.controller.dto.EmployeeExportDto;
 import com.spring.boot.employee.controller.dto.UpdateEmployeeDto;
 import com.spring.boot.employee.controller.mapper.EmployeeMapper;
 import com.spring.boot.employee.model.Employee;
@@ -107,8 +108,10 @@ public class EmployeeController {
             HttpServletResponse response,
             @RequestParam("id") Integer id
     ) throws IOException {
-        EmployeeDto employeeDto = employeeMapper.fromEntity(employeeService.findById(id).get());
-        ByteArrayInputStream  exportEmployee = exportPdfService.exportEmployeePdf(employeeDto);
+        EmployeeExportDto employeeExportDto = employeeMapper.toExport(
+                employeeMapper.fromEntity(employeeService.findById(id).get())
+        );
+        ByteArrayInputStream exportEmployee = exportPdfService.exportEmployeePdf(employeeExportDto);
         response.setContentType("application/octet-stream");
         response.setHeader("Content-Disposition", "attachment; filename=employee.pdf");
         IOUtils.copy(exportEmployee, response.getOutputStream());

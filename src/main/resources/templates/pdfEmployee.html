@@ -1,53 +1,436 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <style>
+.info {
+    width: 100%;
+}
+
+.labels {
+    font-size: 12px;
+}
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: sans-serif;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+article,
+aside,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section {
+    display: block;
+}
+
 body {
-    margin-top: 20px;
-    background-color: #eee;
-}
-#profile-image {
-    max-width: 140px;
-}
-.information-list-label {
-    font-size: 1.3rem;
-}
-.information-list-content {
-    font-size: 0.9rem
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    background-color: #fff;
 }
 
+hr {
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible;
+}
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+
+th {
+    text-align: inherit;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+h1,
+.h1 {
+    font-size: 2.5rem;
+}
+
+h2,
+.h2 {
+    font-size: 2rem;
+}
+
+h3,
+.h3 {
+    font-size: 1.75rem;
+}
+
+h4,
+.h4 {
+    font-size: 1.5rem;
+}
+
+h5,
+.h5 {
+    font-size: 1.25rem;
+}
+
+h6,
+.h6 {
+    font-size: 1rem;
+}
+
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.col-1,
+.col-2,
+.col-3,
+.col-4,
+.col-5,
+.col-6,
+.col-7,
+.col-8,
+.col-9,
+.col-10,
+.col-11,
+.col-12,
+.col,
+.col-auto,
+.col-sm-1,
+.col-sm-2,
+.col-sm-3,
+.col-sm-4,
+.col-sm-5,
+.col-sm-6,
+.col-sm-7,
+.col-sm-8,
+.col-sm-9,
+.col-sm-10,
+.col-sm-11,
+.col-sm-12,
+.col-sm,
+.col-sm-auto,
+.col-md-1,
+.col-md-2,
+.col-md-3,
+.col-md-4,
+.col-md-5,
+.col-md-6,
+.col-md-7,
+.col-md-8,
+.col-md-9,
+.col-md-10,
+.col-md-11,
+.col-md-12,
+.col-md,
+.col-md-auto,
+.col-lg-1,
+.col-lg-2,
+.col-lg-3,
+.col-lg-4,
+.col-lg-5,
+.col-lg-6,
+.col-lg-7,
+.col-lg-8,
+.col-lg-9,
+.col-lg-10,
+.col-lg-11,
+.col-lg-12,
+.col-lg,
+.col-lg-auto,
+.col-xl-1,
+.col-xl-2,
+.col-xl-3,
+.col-xl-4,
+.col-xl-5,
+.col-xl-6,
+.col-xl-7,
+.col-xl-8,
+.col-xl-9,
+.col-xl-10,
+.col-xl-11,
+.col-xl-12,
+.col-xl,
+.col-xl-auto {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.col-md-5 {
+    -ms-flex: 0 0 41.666667%;
+    flex: 0 0 41.666667%;
+    max-width: 41.666667%;
+}
+
+.col-md-6 {
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+.col-md-7 {
+    -ms-flex: 0 0 58.333333%;
+    flex: 0 0 58.333333%;
+    max-width: 58.333333%;
+}
+
+.col-md-8 {
+    -ms-flex: 0 0 66.666667%;
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+}
+
+.col-md-12 {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+.border-right {
+    border-right: 1px solid #dee2e6 !important;
+}
+
+.d-flex {
+    display: -ms-flexbox !important;
+    display: flex !important;
+}
+
+.flex-column {
+    -ms-flex-direction: column !important;
+    flex-direction: column !important;
+}
+
+.align-items-center {
+    -ms-flex-align: center !important;
+    align-items: center !important;
+}
+
+.align-items-end {
+    -ms-flex-align: end !important;
+    align-items: flex-end !important;
+}
+
+.justify-content-between {
+    -ms-flex-pack: justify !important;
+    justify-content: space-between !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.text-right {
+    text-align: right !important;
+}
+
+.mt-1,
+.my-1 {
+    margin-top: 0.25rem !important;
+}
+
+.mt-2,
+.my-2 {
+    margin-top: 0.5rem !important;
+}
+
+.p-3 {
+    padding: 1rem !important;
+}
+
+.pt-5,
+.py-5 {
+    padding-top: 3rem !important;
+}
+
+.mt-5,
+.my-5 {
+    margin-top: 3rem !important;
+}
+
+.font-weight-bold {
+    font-weight: 700 !important;
+}
+
+.text-black-50 {
+    color: rgba(0, 0, 0, 0.5) !important;
+}
     </style>
 </head>
 <body>
-<section>
-    <img id="profile-image" th:src="@{'http://localhost:8080/show-image?id='+ ${fileEmployee.id_image}}"
-         alt="No Image"
-         class="img-fluid"/>
-    <p class="mb-4 information-list-label">
-        <span class="text-primary font-italic me-1">Professional</span>
-        Information
-    </p>
-    <p class="mb-2 information-list-content d-flex justify-content-between align-items-center">
-        <span>Cnaps Number:</span>
-        <span>[[${fileEmployee.cnapsNumber}]]</span>
-    </p>
-    <p class="mb-2 information-list-content d-flex justify-content-between align-items-center">
-        <span>Cin delivery date:</span>
-        <span>[[${fileEmployee.socioProfessionalCategory}]]</span>
-    </p>
-    <p class="mb-2 information-list-content d-flex justify-content-between align-items-center">
-        <span>Function:</span>
-        <span>[[${fileEmployee.function}]]</span>
-    </p>
-    <p class="mb-2 information-list-content d-flex justify-content-between align-items-center">
-        <span>Start date:</span>
-        <span>[[${fileEmployee.startDate}]]</span>
-    </p>
-    <p class="mb-2 information-list-content d-flex justify-content-between align-items-center">
-        <span>Departure date:</span>
-        <span>[[${fileEmployee.departureDate}]]</span>
-    </p>
-</section>
+<h1 class="text-center">FICHE EMPLOYE</h1>
+<div>
+    <table class="info">
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <th>INFORMATION</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="labels">Matricule:</span>
+                            <span>[[${exportEmployee.personnelNumber}]]</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="labels">Lastname:</span>
+                            <span>[[${exportEmployee.lastname}]]</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="labels">Firstname:</span>
+                            <span>[[${exportEmployee.firstname}]]</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="labels">Age:</span>
+                            <span>[[${exportEmployee.age}]]</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="labels">Date d'embauche:</span>
+                            <span>[[${exportEmployee.startDate}]]</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="labels">Date de depart:</span>
+                            <span>[[${exportEmployee.departureDate}]]</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="labels">Numero cnaps:</span>
+                            <span>[[${exportEmployee.cnapsNumber}]]</span>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td align="right">
+                <div>
+                    <img width="150" th:src="@{'http://localhost:8080/show-image?id='+ ${exportEmployee.id_image}}" alt="img" />
+                    <br/>
+                    <span class="font-weight-bold" th:text="${exportEmployee.lastname} + ' ' + ${exportEmployee.firstname}"></span>
+                    <br />
+                    <span class="text-black-50">[[${exportEmployee.professionalEmail.address}]]</span>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <br/>
+
+    <table>
+        <tr>
+            <th>INFORMATION SUR LE SALAIRE</th>
+        </tr>
+        <tr>
+            <td>
+                <span class="labels">Salaire brute actuel:</span>
+                <span>xxxxxxxxxxx Ariary/mois</span>
+            </td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>
