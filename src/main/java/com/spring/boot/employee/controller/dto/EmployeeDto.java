@@ -29,6 +29,8 @@ public class EmployeeDto {
 
     private String cnapsNumber;
 
+    private Long salary;
+
     private Integer childrenCount;
 
     private SocioProfessionalCategory socioProfessionalCategory;

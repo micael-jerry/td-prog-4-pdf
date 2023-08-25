@@ -39,7 +39,15 @@ public class CreateEmployeeDto {
     @CnapsNumberConstraint
     private String cnapsNumber;
 
-    private Integer childrenCount;
+    @NotNull(message = "The salary is mandatory")
+    @NotBlank(message = "The salary is mandatory")
+    @Pattern(regexp = "[0-9]+", message = "The salary must contain only numbers")
+    private String salary;
+
+    @NotNull(message = "The children is mandatory")
+    @NotBlank(message = "The children is mandatory")
+    @Pattern(regexp = "[0-9]+", message = "The children account must contain only numbers")
+    private String childrenCount;
 
     @NotNull(message = "The socio-professional category is mandatory")
     @NotBlank(message = "The socio-professional category is mandatory")

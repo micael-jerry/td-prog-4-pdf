@@ -58,6 +58,8 @@ public class Employee {
     @Transient
     private String cnapsNumber;
 
+    private Long salary;
+
     private Integer childrenCount;
 
     @Enumerated(EnumType.STRING)

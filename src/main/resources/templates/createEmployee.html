@@ -87,6 +87,10 @@
                         <label for="cnaps-number-input">Cnaps number:</label>
                     </div>
                     <div class="form-floating mb-3">
+                        <input class="form-control" id="salary-input" type="text" th:field="*{salary}"/>
+                        <label for="salary-input">Salary:</label>
+                    </div>
+                    <div class="form-floating mb-3">
                         <select class="form-select form-select-sm" aria-label="Socio-professional Category"
                                 th:field="*{socioProfessionalCategory}">
                             <option selected th:value="''">Select Socio-professional Category</option>

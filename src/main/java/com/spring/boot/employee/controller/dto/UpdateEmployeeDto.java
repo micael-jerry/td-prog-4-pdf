@@ -24,6 +24,8 @@ public class UpdateEmployeeDto {
 
     private String cnapsNumber;
 
+    private Long salary;
+
     private Integer childrenCount;
 
     private String socioProfessionalCategory;

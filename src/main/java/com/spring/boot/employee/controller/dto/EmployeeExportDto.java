@@ -26,6 +26,8 @@ public class EmployeeExportDto {
 
     private String cnapsNumber;
 
+    private Long salary;
+
     private Date startDate;
 
     private Date departureDate;

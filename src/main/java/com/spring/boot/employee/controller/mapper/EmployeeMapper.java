@@ -28,7 +28,8 @@ public class EmployeeMapper {
         employee.setBirthday(Convert.stringToDateAndFormat(createEmployeeDto.getBirthday()));
         employee.setSex(Sex.valueOf(createEmployeeDto.getSex()));
         employee.setCnapsNumber(createEmployeeDto.getCnapsNumber());
-        employee.setChildrenCount(createEmployeeDto.getChildrenCount());
+        employee.setSalary(Long.valueOf(createEmployeeDto.getSalary()));
+        employee.setChildrenCount(Integer.valueOf(createEmployeeDto.getChildrenCount()));
         employee.setSocioProfessionalCategory(SocioProfessionalCategory.valueOf(createEmployeeDto.getSocioProfessionalCategory()));
         employee.setFunction(createEmployeeDto.getFunction());
         employee.setStartDate(Convert.stringToDateAndFormat(createEmployeeDto.getStartDate()));
@@ -49,6 +50,7 @@ public class EmployeeMapper {
         employee.setBirthday(Convert.stringToDateAndFormat(updateEmployeeDto.getBirthday()));
         employee.setSex(Sex.valueOf(updateEmployeeDto.getSex()));
         employee.setCnapsNumber(updateEmployeeDto.getCnapsNumber());
+        employee.setSalary(updateEmployeeDto.getSalary());
         employee.setChildrenCount(updateEmployeeDto.getChildrenCount());
         employee.setSocioProfessionalCategory(SocioProfessionalCategory.valueOf(updateEmployeeDto.getSocioProfessionalCategory()));
         employee.setFunction(updateEmployeeDto.getFunction());
@@ -71,6 +73,7 @@ public class EmployeeMapper {
                 .birthday(employee.getBirthday())
                 .sex(employee.getSex())
                 .cnapsNumber(employee.getCnapsNumber())
+                .salary(employee.getSalary())
                 .childrenCount(employee.getChildrenCount())
                 .socioProfessionalCategory(employee.getSocioProfessionalCategory())
                 .function(employee.getFunction())
@@ -94,6 +97,7 @@ public class EmployeeMapper {
                 .birthday(Convert.dateToStringAndFormat(employee.getBirthday()))
                 .sex(employee.getSex().toString())
                 .cnapsNumber(employee.getCnapsNumber())
+                .salary(employee.getSalary())
                 .childrenCount(employee.getChildrenCount())
                 .socioProfessionalCategory(employee.getSocioProfessionalCategory().toString())
                 .function(employee.getFunction())
@@ -124,6 +128,7 @@ public class EmployeeMapper {
                 .age(DateUtil.ageCalculator(employeeDto.getBirthday()))
                 .id_image(employeeDto.getId_image())
                 .cnapsNumber(employeeDto.getCnapsNumber())
+                .salary(employeeDto.getSalary())
                 .startDate(employeeDto.getStartDate())
                 .departureDate(employeeDto.getDepartureDate())
                 .professionalEmail(employeeDto.getProfessionalEmail())
