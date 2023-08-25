@@ -350,152 +350,158 @@ hr {
 .text-black-50 {
     color: rgba(0, 0, 0, 0.5) !important;
 }
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
     </style>
 </head>
 <body>
-<h1 class="text-center">FICHE EMPLOYE</h1>
-<div>
-    <table class="info">
-        <tr>
-            <td>
-                <table>
-                    <tr>
-                        <th>INFORMATION</th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="labels">Matricule:</span>
-                            <span>[[${exportEmployee.personnelNumber}]]</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="labels">Lastname:</span>
-                            <span>[[${exportEmployee.lastname}]]</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="labels">Firstname:</span>
-                            <span>[[${exportEmployee.firstname}]]</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="labels">Age:</span>
-                            <span>[[${exportEmployee.age}]]</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="labels">Date d'embauche:</span>
-                            <span>[[${exportEmployee.startDate}]]</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="labels">Date de depart:</span>
-                            <span>[[${exportEmployee.departureDate}]]</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="labels">Numero cnaps:</span>
-                            <span>[[${exportEmployee.cnapsNumber}]]</span>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-            <td align="right">
-                <div>
-                    <img width="150" th:src="@{'http://localhost:8080/show-image?id='+ ${exportEmployee.id_image}}" alt="img" />
-                    <br/>
-                    <span class="font-weight-bold" th:text="${exportEmployee.lastname} + ' ' + ${exportEmployee.firstname}"></span>
-                    <br />
-                    <span class="text-black-50">[[${exportEmployee.professionalEmail.address}]]</span>
-                </div>
-            </td>
-        </tr>
-    </table>
-
-    <br/>
-
-    <table>
-        <tr>
-            <th>INFORMATION SUR LE SALAIRE</th>
-        </tr>
-        <tr>
-            <td>
-                <span class="labels">Salaire brute actuel:</span>
-                <span>xxxxxxxxxxx Ariary/mois</span>
-            </td>
-        </tr>
-    </table>
-
-    <br/>
-
-    <div>
+    <main>
+        <h1 class="text-center">FICHE EMPLOYE</h1>
         <table class="info">
             <tr>
-                <th>ENTREPRISE</th>
-            </tr>
-            <tr>
-                <td>
-                    <img width="50" src="http://localhost:8080/show-logo-company" alt="logo entreprise" />
-                </td>
                 <td>
                     <table>
                         <tr>
+                            <th>INFORMATION</th>
+                        </tr>
+                        <tr>
                             <td>
-                                <span class="labels">Nom:</span>
-                                <span>[[${exportEmployee.companyName}]]</span>
+                                <span class="labels">Matricule:</span>
+                                <span>[[${exportEmployee.personnelNumber}]]</span>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <span class="labels">NIF:</span>
-                                <span>[[${exportEmployee.companyFiscalIdentityNif}]]</span>
+                                <span class="labels">Lastname:</span>
+                                <span>[[${exportEmployee.lastname}]]</span>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <span class="labels">STAT:</span>
-                                <span>[[${exportEmployee.companyFiscalIdentityStat}]]</span>
+                                <span class="labels">Firstname:</span>
+                                <span>[[${exportEmployee.firstname}]]</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="labels">Age:</span>
+                                <span>[[${exportEmployee.age}]]</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="labels">Date d'embauche:</span>
+                                <span>[[${exportEmployee.startDate}]]</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="labels">Date de depart:</span>
+                                <span>[[${exportEmployee.departureDate}]]</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="labels">Numero cnaps:</span>
+                                <span>[[${exportEmployee.cnapsNumber}]]</span>
                             </td>
                         </tr>
                     </table>
                 </td>
-                <td>
-                    <table>
-                        <tr>
-                            <td>
-                                <span class="labels">Email:</span>
-                                <span>[[${exportEmployee.companyEmail}]]</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="labels">Telephone:</span>
-                                <span th:if="${exportEmployee.companyPhones.isEmpty()}">
-                                    <span>No phones number</span>
-                                </span>
-                                <span>
-                                    <span th:text="${#strings.listJoin(exportEmployee.companyPhones, ', ')}"></span>
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="labels">Address:</span>
-<!--                                <span th:text="${exportEmployee.companyAddress.house} + ', ' + ${exportEmployee.companyAddress.street}"></span>-->
-                                <span th:text="${exportEmployee.companyAddress.zipCode} + ', ' + ${exportEmployee.companyAddress.city}"></span>
-                            </td>
-                        </tr>
-                    </table>
+                <td align="right">
+                    <div>
+                        <img width="150" th:src="@{'http://localhost:8080/show-image?id='+ ${exportEmployee.id_image}}" alt="img" />
+                        <br/>
+                        <span class="font-weight-bold" th:text="${exportEmployee.lastname} + ' ' + ${exportEmployee.firstname}"></span>
+                        <br />
+                        <span class="text-black-50">[[${exportEmployee.professionalEmail.address}]]</span>
+                    </div>
                 </td>
             </tr>
         </table>
-    </div>
-</div>
+
+        <br/>
+
+        <table>
+            <tr>
+                <th>INFORMATION SUR LE SALAIRE</th>
+            </tr>
+            <tr>
+                <td>
+                    <span class="labels">Salaire brute actuel:</span>
+                    <span>xxxxxxxxxxx Ariary/mois</span>
+                </td>
+            </tr>
+        </table>
+    </main>
+
+    <footer class="footer">
+        <hr/>
+        <div>
+            <table class="info">
+                <tr>
+                    <th>ENTREPRISE</th>
+                </tr>
+                <tr>
+                    <td>
+                        <img width="50" src="http://localhost:8080/show-logo-company" alt="logo entreprise" />
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <span class="labels">Nom:</span>
+                                    <span>[[${exportEmployee.companyName}]]</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="labels">NIF:</span>
+                                    <span>[[${exportEmployee.companyFiscalIdentityNif}]]</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="labels">STAT:</span>
+                                    <span>[[${exportEmployee.companyFiscalIdentityStat}]]</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <span class="labels">Email:</span>
+                                    <span>[[${exportEmployee.companyEmail}]]</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="labels">Telephone:</span>
+                                    <span th:if="${exportEmployee.companyPhones.isEmpty()}">
+                                    <span>No phones number</span>
+                                </span>
+                                    <span>
+                                    <span th:text="${#strings.listJoin(exportEmployee.companyPhones, ', ')}"></span>
+                                </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="labels">Address:</span>
+                                    <!--                                <span th:text="${exportEmployee.companyAddress.house} + ', ' + ${exportEmployee.companyAddress.street}"></span>-->
+                                    <span th:text="${exportEmployee.companyAddress.zipCode} + ', ' + ${exportEmployee.companyAddress.city}"></span>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </footer>
 </body>
 </html>
