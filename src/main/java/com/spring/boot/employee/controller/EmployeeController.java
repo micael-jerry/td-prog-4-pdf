@@ -1,5 +1,8 @@
 package com.spring.boot.employee.controller;
 
+import com.spring.boot.company.controller.dto.CompanyDto;
+import com.spring.boot.company.controller.mapper.CompanyMapper;
+import com.spring.boot.company.service.CompanyService;
 import com.spring.boot.employee.controller.dto.CreateEmployeeDto;
 import com.spring.boot.employee.controller.dto.EmployeeDto;
 import com.spring.boot.employee.controller.dto.EmployeeExportDto;
@@ -44,6 +47,8 @@ public class EmployeeController {
     private CsvFileGenerator csvFileGenerator;
     private LoginService loginService;
     private ExportPdfService exportPdfService;
+    private CompanyService companyService;
+    private CompanyMapper companyMapper;
 
     @GetMapping("/employees")
     public String getEmployees(
@@ -108,8 +113,10 @@ public class EmployeeController {
             HttpServletResponse response,
             @RequestParam("id") Integer id
     ) throws IOException {
+        CompanyDto companyDto = companyMapper.fromEntity(companyService.get());
         EmployeeExportDto employeeExportDto = employeeMapper.toExport(
-                employeeMapper.fromEntity(employeeService.findById(id).get())
+                employeeMapper.fromEntity(employeeService.findById(id).get()),
+                companyDto
         );
         ByteArrayInputStream exportEmployee = exportPdfService.exportEmployeePdf(employeeExportDto);
         response.setContentType("application/octet-stream");

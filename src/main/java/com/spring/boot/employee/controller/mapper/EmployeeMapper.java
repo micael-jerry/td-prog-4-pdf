@@ -1,5 +1,6 @@
 package com.spring.boot.employee.controller.mapper;
 
+import com.spring.boot.company.controller.dto.CompanyDto;
 import com.spring.boot.employee.controller.dto.CreateEmployeeDto;
 import com.spring.boot.employee.controller.dto.EmployeeDto;
 import com.spring.boot.employee.controller.dto.EmployeeExportDto;
@@ -115,7 +116,7 @@ public class EmployeeMapper {
                 .build();
     }
 
-    public EmployeeExportDto toExport(EmployeeDto employeeDto) {
+    public EmployeeExportDto toExport(EmployeeDto employeeDto, CompanyDto companyDto) {
         return EmployeeExportDto.builder()
                 .personnelNumber(employeeDto.getPersonnelNumber())
                 .firstname(employeeDto.getFirstname())
@@ -126,6 +127,12 @@ public class EmployeeMapper {
                 .startDate(employeeDto.getStartDate())
                 .departureDate(employeeDto.getDepartureDate())
                 .professionalEmail(employeeDto.getProfessionalEmail())
+                .companyName(companyDto.getName())
+                .companyFiscalIdentityNif(companyDto.getFiscalIdentityNif())
+                .companyFiscalIdentityStat(companyDto.getFiscalIdentityStat())
+                .companyAddress(companyDto.getAddress())
+                .companyEmail(companyDto.getEmail())
+                .companyPhones(companyDto.getPhones())
                 .build();
     }
 }

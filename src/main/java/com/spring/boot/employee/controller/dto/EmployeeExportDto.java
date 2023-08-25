@@ -1,11 +1,13 @@
 package com.spring.boot.employee.controller.dto;
 
+import com.spring.boot.company.model.CompanyAddress;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Builder
 @Data
@@ -29,4 +31,12 @@ public class EmployeeExportDto {
     private Date departureDate;
 
     private EmailDto professionalEmail;
+
+//    Company Information
+    private String companyName;
+    private String companyFiscalIdentityNif;
+    private String companyFiscalIdentityStat;
+    private CompanyAddress companyAddress;
+    private String companyEmail;
+    private List<String> companyPhones;
 }
