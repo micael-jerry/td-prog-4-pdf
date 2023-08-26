@@ -9,7 +9,8 @@ public class DateUtil {
         long diff = now.getYear() - birthdate.getYear();
 
         Date birthdateInYear = new Date(now.getYear(), birthdate.getMonth(), birthdate.getDate());
-        if (birthdateInYear.before(now)) {
+//      (now.getMonth() < birthdate.getMonth()) || (now.getMonth() == birthdate.getMonth() && now.getDate() < birthdate.getDate())
+        if (now.before(birthdateInYear)) {
             diff--;
         }
         return (int) diff;
