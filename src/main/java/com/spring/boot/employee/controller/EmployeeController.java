@@ -8,6 +8,7 @@ import com.spring.boot.employee.controller.dto.EmployeeDto;
 import com.spring.boot.employee.controller.dto.EmployeeExportDto;
 import com.spring.boot.employee.controller.dto.UpdateEmployeeDto;
 import com.spring.boot.employee.controller.mapper.EmployeeMapper;
+import com.spring.boot.employee.model.AgeParamType;
 import com.spring.boot.employee.model.Employee;
 import com.spring.boot.employee.service.EmployeeService;
 import com.spring.boot.employee.service.LoginService;
@@ -111,12 +112,14 @@ public class EmployeeController {
     @GetMapping("/download-file-employee")
     public void downloadFileEmployee(
             HttpServletResponse response,
-            @RequestParam("id") Integer id
+            @RequestParam("id") Integer id,
+            @RequestParam(name = "age", defaultValue = "BIRTHDAY") String ageParamType
     ) throws IOException {
         CompanyDto companyDto = companyMapper.fromEntity(companyService.get());
         EmployeeExportDto employeeExportDto = employeeMapper.toExport(
                 employeeMapper.fromEntity(employeeService.findById(id).get()),
-                companyDto
+                companyDto,
+                AgeParamType.valueOf(ageParamType)
         );
         ByteArrayInputStream exportEmployee = exportPdfService.exportEmployeePdf(employeeExportDto);
         response.setContentType("application/octet-stream");

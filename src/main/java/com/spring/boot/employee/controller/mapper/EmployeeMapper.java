@@ -1,6 +1,7 @@
 package com.spring.boot.employee.controller.mapper;
 
 import com.spring.boot.company.controller.dto.CompanyDto;
+import com.spring.boot.employee.model.AgeParamType;
 import com.spring.boot.employee.controller.dto.CreateEmployeeDto;
 import com.spring.boot.employee.controller.dto.EmployeeDto;
 import com.spring.boot.employee.controller.dto.EmployeeExportDto;
@@ -120,12 +121,12 @@ public class EmployeeMapper {
                 .build();
     }
 
-    public EmployeeExportDto toExport(EmployeeDto employeeDto, CompanyDto companyDto) {
+    public EmployeeExportDto toExport(EmployeeDto employeeDto, CompanyDto companyDto, AgeParamType ageParam) {
         return EmployeeExportDto.builder()
                 .personnelNumber(employeeDto.getPersonnelNumber())
                 .firstname(employeeDto.getFirstname())
                 .lastname(employeeDto.getLastname())
-                .age(DateUtil.ageCalculator(employeeDto.getBirthday()))
+                .age(DateUtil.ageCalculator(employeeDto.getBirthday(), ageParam))
                 .id_image(employeeDto.getId_image())
                 .cnapsNumber(employeeDto.getCnapsNumber())
                 .salary(employeeDto.getSalary())
